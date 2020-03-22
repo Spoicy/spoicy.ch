@@ -1,0 +1,25 @@
+.btn.btn-pink {
+    background-color:#F5A9B8;
+}
+
+.btn.btn-blue {
+    background-color: #5BCEFA;
+}
+
+.main-container .btn {
+    width:50%;
+    font-size: 20px;
+    font-weight:500;
+}
+
+.main-container .row {
+    margin-bottom:10px;
+}
+
+.main-container {
+    padding-top: 150px;
+}
+
+.main-container h1 {
+    padding-bottom:40px;
+}
