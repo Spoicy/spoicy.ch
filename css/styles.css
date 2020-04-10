@@ -53,3 +53,7 @@
     font-size: 2rem;
     font-weight: 700;
 }
+.main-container .btn:focus {
+    outline: none;
+    box-shadow: none;
+}
