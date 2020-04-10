@@ -15,6 +15,9 @@
 <body>
     <div class="container text-center main-container">
         <div class="row justify-content-center">
+            <img src="img/fireball.png" alt="fireball.png" />
+        </div>
+        <div class="row justify-content-center">
             <h1>Fireball</h1>
         </div>
         <div class="row justify-content-center">

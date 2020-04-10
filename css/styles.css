@@ -12,14 +12,23 @@
     font-weight:500;
 }
 
-.main-container .row {
-    margin-bottom:10px;
+.main-container img {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    margin-bottom: 10px;
+}
+
+.main-container .row a,
+.main-container .row input {
+    border-radius: 0;
 }
 
 .main-container {
-    padding-top: 150px;
+    padding-top: 100px;
 }
 
 .main-container h1 {
     padding-bottom:40px;
+    font-size: 2rem;
 }
