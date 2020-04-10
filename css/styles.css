@@ -1,3 +1,8 @@
+.main-container {
+    font-family: 'Karla', sans-serif;
+    letter-spacing: -1px;
+}
+
 .btn.btn-pink {
     background-color:#F5A9B8;
 }
@@ -22,6 +27,11 @@
 .main-container .row a,
 .main-container .row input {
     border-radius: 0;
+    font-weight: 700;
+}
+
+.main-container .row input {
+    letter-spacing: -1px;
 }
 
 .main-container {
@@ -31,4 +41,5 @@
 .main-container h1 {
     padding-bottom:40px;
     font-size: 2rem;
+    font-weight: 700;
 }
