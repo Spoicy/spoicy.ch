@@ -34,6 +34,16 @@
     letter-spacing: -1px;
 }
 
+.main-container .row .first-link {
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+
+.main-container .row .last-link {
+    border-bottom-left-radius: 0.3rem;
+    border-bottom-right-radius: 0.3rem;
+}
+
 .main-container {
     padding-top: 100px;
 }

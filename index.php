@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Spoicy !</title>
+    <title>Fireball</title>
     <meta name="description" content="Spoicy">
 
     <link rel="stylesheet" href="css/styles.css">
@@ -22,7 +22,7 @@
             <h1>Fireball</h1>
         </div>
         <div class="row justify-content-center">
-            <a href="https://www.twitch.tv/onlyfireball" target="_blank" type="button" class="btn btn-blue">Twitch</a>
+            <a href="https://www.twitch.tv/onlyfireball" target="_blank" type="button" class="btn btn-blue first-link">Twitch</a>
         </div>
         <div class="row justify-content-center">
             <a href="https://www.youtube.com/channel/UCsVw7FLt28Boqi7e6CnkoXg" target="_blank" type="button" class="btn btn-pink">YouTube</a>
@@ -34,7 +34,7 @@
             <a href="https://www.speedrun.com/user/fireball" target="_blank" type="button" class="btn btn-pink">Speedrun</a>
         </div>
         <div class="row justify-content-center">
-            <input type="button" class="btn btn-blue" value="Discord" onclick="window.alert('Discord: Fireball#4308');"/>
+            <input type="button" class="btn btn-blue last-link" value="Discord" onclick="window.alert('Discord: Fireball#4308');"/>
         </div>
     </div>
     <script src="js/scripts.js"></script>
