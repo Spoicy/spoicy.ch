@@ -44,6 +44,15 @@
     border-bottom-right-radius: 0.3rem;
 }
 
+.main-container a {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+    text-decoration: none;
+    color: initial;
+}
+
 .main-container {
     padding-top: 100px;
 }
