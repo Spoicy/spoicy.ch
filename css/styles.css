@@ -1,3 +1,7 @@
+body {
+    background-color: #fadadd !important;
+}
+
 .main-container {
     font-family: 'Karla', sans-serif;
     letter-spacing: -1px;
@@ -9,6 +13,10 @@
 
 .btn.btn-blue {
     background-color: #5BCEFA;
+}
+
+.btn.btn-white {
+    background-color: #fff;
 }
 
 .main-container .btn {
