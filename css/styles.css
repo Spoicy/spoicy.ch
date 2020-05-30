@@ -32,6 +32,10 @@ body {
     margin-bottom: 10px;
 }
 
+.main-container .row {
+    justify-content: center!important;
+}
+
 .main-container .row a,
 .main-container .row input {
     border-radius: 0;
@@ -74,3 +78,4 @@ body {
     outline: none;
     box-shadow: none;
 }
+
