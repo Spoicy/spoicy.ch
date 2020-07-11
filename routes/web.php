@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('linktree');
 });
+
+Route::get('/social/', function () {
+    return view('stream');
+});
