@@ -14,10 +14,11 @@ body.pink {
     background-color: #fff;
 }
 
-.main-container {
+.linktree-container {
     padding-top: 100px;
     font-family: 'Karla', sans-serif;
     letter-spacing: -1px;
+    padding-bottom: 20px;
     h1 {
         padding-bottom:40px;
         font-size: 2rem;
@@ -67,13 +68,13 @@ body.pink {
 }
 
 @media screen and (max-width: 767px) {
-    .main-container .btn {
+    .linktree-container .btn {
         width: 70%;
     }
 }
 
 @media screen and (max-width: 575px) {
-    .main-container {
+    .linktree-container {
         padding-top: 50px;
         img {
             width: 175px;
