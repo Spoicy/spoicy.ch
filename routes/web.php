@@ -20,3 +20,11 @@ Route::get('/', function () {
 Route::get('/social/', function () {
     return view('stream');
 });
+
+Route::get('/stream/', function () {
+    return view('stream');
+});
+
+Route::get('/swiss/', function () {
+    return view('swiss');
+});
