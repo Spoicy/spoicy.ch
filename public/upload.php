@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ERROR);
-$tokens = array("c!YnA7WK@9", "lXCC3Aue4^"); //Tokens go here
+$tokens = array("Token1", "Token2"); //Tokens go here
 $sharexdir = "../storage/upload/"; //File directory
 $lengthofstring = 8; //Length of file name
 
