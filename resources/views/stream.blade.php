@@ -16,6 +16,10 @@
             <div class="text-center">
                 <br><br>
                 <h2>Soon</h2>
+                <?php 
+                $speedruns = json_decode(file("https://www.speedrun.com/api/v1/runs?user=kj9407x4&orderby=submitted&direction=desc")[0])->data;
+                $speedrunsFive = array_slice($speedruns, 0, 5); 
+                ?>
             </div>
         </div>
     </body>
