@@ -15,7 +15,6 @@
     <?php 
     $speedruns = json_decode(file("https://www.speedrun.com/api/v1/runs?user=kj9407x4&orderby=submitted&direction=desc")[0])->data;
     $speedrunsFive = array_slice($speedruns, 0, 5); 
-    $firstGame = json_decode(file($speedrunsFive[0]->links[1]->uri)[0])->data;
 
     ?>
         <div class="container stream-container">
