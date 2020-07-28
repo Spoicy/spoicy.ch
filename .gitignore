@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 /public/upload.php
 /.vscode/
+/config/database.php
