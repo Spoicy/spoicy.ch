@@ -1,3 +1,8 @@
+<?php
+use Illuminate\Support\Facades\DB;
+?>
+
+
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
     <head>
@@ -13,7 +18,11 @@
     </head>
     <body>
     <?php 
-    $speedruns = json_decode(file("https://www.speedrun.com/api/v1/runs?user=kj9407x4&orderby=submitted&direction=desc")[0])->data;
+    $speedrunsQuery = DB::table('speedruns')->get();
+    $speedruns = array();
+    foreach($speedrunsQuery as $speedrun) {
+        $speedruns[] = $speedrun;
+    }
     $speedrunsFive = array_slice($speedruns, 0, 5); 
 
     ?>
@@ -28,66 +37,51 @@
                     <h1>Speedruns</h1>
                     <?php 
                         foreach ($speedrunsFive as $key => $speedrun) {
-                            $speedrunLinks = array();
-                            foreach($speedrun->links as $link) {
-                                $speedrunLinks[$link->rel] = $link->uri;
-                            }
-                            $game = json_decode(file($speedrunLinks["game"])[0])->data;
-                            $category = json_decode(file($speedrunLinks["category"])[0])->data;
-                            $categoryLinks = array();
-                            foreach ($category->links as $link) {
-                                $categoryLinks[$link->rel] = $link->uri;
-                            }
-                            if (in_array("variables", array_keys($categoryLinks))) {
-                                $variables = json_decode(file($categoryLinks["variables"])[0])->data;
-                                if (count($variables)) {
-                                    $variables = $variables[0];
-                                } else {
-                                    unset($variables);
-                                }
-                            }
-                            $variableLabel = null;
-                            if (isset($variables) && $variables->{'is-subcategory'}) {
-                                $key = $variables->id;
-                                if (isset($speedrun->values->$key)) {
-                                    $variable = $speedrun->values->$key;
-                                    $variableLabel = $variables->values->values->{"$variable"}->label;
-                                }
-                            }
-                            $level = null;
-                            if (in_array("level", array_keys($speedrunLinks))) {
-                                $level = json_decode(file($speedrunLinks["level"])[0])->data;
-                            }
-                            $logo = $game->assets->{'cover-medium'}->uri;
-                            $time = $speedrun->times->primary_t;
-
-                            if ($time < 3600) {
+                            if ($speedrun->time < 3600) {
                                 $timePattern = "i:s";
                             } else {
                                 $timePattern = "H:i:s";
                             }
-                            $speedrunTime = date($timePattern, $time);
-                            if (is_float($time)) {
-                                $ms = strval(fmod($time, 1));
+                            $speedrunTime = date($timePattern, $speedrun->time);
+                            if ($ms = fmod($speedrun->time, 1)) {
                                 $ms = substr($ms, strpos($ms, ".") + 1);
                                 $ms = str_pad($ms, 3, "0");
                                 $speedrunTime .= "." . $ms;
                             }
+                            $date = strtotime($speedrun->date);
+                            $since = time() - $date;
+                            // years -> months -> days ->
+                            if ($since >= 60*60*24*365) {
+                                $speedrunDate = floor($since / (60*60*24*365));
+                                $timeperiod = " year";
+                                if ($speedrunDate > 1) {
+                                    $timeperiod .= "s";
+                                }
+                                $speedrunDate .= $timeperiod . " ago";
+                            } elseif ($since >= 60*60*24*30) {
+                                $speedrunDate = floor($since / (60*60*24*30));
+                                $timeperiod = " month";
+                                if ($speedrunDate > 1) {
+                                    $timeperiod .= "s";
+                                }
+                                $speedrunDate .= $timeperiod . " ago";
+                            } elseif ($since >= 60*60*24) {
+                                $speedrunDate = floor($since / (60*60*24));
+                                $timeperiod = " day";
+                                if ($speedrunDate > 1) {
+                                    $timeperiod .= "s";
+                                }
+                                $speedrunDate .= $timeperiod . " ago";
+                            } else {
+                                $speedrunDate = "Today";
+                            }
+
                             ?>
-                            <img src="<?php echo $logo; ?>" alt="<?php echo $game->names->international; ?>" />
-                            <a href="<?php echo $game->weblink; ?>"><?php echo $game->names->international; ?></a>
-                            <a href="<?php echo $category->weblink; ?>" class="speedrun-category">
-                                <?php
-                                if ($level) {
-                                    echo $level->name . ": ";
-                                }
-                                echo $category->name;
-                                if ($variableLabel) {
-                                    echo " - " . $variableLabel;
-                                }
-                                ?>
-                            </a>
+                            <img src="<?php echo $speedrun->image; ?>" alt="<?php echo $speedrun->game; ?>" />
+                            <a href="<?php echo $speedrun->game_link; ?>"><?php echo $speedrun->game; ?></a>
+                            <a href="<?php echo $speedrun->category_link; ?>" class="speedrun-category"><?php echo $speedrun->category; ?></a>
                             <span class="speedrun-time"><?php echo $speedrunTime; ?></span>
+                            <span class="speedrun-date"><?php echo $speedrunDate; ?></span>
                             <br>
                             <?php 
                         }

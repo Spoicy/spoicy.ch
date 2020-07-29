@@ -39,7 +39,6 @@ class UpdateSRDC extends Command
      */
     public function handle()
     {
-        $tableSpeedruns = DB::table('speedruns');
         Schema::create('tmp_speedruns', function ($table) {
             $table->increments('id');
             $table->string('game', 255);
@@ -47,7 +46,7 @@ class UpdateSRDC extends Command
             $table->string('category', 255);
             $table->string('category_link', 255);
             $table->date('date');
-            $table->decimal('time', 10, 3);
+            $table->float('time');
             $table->string('image', 255);
         });
         $tableTmpSpeedruns = DB::table('tmp_speedruns');
@@ -64,6 +63,7 @@ class UpdateSRDC extends Command
             foreach ($category->links as $link) {
                 $categoryLinks[$link->rel] = $link->uri;
             }
+            $category_weblink = $category->weblink;
             if (in_array("variables", array_keys($categoryLinks))) {
                 $variables = json_decode(file($categoryLinks["variables"])[0])->data;
                 if (count($variables)) {
@@ -83,6 +83,12 @@ class UpdateSRDC extends Command
             $level = null;
             if (in_array("level", array_keys($speedrunLinks))) {
                 $level = json_decode(file($speedrunLinks["level"])[0])->data;
+                $levelCategories = json_decode(file($level->links[2]->uri)[0])->data;
+                foreach ($levelCategories as $levelKey => $levelcategory) {
+                    if ($levelcategory->id == $category->id) {
+                        $category_weblink = $levelcategory->weblink;
+                    }
+                }
             }
             $logo = $game->assets->{'cover-medium'}->uri;
             $time = $speedrun->times->primary_t;
@@ -101,7 +107,7 @@ class UpdateSRDC extends Command
                     'game' => $game->names->international,
                     'game_link' => $game->weblink,
                     'category' => $category_name,
-                    'category_link' => $category->weblink,
+                    'category_link' => $category_weblink,
                     'date' => $date,
                     'time' => $time,
                     'image' => $logo
