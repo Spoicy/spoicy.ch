@@ -1,7 +1,8 @@
 <?php
+
+use App\Http\Controllers\SRDC;
 use Illuminate\Support\Facades\DB;
 ?>
-
 
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
@@ -36,55 +37,15 @@ use Illuminate\Support\Facades\DB;
                 <div class="col-md-6 col-xs-12">
                     <h1>Speedruns</h1>
                     <?php 
-                        foreach ($speedrunsFive as $key => $speedrun) {
-                            if ($speedrun->time < 3600) {
-                                $timePattern = "i:s";
-                            } else {
-                                $timePattern = "H:i:s";
-                            }
-                            $speedrunTime = date($timePattern, $speedrun->time);
-                            if ($ms = fmod($speedrun->time, 1)) {
-                                $ms = substr($ms, strpos($ms, ".") + 1);
-                                $ms = str_pad($ms, 3, "0");
-                                $speedrunTime .= "." . $ms;
-                            }
-                            $date = strtotime($speedrun->date);
-                            $since = time() - $date;
-                            // years -> months -> days ->
-                            if ($since >= 60*60*24*365) {
-                                $speedrunDate = floor($since / (60*60*24*365));
-                                $timeperiod = " year";
-                                if ($speedrunDate > 1) {
-                                    $timeperiod .= "s";
-                                }
-                                $speedrunDate .= $timeperiod . " ago";
-                            } elseif ($since >= 60*60*24*30) {
-                                $speedrunDate = floor($since / (60*60*24*30));
-                                $timeperiod = " month";
-                                if ($speedrunDate > 1) {
-                                    $timeperiod .= "s";
-                                }
-                                $speedrunDate .= $timeperiod . " ago";
-                            } elseif ($since >= 60*60*24) {
-                                $speedrunDate = floor($since / (60*60*24));
-                                $timeperiod = " day";
-                                if ($speedrunDate > 1) {
-                                    $timeperiod .= "s";
-                                }
-                                $speedrunDate .= $timeperiod . " ago";
-                            } else {
-                                $speedrunDate = "Today";
-                            }
-
-                            ?>
-                            <img src="<?php echo $speedrun->image; ?>" alt="<?php echo $speedrun->game; ?>" />
-                            <a href="<?php echo $speedrun->game_link; ?>"><?php echo $speedrun->game; ?></a>
-                            <a href="<?php echo $speedrun->category_link; ?>" class="speedrun-category"><?php echo $speedrun->category; ?></a>
-                            <span class="speedrun-time"><?php echo $speedrunTime; ?></span>
-                            <span class="speedrun-date"><?php echo $speedrunDate; ?></span>
-                            <br>
-                            <?php 
-                        }
+                    foreach ($speedrunsFive as $key => $speedrun) { ?>
+                        <img src="<?php echo $speedrun->image; ?>" alt="<?php echo $speedrun->game; ?>" />
+                        <a href="<?php echo $speedrun->game_link; ?>"><?php echo $speedrun->game; ?></a>
+                        <a href="<?php echo $speedrun->category_link; ?>" class="speedrun-category"><?php echo $speedrun->category; ?></a>
+                        <span class="speedrun-time"><?php echo SRDC::getTimeFormat($speedrun->time); ?></span>
+                        <span class="speedrun-date"><?php echo SRDC::getDateFormat($speedrun->date); ?></span>
+                        <br>
+                        <?php 
+                    }
                     ?>
                 </div>
             </div>
