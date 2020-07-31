@@ -1,5 +1,11 @@
 .stream-container {
+    font-family: 'Karla', sans-serif;
+    letter-spacing: -1px;
+    padding-top:25px;
     .srdc-container {
+        h1 {
+            padding-bottom:10px;
+        }
         img {
             height: 100px;
         }
@@ -13,6 +19,16 @@
         .speedrun {
             margin-top: 5px;
             margin-bottom: 5px;
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .stream-container {
+        .srdc-container {
+            .speedrun-date {
+                display: none;
+            }
         }
     }
 }
