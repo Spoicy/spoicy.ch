@@ -1,5 +1,18 @@
 .stream-container {
-    img {
-        height: 100px;
+    .speedrun-container {
+        img {
+            height: 100px;
+        }
+        .speedrun-text {
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .speedrun-logo {
+            text-align: center;
+        }
+        .speedrun {
+            margin-top: 5px;
+            margin-bottom: 5px;
+        }
     }
 }
