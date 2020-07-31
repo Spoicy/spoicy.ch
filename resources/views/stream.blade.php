@@ -33,11 +33,11 @@ $i = 0;
                 @if (View::exists($template))
                     @if ($i % 2 == 0)
                         <div class="row">
-                            <div class="col-md-6 col-xs-12 {{$template}}-container">
+                            <div class="col-lg-6 col-xs-12 {{$template}}-container">
                                 @include($template)
                             </div>
                     @else
-                            <div class="col-md-6 col-xs-12 {{$template}}-container">
+                            <div class="col-lg-6 col-xs-12 {{$template}}-container">
                                 @include($template)
                             </div>
                         </div>
