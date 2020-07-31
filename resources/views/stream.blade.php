@@ -1,8 +1,18 @@
-<?php
+@php
 
 use App\Http\Controllers\SRDC;
 use Illuminate\Support\Facades\DB;
-?>
+use Illuminate\Support\Facades\View;
+
+$available_templates = array(
+    'twitter',
+    'youtube',
+    'twitch',
+    'srdc'
+);
+$i = 0;
+
+@endphp
 
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
@@ -19,16 +29,28 @@ use Illuminate\Support\Facades\DB;
     </head>
     <body>
         <div class="container stream-container">
-            <div class="row">
-                <div class="col-md-6 col-xs-12"></div>
-                <div class="col-md-6 col-xs-12"></div>
-            </div>
-            <div class="row">
-                <div class="col-md-6 col-xs-12"></div>
-                <div class="col-md-6 col-xs-12 speedrun-container">
-                    @include('srdc')
-                </div>
-            </div>
+            @foreach ($available_templates as $template)
+                @if (View::exists($template))
+                    @if ($i % 2 == 0)
+                        <div class="row">
+                            <div class="col-md-6 col-xs-12 {{$template}}-container">
+                                @include($template)
+                            </div>
+                    @else
+                            <div class="col-md-6 col-xs-12 {{$template}}-container">
+                                @include($template)
+                            </div>
+                        </div>
+                    @endif
+                    @php
+                        $i++;
+                    @endphp
+                @endif
+            @endforeach
+
+            @if ($i % 2 == 1)
+                        </div>
+            @endif
         </div>
     </body>
 </html>
