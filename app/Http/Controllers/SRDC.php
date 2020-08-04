@@ -14,7 +14,7 @@ class SRDC extends Controller
      */
     public static function getDateFormat($date)
     {
-        $runDate = new \DateTime($date);
+        $runDate = new \DateTime($date . " 12:00:00");
         $now = new \DateTime();
         $diff = date_diff($runDate, $now);
         $years = $diff->format('%y');
@@ -63,6 +63,17 @@ class SRDC extends Controller
         }
         $speedrunTime = date($timePattern, $time);
         if ($ms = fmod($time, 1)) {
+            $errorComp = 0;
+            $floatError = strpos($ms, "9999");
+            if ($floatError) {
+                $errorComp = 1;
+            } else {
+                $floatError = strpos($ms, "0000");
+            }
+            if ($floatError) {
+                $ms = str_replace(substr($ms, $floatError), "", $ms);
+                $ms = strval(floatval($ms) + ($errorComp * pow(0.1, $floatError - 2)));
+            }
             $ms = substr($ms, strpos($ms, ".") + 1);
             $ms = str_pad($ms, 3, "0");
             $speedrunTime .= "." . $ms;
