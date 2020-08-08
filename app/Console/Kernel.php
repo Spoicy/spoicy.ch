@@ -26,7 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->call(function () {
 
-        })->cron('*/5 * * * *');
+        })->cron('*/10 * * * *');
     }
 
     /**

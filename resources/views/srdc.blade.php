@@ -8,7 +8,7 @@ $speedruns = array();
 foreach($speedrunsQuery as $speedrun) {
     $speedruns[] = $speedrun;
 }
-$speedrunsFive = array_slice($speedruns, 0, 5);
+$speedrunsFive = array_slice(array_reverse($speedruns), 0, 5);
 
 @endphp
 <h1>Speedruns</h1>
