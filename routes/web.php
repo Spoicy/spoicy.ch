@@ -28,3 +28,7 @@ Route::get('/stream/', function () {
 Route::get('/swiss/', function () {
     return view('swiss');
 });
+
+Route::get('meuphoria', function () {
+    return view('meu');
+});
