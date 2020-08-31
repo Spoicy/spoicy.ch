@@ -29,6 +29,4 @@ Route::get('/swiss/', function () {
     return view('swiss');
 });
 
-Route::get('meuphoria', function () {
-    return view('meu');
-});
+Route::match(['get', 'post'], '/meuphoria/', 'Meuphoria@view');

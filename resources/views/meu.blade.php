@@ -1,7 +1,6 @@
 @php
 
-use App\Http\Controllers\SRDC;
-use Illuminate\Support\Facades\DB;
+//use Illuminate\Support\Facades\DB;
 
 @endphp
 
@@ -20,7 +19,16 @@ use Illuminate\Support\Facades\DB;
     </head>
     <body>
         <div class="container meu-container">
-            <form action="golds.php"></form>
+            <form action="meuphoria" method="post">
+                @csrf
+                <button id="calcGolds" type="submit">Lol!</button>
+                <input type="file" name="splitFile" id="splitFile" />
+                <div id="demo"> 
+                    @if ($splitFile)
+                        {{ $splitFile }}
+                    @endif
+                </div>
+            </form>
         </div>
     </body>
 </html>
