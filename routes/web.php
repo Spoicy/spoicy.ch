@@ -17,13 +17,9 @@ Route::get('/', function () {
     return view('linktree');
 });
 
-Route::get('/social/', function () {
-    return view('stream');
-});
+Route::get('/social/', 'Stream@view');
 
-Route::get('/stream/', function () {
-    return view('stream');
-});
+Route::get('/stream/', 'Stream@view');
 
 Route::get('/swiss/', function () {
     return view('swiss');

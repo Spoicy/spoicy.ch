@@ -1,17 +1,6 @@
 @php
-
-use App\Http\Controllers\SRDC;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\View;
-
-$available_templates = array(
-    'twitter',
-    'youtube',
-    'twitch',
-    'srdc'
-);
 $i = 0;
-
 @endphp
 
 <!DOCTYPE html>
@@ -29,16 +18,16 @@ $i = 0;
     </head>
     <body>
         <div class="container stream-container">
-            @foreach ($available_templates as $template)
+            @foreach ($available_templates as $template => $variables)
                 @if (View::exists($template))
                     @if ($i % 2 == 0)
                         <div class="row">
                             <div class="col-lg-6 col-xs-12 {{$template}}-container">
-                                @include($template)
+                                @include($template, ['variables' => $variables])
                             </div>
                     @else
                             <div class="col-lg-6 col-xs-12 {{$template}}-container">
-                                @include($template)
+                                @include($template, ['variables' => $variables])
                             </div>
                         </div>
                     @endif

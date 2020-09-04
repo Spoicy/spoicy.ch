@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class SRDC extends Controller
@@ -79,5 +80,22 @@ class SRDC extends Controller
             $speedrunTime .= "." . $ms;
         }
         return $speedrunTime;
+    }
+
+    /**
+     * Returns the variables required for the SRDC template.
+     * 
+     * @return array $variables
+     */
+    public static function variables() {
+        $speedrunsQuery = DB::table('speedruns')->get();
+        $speedruns = array();
+        foreach($speedrunsQuery as $speedrun) {
+            $speedruns[] = $speedrun;
+        }
+        $speedrunsFive = array_slice(array_reverse($speedruns), 0, 5);
+        return array(
+            'speedrunsFive' => $speedrunsFive
+        );
     }
 }

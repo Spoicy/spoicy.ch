@@ -1,18 +1,8 @@
 @php
-
 use App\Http\Controllers\SRDC;
-use Illuminate\Support\Facades\DB;
-
-$speedrunsQuery = DB::table('speedruns')->get();
-$speedruns = array();
-foreach($speedrunsQuery as $speedrun) {
-    $speedruns[] = $speedrun;
-}
-$speedrunsFive = array_slice(array_reverse($speedruns), 0, 5);
-
 @endphp
 <h1>Speedruns</h1>
-@foreach ($speedrunsFive as $key => $speedrun)
+@foreach ($variables['speedrunsFive'] as $key => $speedrun)
     <div class="row speedrun">
         <div class="col-lg-4 col-md-3 col-sm-4 col-5 speedrun-logo">
             <img src="{{$speedrun->image}}" alt="{{$speedrun->game}}" />
