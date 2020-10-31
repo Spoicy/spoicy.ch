@@ -1,0 +1,36 @@
+
+.overlay-container {
+    position: relative;
+    /*.menuburger {
+        position: absolute;
+        left: 0;
+        padding: 15px;
+    }*/
+    .github-ico {
+        position: absolute;
+        right: 0;
+        padding: 25px;
+        padding-top: 20px;
+        a {
+            text-decoration: none;
+            color: #212529;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+        a:hover {
+            opacity: 1;
+        }
+    }
+    /*.menuburger i,*/
+    .github-ico a {
+        font-size: 48px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .overlay-container {
+        .github-ico a {
+            font-size: 40px;
+        }
+    }
+}
