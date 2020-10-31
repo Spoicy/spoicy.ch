@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('linktree');
+    return view('pages/linktree');
 });
 
 Route::get('/social/', 'Stream@view');
@@ -22,5 +22,5 @@ Route::get('/social/', 'Stream@view');
 Route::get('/stream/', 'Stream@view');
 
 Route::get('/swiss/', function () {
-    return view('swiss');
+    return view('pages/swiss');
 });

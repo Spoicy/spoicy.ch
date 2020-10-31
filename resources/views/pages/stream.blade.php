@@ -19,15 +19,15 @@ $i = 0;
     <body>
         <div class="container stream-container">
             @foreach ($available_templates as $template => $variables)
-                @if (View::exists($template))
+                @if (View::exists('components/stream/'.$template))
                     @if ($i % 2 == 0)
                         <div class="row">
                             <div class="col-lg-6 col-xs-12 {{$template}}-container">
-                                @include($template, ['variables' => $variables])
+                                @include('components/stream/'.$template, ['variables' => $variables])
                             </div>
                     @else
                             <div class="col-lg-6 col-xs-12 {{$template}}-container">
-                                @include($template, ['variables' => $variables])
+                                @include('components/stream/'.$template, ['variables' => $variables])
                             </div>
                         </div>
                     @endif

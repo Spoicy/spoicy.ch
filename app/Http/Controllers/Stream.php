@@ -15,7 +15,7 @@ class Stream extends Controller
             'twitch' => '',
             'srdc' => SRDC::variables()
         );
-        return view('stream', [
+        return view('pages/stream', [
             'available_templates' => $available_templates,
         ]);
     }
