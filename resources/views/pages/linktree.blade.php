@@ -40,10 +40,8 @@
                 <input type="button" class="btn btn-blue last-link" value="Discord" onclick="window.alert('Discord: Fireball#4308');"/>
             </div>
         </div>
-        <script type="text/javascript">
-            $(document).ready(function() {
-                $('[data-toggle="tooltip"]').tooltip();
-            })
-        </script>
+        <!--<script type="text/javascript">
+            $('[data-toggle="tooltip"]').tooltip();
+        </script>-->
     </body>
 </html>
