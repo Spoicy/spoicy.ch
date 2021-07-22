@@ -13,8 +13,7 @@ class SRDC extends Controller
      * @param  string $date
      * @return string $speedrunDate
      */
-    public static function getDateFormat($date)
-    {
+    public static function getDateFormat($date) {
         $runDate = new \DateTime($date . " 12:00:00");
         $now = new \DateTime();
         $diff = date_diff($runDate, $now);

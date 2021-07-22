@@ -10,10 +10,10 @@ class Stream extends Controller
 
     public static function view() {
         $available_templates = array(
+            'srdc' => SRDC::variables(),
+            'youtube' => Youtube::variables(),
             'twitter' => '',
-            'youtube' => '',
-            'twitch' => '',
-            'srdc' => SRDC::variables()
+            'twitch' => ''
         );
         return view('pages/stream', [
             'available_templates' => $available_templates,
