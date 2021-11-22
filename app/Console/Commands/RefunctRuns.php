@@ -51,7 +51,7 @@ class RefunctRuns extends Command
                         $newRun = new stdClass();
                         if (isset($run->players->data[0]->names->international)) {
                             $newRun->name = $run->players->data[0]->names->international;
-                            $newRun->pfp = 'https://www.speedrun.com/themes/user/'.$newRun->name.'/image.png';
+                            $newRun->pfp = $run->players->data[0]->assets->image->uri.'.png';
                         } else if (isset($run->players->data[0]->name)) {
                             $newRun->name = $run->players->data[0]->name;
                         } else {
