@@ -22,11 +22,14 @@
                     <img src="img/fireball.png" alt="fireball.png" />
                 </div>
                 <div class="row">
-                    <h1>Spoicy</h1>
+                    <h1>Spoicy</a></h1>
+                </div>
+                <div class="row ico-github">
+                    <a class="fa fa-github" href="https://github.com/Spoicy" target="_blank"></a>
                 </div>
             </div>
             <div class="row project-1">
-                <h2>Projects:</h2>
+                <h2>Projects</h2>
             </div>
             <div class="row project-2">
                 <a href="https://github.com/Spoicy/spoicy.ch" target="_blank" type="button"

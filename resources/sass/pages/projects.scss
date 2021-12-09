@@ -16,7 +16,7 @@
         animation-fill-mode: forwards;
     }
     h1 {
-        padding-bottom:40px;
+        padding-bottom: 4px;
         font-size: 2.5rem;
         font-weight: 700;
     }
@@ -37,6 +37,17 @@
         appearance: none;
         text-decoration: none;
         color: initial;
+    }
+    a.fa-github {
+        text-decoration: none;
+        color: #212529;
+        opacity: 0.6;
+        transition: 0.3s;
+        font-size: 2.25rem;
+        padding-bottom:10px;
+    }
+    a.fa-github:hover {
+        opacity: 1;
     }
     img {
         width: 200px;
