@@ -92,9 +92,8 @@ class SRDC extends Controller
         foreach($speedrunsQuery as $speedrun) {
             $speedruns[] = $speedrun;
         }
-        $speedrunsFive = array_slice(array_reverse($speedruns), 0, 5);
         return array(
-            'speedrunsFive' => $speedrunsFive
+            'speedrunsFive' => array_slice(array_reverse($speedruns), 0, 5)
         );
     }
 }

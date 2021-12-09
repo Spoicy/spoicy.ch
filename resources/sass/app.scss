@@ -2,9 +2,14 @@
 @use 'pages/stream';
 @use 'pages/swiss';
 @use 'components/overlay';
+@use 'pages/projects';
 
 body.pink {
     background-color: #fadadd !important;
+}
+
+body.light-blue {
+    background-color: #93caed !important;
 }
 
 .btn.btn-pink {

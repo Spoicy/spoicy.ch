@@ -1,0 +1,109 @@
+.projects-container {
+    padding-top: 100px;
+    font-family: 'Karla', sans-serif;
+    letter-spacing: -1px;
+    padding-bottom: 20px;
+    .main-div,
+    .project-1,
+    .project-2,
+    .project-3,
+    .project-4,
+    .project-5 {
+        opacity: 0;
+        -webkit-animation: fadein 1.5s;
+        -moz-animation: fadein 1.5s;
+        animation: fadein 1.5s;
+        animation-fill-mode: forwards;
+    }
+    h1 {
+        padding-bottom:40px;
+        font-size: 2.5rem;
+        font-weight: 700;
+    }
+    h2 {
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    .btn:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    .btn:hover {
+        background-color: #7EAECC;
+    }
+    a {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+        text-decoration: none;
+        color: initial;
+    }
+    img {
+        width: 200px;
+        height: 200px;
+        border-radius: 50%;
+        margin-bottom: 10px;
+    }
+    .row {
+        justify-content: center!important;
+        a,
+        input {
+            font-weight: 500;
+        }
+        input {
+            letter-spacing: -1px;
+        }
+        
+    }
+    .btn {
+        font-size: 1.5rem;
+        width:50%;
+        font-weight:500;
+    }
+    .project-1 {
+        animation-delay: 1.2s;
+    }
+    .project-2 {
+        animation-delay: 1.5s;
+    }
+    .project-3 {
+        animation-delay: 1.8s;
+    }
+    .project-4 {
+        animation-delay: 2.1s;
+    }
+    .project-5 {
+        animation-delay: 2.4s;
+    }
+}
+
+@keyframes fadein {
+    from { opacity: 0; transform: translate3d(0,40px,0); }
+    to   { opacity: 1; transform: translate3d(0,0,0); }
+}
+
+@-moz-keyframes fadein {
+    from { opacity: 0; transform: translate3d(0,40px,0); }
+    to   { opacity: 1; transform: translate3d(0,0,0); }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; transform: translate3d(0,40px,0); }
+    to   { opacity: 1; transform: translate3d(0,0,0); }
+}
+
+@media screen and (max-width: 767px) {
+    .projects-container .btn {
+        width: 70%;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    .projects-container {
+        padding-top: 50px;
+        img {
+            width: 175px;
+            height: 175px;
+        }
+    }
+}

@@ -63,6 +63,7 @@ class UpdateSRDC extends Command
 
         $speedruns = array_reverse(json_decode(file("https://www.speedrun.com/api/v1/runs?user=kj9407x4&orderby=submitted&direction=desc")[0])->data);
         foreach ($speedruns as $key => $speedrun) {
+            // TODO make this more efficient by utilizing less API calls
             if (!in_array($speedrun->id, $sids) && $speedrun->status->status == "verified") {
                 $speedrunLinks = array();
                 foreach ($speedrun->links as $link) {
