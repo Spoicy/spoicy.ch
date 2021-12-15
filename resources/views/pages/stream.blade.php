@@ -16,8 +16,11 @@ $i = 0;
         <link rel="stylesheet" href="css/app.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
-    <body>
+    <body class="soft-blue">
         <div class="container stream-container">
+            <div class="main-div">
+                <h1>Social Media</h1>
+            </div>
             @foreach ($available_templates as $template => $variables)
                 @if (View::exists('components/stream/'.$template))
                     @if ($i % 2 == 0)

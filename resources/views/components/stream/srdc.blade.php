@@ -1,7 +1,7 @@
 @php
 use App\Http\Controllers\SRDC;
 @endphp
-<h1>Speedruns</h1>
+<h2>Speedruns</h2>
 @foreach ($variables['speedrunsFive'] as $key => $speedrun)
     <div class="row speedrun">
         <div class="col-lg-4 col-md-3 col-sm-4 col-5 speedrun-logo">

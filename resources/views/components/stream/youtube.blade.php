@@ -1,7 +1,7 @@
 @php
 use App\Http\Controllers\Youtube;
 @endphp
-<h1>YouTube</h1>
+<h2>YouTube</h2>
 @foreach ($variables['youtubeFive'] as $key => $video)
     <div class="row video">
         <div class="col-lg-4 col-md-3 col-sm-4 col-5 video-thumbnail">
