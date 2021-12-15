@@ -28,3 +28,7 @@ Route::get('/swiss/', function () {
 Route::get('/linktree/', function () {
     return view('pages/linktree');
 });
+
+Route::get('/alphabet/', function () {
+    return view('pages/alphabet');
+});
