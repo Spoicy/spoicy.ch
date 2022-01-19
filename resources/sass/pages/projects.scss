@@ -4,11 +4,7 @@
     letter-spacing: -1px;
     padding-bottom: 20px;
     .main-div,
-    .project-1,
-    .project-2,
-    .project-3,
-    .project-4,
-    .project-5 {
+    .project {
         opacity: 0;
         -webkit-animation: fadein 1.5s;
         -moz-animation: fadein 1.5s;
@@ -71,20 +67,8 @@
         width:50%;
         font-weight:500;
     }
-    .project-1 {
-        animation-delay: 1.2s;
-    }
-    .project-2 {
-        animation-delay: 1.5s;
-    }
-    .project-3 {
-        animation-delay: 1.8s;
-    }
-    .project-4 {
-        animation-delay: 2.1s;
-    }
-    .project-5 {
-        animation-delay: 2.4s;
+    .project {
+        animation-delay: calc(1.2s + var(--order) * 300ms);
     }
 }
 

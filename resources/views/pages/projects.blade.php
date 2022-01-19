@@ -28,22 +28,22 @@
                     <a class="fa fa-github" href="https://github.com/Spoicy" target="_blank"></a>
                 </div>
             </div>
-            <div class="row project-1">
+            <div class="row project" style="--order: 0">
                 <h2>Projects</h2>
             </div>
-            <div class="row project-2">
+            <div class="row project" style="--order: 1">
                 <a href="https://github.com/Spoicy/spoicy.ch" target="_blank" type="button"
                     data-toggle="tooltip" title="My personal website using the Laravel Framework" class="btn first-link">spoicy.ch</a>
             </div>
-            <div class="row project-3">
+            <div class="row project" style="--order: 2">
                 <a href="https://github.com/Spoicy/satool" target="_blank" type="button"
                     data-toggle="tooltip" title="A Moodle Plugin for managing semester projects at Kantonsschule Frauenfeld" class="btn">SA-Tool</a>
             </div>
-            <div class="row project-4">
+            <div class="row project" style="--order: 3">
                 <a href="https://github.com/Spoicy/fitcheck" target="_blank" type="button"
                     data-toggle="tooltip" title="A Moodle Plugin for physical education classes at Kantonsschule Frauenfeld" class="btn">FitCheck</a>
             </div>
-            <div class="row project-5">
+            <div class="row project" style="--order: 4">
                 <a href="https://github.com/Spoicy/birthday" target="_blank" type="button"
                     data-toggle="tooltip" title="A Moodle Block by Anthony Borrow, updated by me to work on Moodle 3.7" class="btn">Birthday-Block</a>
             </div>
