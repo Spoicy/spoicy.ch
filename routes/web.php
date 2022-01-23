@@ -32,3 +32,7 @@ Route::get('/linktree/', function () {
 Route::get('/alphabet/', function () {
     return view('pages/alphabet');
 });
+
+Route::get('/jsframework/', function () {
+    return view('pages/jsframework');
+});

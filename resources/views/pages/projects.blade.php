@@ -20,7 +20,7 @@
             <div class="main-div flex-column">
                 <img src="img/fireball.png" alt="fireball.png" />
                 <h1>Spoicy</a></h1>
-                <a class="fa fa-github" href="https://github.com/Spoicy" target="_blank"></a>
+                <a class="fa fa-github" aria-label="GitHub Profile Link" href="https://github.com/Spoicy" target="_blank"></a>
             </div>
             <div class="project-list flex-column">
                 <h2 class="project" style="--order: 0">Projects</h2>
