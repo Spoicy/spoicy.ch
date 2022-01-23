@@ -17,35 +17,25 @@
     </head>
     <body class="light-blue">
         <div class="container text-center projects-container">
-            <div class="main-div">
-                <div class="row">
-                    <img src="img/fireball.png" alt="fireball.png" />
-                </div>
-                <div class="row">
-                    <h1>Spoicy</a></h1>
-                </div>
-                <div class="row ico-github">
-                    <a class="fa fa-github" href="https://github.com/Spoicy" target="_blank"></a>
-                </div>
+            <div class="main-div flex-column">
+                <img src="img/fireball.png" alt="fireball.png" />
+                <h1>Spoicy</a></h1>
+                <a class="fa fa-github" href="https://github.com/Spoicy" target="_blank"></a>
             </div>
-            <div class="row project" style="--order: 0">
-                <h2>Projects</h2>
-            </div>
-            <div class="row project" style="--order: 1">
+            <div class="project-list flex-column">
+                <h2 class="project" style="--order: 0">Projects</h2>
                 <a href="https://github.com/Spoicy/spoicy.ch" target="_blank" type="button"
-                    data-toggle="tooltip" title="My personal website using the Laravel Framework" class="btn first-link">spoicy.ch</a>
-            </div>
-            <div class="row project" style="--order: 2">
+                    data-toggle="tooltip" title="My personal website using the Laravel Framework"
+                    class="btn project" style="--order: 1">spoicy.ch</a>
                 <a href="https://github.com/Spoicy/satool" target="_blank" type="button"
-                    data-toggle="tooltip" title="A Moodle Plugin for managing semester projects at Kantonsschule Frauenfeld" class="btn">SA-Tool</a>
-            </div>
-            <div class="row project" style="--order: 3">
+                    data-toggle="tooltip" title="A Moodle Plugin for managing semester projects at Kantonsschule Frauenfeld"
+                    class="btn project" style="--order: 2">SA-Tool</a>
                 <a href="https://github.com/Spoicy/fitcheck" target="_blank" type="button"
-                    data-toggle="tooltip" title="A Moodle Plugin for physical education classes at Kantonsschule Frauenfeld" class="btn">FitCheck</a>
-            </div>
-            <div class="row project" style="--order: 4">
+                    data-toggle="tooltip" title="A Moodle Plugin for physical education classes at Kantonsschule Frauenfeld"
+                    class="btn project" style="--order: 3">FitCheck</a>
                 <a href="https://github.com/Spoicy/birthday" target="_blank" type="button"
-                    data-toggle="tooltip" title="A Moodle Block by Anthony Borrow, updated by me to work on Moodle 3.7" class="btn">Birthday-Block</a>
+                    data-toggle="tooltip" title="A Moodle Block by Anthony Borrow, updated by me to work on Moodle 3.7"
+                    class="btn project" style="--order: 4">Birthday-Block</a>
             </div>
         </div>
     </body>

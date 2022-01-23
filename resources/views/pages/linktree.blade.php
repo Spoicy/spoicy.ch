@@ -18,25 +18,15 @@
     <body class="pink">
         @include('components/other/overlay')
         <div class="container text-center linktree-container">
-            <div class="row">
+            <div class="main-div flex-column">
                 <img src="img/fireball.png" alt="fireball.png" />
-            </div>
-            <div class="row">
                 <h1>Fireball</h1>
             </div>
-            <div class="row">
+            <div class="social-list flex-column">
                 <a href="https://www.twitch.tv/onlyfireball" target="_blank" type="button" class="btn btn-blue first-link">Twitch</a>
-            </div>
-            <div class="row">
                 <a href="https://www.youtube.com/channel/UCsVw7FLt28Boqi7e6CnkoXg" target="_blank" type="button" class="btn btn-pink">YouTube</a>
-            </div>
-            <div class="row">
                 <a href="https://www.twitter.com/onlyfireball_" target="_blank" type="button" class="btn btn-white">Twitter</a>
-            </div>
-            <div class="row">
                 <a href="https://www.speedrun.com/user/fireball" target="_blank" type="button" class="btn btn-pink">Speedrun</a>
-            </div>
-            <div class="row">
                 <input type="button" class="btn btn-blue last-link" value="Discord" onclick="window.alert('Discord: Fireball#4308');"/>
             </div>
         </div>

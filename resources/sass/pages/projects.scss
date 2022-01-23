@@ -51,21 +51,10 @@
         border-radius: 50%;
         margin-bottom: 10px;
     }
-    .row {
-        justify-content: center!important;
-        a,
-        input {
-            font-weight: 500;
-        }
-        input {
-            letter-spacing: -1px;
-        }
-        
-    }
     .btn {
         font-size: 1.5rem;
-        width:50%;
-        font-weight:500;
+        width: 50%;
+        font-weight: 500;
     }
     .project {
         animation-delay: calc(1.2s + var(--order) * 300ms);
@@ -88,8 +77,12 @@
 }
 
 @media screen and (max-width: 767px) {
-    .projects-container .btn {
-        width: 70%;
+    .projects-container .project-list {
+        margin-left: -15px;
+        margin-right: -15px;
+        .btn {
+            width: 70%;
+        }
     }
 }
 
