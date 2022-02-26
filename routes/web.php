@@ -36,3 +36,7 @@ Route::get('/alphabet/', function () {
 Route::get('/jsframework/', function () {
     return view('pages/jsframework');
 });
+
+Route::get('/jsframework/vanilla/', function () {
+    return view('components/jsframework/vanilla');
+});

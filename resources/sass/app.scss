@@ -4,7 +4,8 @@
 @use 'components/overlay';
 @use 'pages/projects';
 @use 'pages/alphabet';
-@use 'pages/jsframework.scss';
+@use 'pages/jsframework';
+@use 'components/jsfchild';
 
 body.pink {
     background-color: #fadadd !important;

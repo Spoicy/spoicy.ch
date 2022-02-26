@@ -1,0 +1,32 @@
+.jsfchild-container {
+    padding-top: 1.5rem;
+    letter-spacing: -1px;
+    font-family: 'Karla', sans-serif;
+    h1 {
+        font-size: 3rem;
+        padding-bottom: 25px;
+        text-align: center;
+    }
+    h2 {
+        border-bottom: 3px solid #CFCCE8;
+        margin-bottom: 16px;
+        padding-bottom: 10px;
+        text-align: center;
+    }
+    .calc-container {
+        .calc-grid {
+            display: grid;
+            gap: 1rem;
+            grid-template-columns: repeat(4, 1fr);
+            .calc-button-op {
+                background-color: #B8B8B8;
+            }
+            .calc-button-num {
+                background-color: #D0D0D0;
+            }
+        }
+        .calc-display {
+            text-align: right;
+        }
+    }
+}

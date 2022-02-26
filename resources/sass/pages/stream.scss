@@ -1,10 +1,16 @@
 .stream-container {
     font-family: 'Karla', sans-serif;
     letter-spacing: -1px;
-    padding-top: 25px;
+    padding-top: 1.5rem;
     h1 {
         font-size: 3rem;
-        padding-bottom: 25px;
+        padding-bottom: 1.5rem;
+        text-align: center;
+    }
+    h2 {
+        border-bottom: 3px solid #CFCCE8;
+        margin-bottom: 1rem;
+        padding-bottom: 0.625rem;
         text-align: center;
     }
     .main-div,
@@ -18,12 +24,6 @@
     }
     .srdc-container {
         animation-delay: 1.2s;
-        h2 {
-            border-bottom: 3px solid #CFCCE8;
-            margin-bottom: 16px;
-            padding-bottom: 10px;
-            text-align: center;
-        }
         img {
             height: 100px;
         }
@@ -43,8 +43,8 @@
         animation-delay: 1.5s;
         h2 {
             border-bottom: 3px solid #CFCCE8;
-            margin-bottom: 16px;
-            padding-bottom: 10px;
+            margin-bottom: 1rem;
+            padding-bottom: 0.625rem;
             text-align: center;
         }
         img {
@@ -69,7 +69,7 @@
     .twitter-container,
     .twitch-container {
         h1 {
-            padding-top: 20px;
+            padding-top: 1.25rem;
         }
     }
 }
