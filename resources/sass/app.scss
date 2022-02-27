@@ -6,17 +6,27 @@
 @use 'pages/alphabet';
 @use 'pages/jsframework';
 @use 'components/jsfchild';
+@use 'components/wip';
 
 body.pink {
     background-color: #fadadd !important;
+    .menu-popout {
+        background-color: #fadadd;
+    }
 }
 
 body.light-blue {
     background-color: #93caed !important;
+    .menu-popout {
+        background-color: #93caed;
+    }
 }
 
 body.soft-blue {
     background-color: #eef1ff !important;
+    .menu-popout {
+        background-color: #eef1ff;
+    }
 }
 
 .btn.btn-pink {

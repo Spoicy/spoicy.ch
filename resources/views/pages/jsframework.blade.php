@@ -1,8 +1,3 @@
-@php
-use Illuminate\Support\Facades\View;
-$i = 0;
-@endphp
-
 <!DOCTYPE html>
 <html lang="<?php echo e(str_replace('_', '-', app()->getLocale())); ?>">
     <head>
@@ -17,9 +12,6 @@ $i = 0;
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     </head>
     <body>
-        <div class="container jsframework-container text-center">
-            <h1>Under development</h1>
-            <p>This page is currently still under development. Once something ready to be displayed, this page will be in use.</p>
-        </div>
+        @include('components/other/wip')
     </body>
 </html>

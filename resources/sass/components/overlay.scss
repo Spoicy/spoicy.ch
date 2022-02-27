@@ -1,36 +1,127 @@
 
 .overlay-container {
     position: relative;
-    /*.menuburger {
+    font-family: 'Karla', sans-serif;
+    .menuburger {
         position: absolute;
         left: 0;
-        padding: 15px;
-    }*/
+        padding: 1.5rem;
+        i {
+            font-size: 2rem;
+            color: #212529;
+            opacity: 0.6;
+            transition: 0.3s;
+        }
+        i:hover {
+            opacity: 1;
+        }
+        button {
+            border: none;
+            background-color: transparent;
+            outline: none;
+        }
+    }
     .github-ico {
         position: absolute;
         right: 0;
-        padding: 25px;
-        padding-top: 20px;
+        padding: 1.5rem;
+        padding-top: 1rem;
         a {
             text-decoration: none;
             color: #212529;
             opacity: 0.6;
             transition: 0.3s;
+            font-size: 3rem;
         }
         a:hover {
             opacity: 1;
         }
     }
-    /*.menuburger i,*/
-    .github-ico a {
-        font-size: 48px;
+    .menu-popout {
+        position: absolute;
+        height: 100vh;
+        width: min(300px, 80%);
+        transform: translateX(-100%);
+        z-index: 2;
+        transition: transform 0.5s ease-in;
+        background-color: #eee;
+        padding: 0.75rem;
+        button {
+            position: absolute;
+            right: 0;
+            border: none;
+            background-color: transparent;
+            outline: none;
+            opacity: 1;
+            visibility: hidden;
+            i {
+                font-size: 2.5rem;
+                margin-right: -4rem;
+                color: #fff;
+            }
+        }
+        .menuclose-show {
+            visibility: visible;
+        }
+        ul {
+            margin: 0;
+            padding: 0;
+            padding-left: 0.25rem;
+            list-style-type: none;
+            font-size: 1.5rem;
+            li {
+                padding-top: 1rem;
+                line-height: 1;
+                font-weight: 700;
+                a {
+                    color: #000;
+                    text-decoration: none;
+                    position: relative;
+                }
+                /* Code for underline animation from css-irl.info */
+                a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 0.1em;
+                    background-color: #212529;
+                    transition: opacity 300ms, transform 300ms;
+                    opacity: 1;
+                    transform: scale(0);
+                    transform-origin: center;
+                }
+                a:hover::after,
+                a:focus::after {
+                    transform: scale(1);
+                }
+            }
+            :first-child {
+                padding-top: 0.5rem;
+            }
+        }
+        
+    }
+    .menu-show {
+        transform: translateX(0);
+    }
+    .background-dim {
+        background-color: #000;
+        position: absolute;
+        opacity: 0;
+        z-index: 1;
+        width: 100vw;
+        height: 100vh;
+        visibility: hidden;
+        transition: visibility 0.5s, opacity 0.5s ease-in;
+    }
+    .active {
+        visibility: visible;
+        opacity: 0.35;
     }
 }
 
 @media (max-width: 575.98px) {
-    .overlay-container {
-        .github-ico a {
-            font-size: 40px;
-        }
-    }
+    
 }
