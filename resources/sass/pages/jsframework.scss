@@ -1,8 +1,52 @@
 .jsframework-container {
-    padding-top: 100px;
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     font-family: 'Karla', sans-serif;
     letter-spacing: -1px;
     h1 {
-        font-weight: 700;
+        font-size: 3rem;
+    }
+    .jsf-grid {
+        padding-top: 1rem;
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: repeat(4, 1fr);
+        .jsf-grid-card {
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+        }
+        .card-white {
+            background-color: #FFF;
+            color: #000;
+        }
+        .card-blue  {
+            background-color: #0062CC;
+            color: #FFF
+        }
+        .card-dark {
+            background-color: #040730;
+            color: #FFF;
+        }
+        .card-gray {
+            background-color: #71797E;
+            color: #FFF;
+        }
+    }
+}
+@media (max-width: 1199.98px) {
+    .jsframework-container {
+        .jsf-grid {
+            grid-template-columns: 1fr 1fr;
+        }
+    }
+}
+
+@media (max-width: 767.98px) {
+    .jsframework-container {
+        .jsf-grid {
+            grid-template-columns: 1fr;
+        }
     }
 }
