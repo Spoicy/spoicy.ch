@@ -123,7 +123,14 @@
 }
 
 @media (max-width: 575.98px) {
-    
+    .overlay-container {
+        .menuburger {
+            padding: 1.5rem 1rem;
+        }
+        .github-ico {
+            padding: 1rem;
+        }
+    }
 }
 
 @supports (-webkit-touch-callout: none) {

@@ -10,7 +10,7 @@
         padding-top: 1rem;
         display: grid;
         gap: 1rem;
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: 1fr 1fr;
         .jsf-grid-card {
             padding: 0.5rem;
             border-radius: 0.5rem;
@@ -32,13 +32,6 @@
         .card-gray {
             background-color: #71797E;
             color: #FFF;
-        }
-    }
-}
-@media (max-width: 1199.98px) {
-    .jsframework-container {
-        .jsf-grid {
-            grid-template-columns: 1fr 1fr;
         }
     }
 }
