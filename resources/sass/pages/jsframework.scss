@@ -34,6 +34,23 @@
             color: #FFF;
         }
     }
+    .main-div,
+    .jsf-grid-card {
+        opacity: 0;
+        -webkit-animation: fadein 1.5s;
+        -moz-animation: fadein 1.5s;
+        animation: fadein 1.5s;
+        animation-fill-mode: forwards;
+    }
+    .jsf-grid-card {
+        animation-delay: calc(1.2s + var(--order) * 300ms);
+    }
+}
+
+@media (min-width: 1200px) {
+    .container.jsframework-container {
+        max-width: 960px;
+    }
 }
 
 @media (max-width: 767.98px) {

@@ -1,0 +1,17 @@
+/* This SCSS file contains all keyframe animations that are used everywhere on the website. */
+
+/* Fade in */
+@keyframes fadein {
+    from { opacity: 0; transform: translate3d(0,40px,0); }
+    to   { opacity: 1; transform: translate3d(0,0,0); }
+}
+
+@-moz-keyframes fadein {
+    from { opacity: 0; transform: translate3d(0,40px,0); }
+    to   { opacity: 1; transform: translate3d(0,0,0); }
+}
+
+@-webkit-keyframes fadein {
+    from { opacity: 0; transform: translate3d(0,40px,0); }
+    to   { opacity: 1; transform: translate3d(0,0,0); }
+}

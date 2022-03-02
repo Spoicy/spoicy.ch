@@ -1,7 +1,16 @@
 .jsfchild-container {
     padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
     letter-spacing: -1px;
     font-family: 'Karla', sans-serif;
+    .main-div,
+    .project {
+        opacity: 0;
+        -webkit-animation: fadein 1.5s;
+        -moz-animation: fadein 1.5s;
+        animation: fadein 1.5s;
+        animation-fill-mode: forwards;
+    }
     h1 {
         font-size: 3rem;
         padding-bottom: 25px;
@@ -28,5 +37,8 @@
         .calc-display {
             text-align: right;
         }
+    }
+    .project {
+        animation-delay: calc(1.2s + var(--order) * 300ms);
     }
 }

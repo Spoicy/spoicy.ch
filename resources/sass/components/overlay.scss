@@ -2,6 +2,7 @@
 .overlay-container {
     position: relative;
     font-family: 'Karla', sans-serif;
+    z-index: 1;
     .menuburger {
         position: absolute;
         left: 0;

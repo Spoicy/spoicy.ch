@@ -15,23 +15,25 @@
     <body class="soft-blue">
         @include('components/other/overlay')
         <div class="container jsframework-container text-center">
-            <h1>JavaScript Framework Projects</h1>
+            <div class="main-div">
+                <h1>JavaScript Framework Projects</h1>
+            </div>
             <div class="jsf-grid">
-                <a class="jsf-grid-card card-white" href="/jsframework/vanilla">
+                <a class="jsf-grid-card card-white" style="--order: 0" href="/jsframework/vanilla">
                     <h2>Vanilla JavaScript</h2>
                     <p>Projects made purely with vanilla JavaScript, no frameworks in sight. JavaScript in its purest form is an important thing to have a great understanding of, as it provides fundamental knowledge for most other aspects of frontend development.</p>
                 </a>
-                <a class="jsf-grid-card card-blue">
+                <a class="jsf-grid-card card-blue" style="--order: 1">
                     <h2>React</h2>
                     <p>Projects made with the React framework. React is a widely used Javascript library maintained by Meta.</p>
                     <p class="font-weight-bold">No projects have been made with this so far. Check back later!</p>
                 </a>
-                <a class="jsf-grid-card card-dark">
+                <a class="jsf-grid-card card-dark" style="--order: 2">
                     <h2>Vue.js</h2>
                     <p>Projects made with the Vue.js framework. Vue.js is another widely used JavaScript Framework and can be integreted easily into various PHP frameworks, like Laravel (the framework this website runs on!).</p>
                     <p class="font-weight-bold">No projects have been made with this so far. Check back later!</p>
                 </a>
-                <a class="jsf-grid-card card-gray">
+                <a class="jsf-grid-card card-gray" style="--order: 3">
                     <h2>TypeScript</h2>
                     <p>Projects made with TypeScript. TypeScript is a programming language built on JavaScript which adds additional syntax for tighter integration and greater tooling. Typically, TypeScript is used in the Angular framework, however it can be ran anywhere JavaScript can also be ran.</p>
                     <p class="font-weight-bold">No projects have been made with this so far. Check back later!</p>

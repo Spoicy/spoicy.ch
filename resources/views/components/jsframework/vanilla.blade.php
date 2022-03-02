@@ -13,9 +13,11 @@
 <body class="soft-blue">
     @include('components/other/overlay')
     <div class="container jsfchild-container">
-        <h1>Vanilla JavaScript</h1>
+        <div class="main-div">
+            <h1>Vanilla JavaScript</h1>
+        </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="project col-md-6" style="--order: 0">
                 <div class="calc-container">
                     <h2>Calculator</h2>
                     <input type="text" class="calc-display form-control mb-4" name="cDisplay" id="cDisplay" readonly>
@@ -43,12 +45,13 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-6 d-md-block d-none">
+            <div class="project col-md-6 d-md-block d-none" style="--order: 1">
                 <h2>WIP</h2>
                 <p class="text-center">This is a temporary placeholder section to keep the layout consistent.</p>
             </div>
         </div>
     </div>
     <script src="../js/vanilla.js"></script>
+    <script src="../js/app.js"></script>
 </body>
 </html>

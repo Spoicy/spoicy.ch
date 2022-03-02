@@ -1,12 +1,14 @@
 @use 'pages/linktree';
 @use 'pages/stream';
 @use 'pages/swiss';
-@use 'components/overlay';
 @use 'pages/projects';
 @use 'pages/alphabet';
 @use 'pages/jsframework';
+
+@use 'components/overlay';
 @use 'components/jsfchild';
 @use 'components/wip';
+@use 'components/anim';
 
 body.pink {
     background-color: #fadadd !important;
