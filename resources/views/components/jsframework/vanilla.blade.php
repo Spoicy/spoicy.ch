@@ -25,7 +25,7 @@
                         <button type="button" class="calc-button-op btn" value="^">x<sup>y</sup></button>
                         <button type="button" class="calc-button-op btn" value="(">(</button>
                         <button type="button" class="calc-button-op btn" value=")">)</button>
-                        <button type="button" class="calc-button-op btn" value="AC">AC</button>
+                        <button type="button" class="calc-button-op btn" id="bAC" value="AC">AC</button>
                         <button type="button" class="calc-button-num btn" value="7">7</button>
                         <button type="button" class="calc-button-num btn" value="8">8</button>
                         <button type="button" class="calc-button-num btn" value="9">9</button>
