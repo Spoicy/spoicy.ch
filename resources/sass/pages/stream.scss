@@ -15,8 +15,7 @@
         text-align: center;
     }
     .main-div,
-    .srdc-container,
-    .youtube-container {
+    .streamchild-container {
         opacity: 0;
         -webkit-animation: fadein 1.5s;
         -moz-animation: fadein 1.5s;
@@ -42,12 +41,6 @@
     }
     .youtube-container {
         animation-delay: 1.5s;
-        h2 {
-            border-bottom: 3px solid #CFCCE8;
-            margin-bottom: 1rem;
-            padding-bottom: 0.625rem;
-            text-align: center;
-        }
         img {
             height: 100px;
         }
@@ -61,6 +54,38 @@
         .video {
             margin-top: 5px;
             margin-bottom: 5px;
+        }
+    }
+    .twitter-container {
+        padding-top: 1.5rem;
+        animation-delay: 1.8s;
+        .tweet-media a,
+        .tweet-media img {
+            max-height: 100px;
+            max-width: 100%;
+        }
+        .tweet-text {
+            margin-top: auto;
+            margin-bottom: auto;
+            padding-left: 2rem;
+        }
+        .tweet-media {
+            text-align: center;
+            margin-top: auto;
+            margin-bottom: auto;
+        }
+        .tweet {
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+        }
+        .tweet:first-of-type {
+            margin-top: 5px;
+        }
+        .tweet:last-of-type {
+            margin-bottom: 5px;
+        }
+        i {
+            padding: 1px;
         }
     }
 }

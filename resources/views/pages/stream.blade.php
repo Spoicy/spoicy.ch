@@ -27,11 +27,11 @@ $i = 0;
                 @if (View::exists('components/stream/'.$template))
                     @if ($i % 2 == 0)
                         <div class="row">
-                            <div class="col-lg-6 col-xs-12 {{$template}}-container">
+                            <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
                                 @include('components/stream/'.$template, ['variables' => $variables])
                             </div>
                     @else
-                            <div class="col-lg-6 col-xs-12 {{$template}}-container">
+                            <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
                                 @include('components/stream/'.$template, ['variables' => $variables])
                             </div>
                         </div>

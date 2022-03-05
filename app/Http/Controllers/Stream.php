@@ -12,7 +12,7 @@ class Stream extends Controller
         $available_templates = array(
             'srdc' => SRDC::variables(),
             'youtube' => Youtube::variables(),
-            'twitter' => '',
+            'twitter' => Twitter::variables(),
             'twitch' => ''
         );
         return view('pages/stream', [
