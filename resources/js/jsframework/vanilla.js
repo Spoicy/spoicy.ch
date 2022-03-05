@@ -43,7 +43,8 @@ function calcButtonClick(e) {
                     }
                 }
                 try {
-                    calcString = eval(calcString);
+                    var finalNum = eval(calcString);
+                    calcString = parseFloat(finalNum.toFixed(10));
                 } catch {
                     calcString = 'ERROR';
                 }
