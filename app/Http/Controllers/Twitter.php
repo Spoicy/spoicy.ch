@@ -16,7 +16,7 @@ class Twitter extends Controller
     }
 
     /**
-     * Returns the variables required for the Youtube template.
+     * Returns the variables required for the Twitter template.
      * 
      * @return array $variables
      */
@@ -40,6 +40,7 @@ class Twitter extends Controller
                         }
                     }
                 }
+                // TODO: Include links that aren't media
                 $tweet->text = substr($tweet->text, 0, strpos($tweet->text, "https://t.co")-1);
             } else {
                 $tweet->media = null;
