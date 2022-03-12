@@ -2,7 +2,7 @@
 use App\Http\Controllers\GitHub;
 @endphp
 <h2>GitHub</h2>
-@foreach ($variables['githubFive'] as $key => $entry)
+@foreach ($variables['githubThree'] as $key => $entry)
     <div class="entry">
         <h3><a href="{{$entry->link}}">{{$entry->title}}</a></h3>
         <div class="entry-main">
@@ -21,10 +21,11 @@ use App\Http\Controllers\GitHub;
                         <ul>
                             @foreach ($entry->commits as $commit)
                                 <li>
-                                    <a href="{{$commit->link}}">{{$commit->id}}</a><span>{{$commit->message}}</span>
+                                    <a href="{{$commit->link}}">{{$commit->id}} </a><span>{{$commit->message}}</span>
                                 </li>
                             @endforeach
                         </ul>
+                    </div>
                     @break
                 @case("Issue")
                     <div class="entry-link">

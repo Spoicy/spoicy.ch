@@ -19,7 +19,8 @@ class GitHub extends Controller
         $entry->title = (string) $data->title;
         $entry->link = (string) $data->link->attributes()->href;
         $entry->author = (string) $data->author->name;
-        $entry->datetime = (string) $data->published;
+        $date = new \DateTime((string) $data->published);
+        $entry->datetime = $date->format("M j, Y");
         return $entry;
     }
 
@@ -76,8 +77,8 @@ class GitHub extends Controller
      */
     public static function variables() {
         $feed = self::getFeed();
-        $githubFive = array();
-        for ($i = 0; $i < 5; $i++) {
+        $githubThree = array();
+        for ($i = 0; $i < 3; $i++) {
             $eventtype = explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
             /**
              * Events to add in the future:
@@ -102,7 +103,10 @@ class GitHub extends Controller
                     $entry = self::processWatch($feed->entry[$i]);
                     break;
             }
-            $githubFive[$i] = $entry;
+            $githubThree[$i] = $entry;
         }
+        return array(
+            'githubThree' => $githubThree
+        );
     }
 }
