@@ -87,13 +87,13 @@ class SRDC extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $speedrunsQuery = DB::table('speedruns')->get();
+        $speedrunsQuery = DB::table('speedruns')->orderby('date', 'desc')->get();
         $speedruns = array();
         foreach($speedrunsQuery as $speedrun) {
             $speedruns[] = $speedrun;
         }
         return array(
-            'srdcRuns' => array_slice(array_reverse($speedruns), 0, 5)
+            'srdcRuns' => array_slice($speedruns, 0, 5)
         );
     }
 }

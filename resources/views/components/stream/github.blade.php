@@ -33,7 +33,7 @@ use App\Http\Controllers\GitHub;
                         <span>{{$entry->datetime}}</span>
                     </div>
                     <div class="entry-actions">
-                        <a href="{{$entry->link}}">{{$entry->issuename}}</a><span>#{{$entry->issuenum}}</span>
+                        <a href="{{$entry->link}}">{{$entry->issuename}}</a><span> #{{$entry->issuenum}}</span>
                     </div>
                     @break
                 @case("Watch")

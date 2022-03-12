@@ -70,7 +70,11 @@ class UpdateSRDC extends Command
                     $speedrunLinks[$link->rel] = $link->uri;
                 }
                 $game = json_decode(file($speedrunLinks["game"])[0])->data;
-                $category = json_decode(file($speedrunLinks["category"])[0])->data;
+                try {
+                    $category = json_decode(file($speedrunLinks["category"])[0])->data;
+                } catch (\Exception $e) {
+                    continue;
+                }
                 $categoryLinks = array();
                 foreach ($category->links as $link) {
                     $categoryLinks[$link->rel] = $link->uri;
