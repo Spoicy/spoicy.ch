@@ -2,7 +2,7 @@
 use App\Http\Controllers\GitHub;
 @endphp
 <h2>GitHub</h2>
-@foreach ($variables['githubThree'] as $key => $entry)
+@foreach ($variables['githubEntries'] as $key => $entry)
     <div class="entry">
         <h3><a href="{{$entry->link}}">{{$entry->title}}</a></h3>
         <div class="entry-main">

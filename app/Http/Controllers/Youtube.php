@@ -64,17 +64,17 @@ class Youtube extends Controller
      */
     public static function variables() {
         $videos = self::getVideos();
-        $youtubeFive = array();
+        $youtubeVideos = array();
         foreach ($videos as $key => $video) {
             $temp = new \stdClass();
             $temp->id = $video->snippet->resourceId->videoId;
             $temp->thumbnail = $video->snippet->thumbnails->high->url;
             $temp->title = $video->snippet->title;
             $temp->date = self::getDateFormat($video->snippet->publishedAt);
-            $youtubeFive[] = $temp;
+            $youtubeVideos[] = $temp;
         }
         return array(
-            'youtubeFive' => $youtubeFive
+            'youtubeVideos' => $youtubeVideos
         );
     }
 }

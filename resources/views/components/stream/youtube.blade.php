@@ -2,7 +2,7 @@
 use App\Http\Controllers\Youtube;
 @endphp
 <h2>YouTube</h2>
-@foreach ($variables['youtubeFive'] as $key => $video)
+@foreach ($variables['youtubeVideos'] as $key => $video)
     <div class="row video">
         <div class="col-lg-4 col-md-3 col-sm-4 col-5 video-thumbnail">
             <a href="https://www.youtube.com/watch?v={{$video->id}}">

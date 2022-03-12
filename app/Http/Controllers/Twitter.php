@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 
@@ -10,7 +11,7 @@ class Twitter extends Controller
     //
 
     public static function getTweets() {
-        $response = Http::withToken(env("TWITTER_BEARER_TOKEN"))->get('https://api.twitter.com/2/users/1191275816/tweets?media.fields=preview_image_url,url&expansions=attachments.media_keys&tweet.fields=referenced_tweets&exclude=retweets,replies');
+        $response = Http::withToken(env("TWITTER_BEARER_TOKEN"))->get('https://api.twitter.com/2/users/1191275816/tweets?media.fields=preview_image_url,url&expansions=attachments.media_keys&tweet.fields=referenced_tweets,created_at&exclude=retweets,replies');
         $tweets = json_decode($response);
         return $tweets;
     }
@@ -24,10 +25,12 @@ class Twitter extends Controller
         $data = self::getTweets();
         $tweets = $data->data;
         $includes = $data->includes->media;
-        $twitterFive = array();
+        $twitterPosts = array();
         for ($i = 0; $i < 5; $i++) {
             $tweet = new \stdClass();
             $tweet->text = $tweets[$i]->text;
+            $datetime = new DateTime($tweets[$i]->created_at);
+            $tweet->datetime = $datetime->format("g:i A · M j, Y");
             $tweet->link = "https://www.twitter.com/OnlyFireball_/status/" . $tweets[0]->id;
             if (isset($tweets[$i]->attachments)) {
                 $mediakey = $tweets[$i]->attachments->media_keys[0];
@@ -45,10 +48,10 @@ class Twitter extends Controller
             } else {
                 $tweet->media = null;
             }
-            $twitterFive[$i] = $tweet;
+            $twitterPosts[$i] = $tweet;
         }
         return array(
-            'twitterFive' => $twitterFive
+            'twitterPosts' => $twitterPosts
         );
     }
 }
