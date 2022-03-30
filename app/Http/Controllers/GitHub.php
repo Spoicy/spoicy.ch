@@ -111,7 +111,8 @@ class GitHub extends Controller
     public static function variables() {
         $feed = self::getFeed();
         $githubEntries = array();
-        for ($i = 0; $i < 4; $i++) {
+        $j = 0;
+        for ($i = 0; $i < count($feed->entry); $i++) {
             $eventtype = explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
             /**
              * Events to add in the future:
@@ -135,8 +136,14 @@ class GitHub extends Controller
                 case "WatchEvent":
                     $entry = self::processWatch($feed->entry[$i]);
                     break;
+                default:
+                    continue 2;
             }
+            $j++;
             $githubEntries[$i] = $entry;
+            if ($j == 4) {
+                break;
+            }
         }
         return array(
             'githubEntries' => $githubEntries
