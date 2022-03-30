@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 class Youtube extends Controller
 {
-    //
-
+    /**
+     * Fetches the most recent videos from the OnlyFireball channel via the YouTube API.
+     * 
+     * @return array $items
+     */
     public static function getVideos() {
         $playlistItems = json_decode(implode('', file("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUsVw7FLt28Boqi7e6CnkoXg&key=" .
             env("YOUTUBE_API_KEY"))));

@@ -7,13 +7,22 @@ use Illuminate\Support\Facades\Http;
 
 class GitHub extends Controller
 {
-    //
-
+    /**
+     * Fetches the GitHub feed for the user Spoicy.
+     * 
+     * @return SimpleXMLElement $feed
+     */
     public static function getFeed() {
         $feed = simplexml_load_file("https://github.com/spoicy.atom");
         return $feed;
     }
 
+    /**
+     * Creates a base entry class for the process functions.
+     * 
+     * @param  SimpleXMLElement $data
+     * @return stdClass         $entry
+     */
     public static function createEntry($data) {
         $entry = new \stdClass();
         $entry->title = (string) $data->title;
@@ -24,6 +33,12 @@ class GitHub extends Controller
         return $entry;
     }
 
+    /**
+     * Processes GitHub API requests.
+     * 
+     * @param  string   $link
+     * @return stdClass $response
+     */
     public static function callGitHubAPI($link) {
         $response = Http::withHeaders([
             'User-Agent' => 'request'
@@ -32,6 +47,12 @@ class GitHub extends Controller
         return $response;
     }
 
+    /**
+     * Processes the data for PushEvents
+     * 
+     * @param  SimpleXMLElement $data
+     * @return stdClass         $entry
+     */
     public static function processPush($data) {
         $entry = self::createEntry($data);
         $entry->type = "Push";
@@ -49,6 +70,12 @@ class GitHub extends Controller
         return $entry;
     }
 
+    /**
+     * Processes the data for WatchEvents
+     * 
+     * @param  SimpleXMLElement $data
+     * @return stdClass         $entry
+     */
     public static function processWatch($data) {
         $entry = self::createEntry($data);
         $entry->type = "Watch";
@@ -59,6 +86,12 @@ class GitHub extends Controller
         return $entry;
     }
 
+    /**
+     * Processes the data for IssueEvents
+     * 
+     * @param  SimpleXMLElement $data
+     * @return stdClass         $entry
+     */
     public static function processIssue($data) {
         $entry = self::createEntry($data);
         $entry->type = "Issue";

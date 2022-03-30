@@ -8,8 +8,11 @@ use Illuminate\Support\Facades\Http;
 
 class Twitter extends Controller
 {
-    //
-
+    /**
+     * Fetches the most recent tweets from @OnlyFireball_ via the Twitter API.
+     * 
+     * @return stdClass $tweets
+     */
     public static function getTweets() {
         $response = Http::withToken(env("TWITTER_BEARER_TOKEN"))->get('https://api.twitter.com/2/users/1191275816/tweets?media.fields=preview_image_url,url&expansions=attachments.media_keys&tweet.fields=referenced_tweets,created_at&exclude=retweets,replies');
         $tweets = json_decode($response);
@@ -18,6 +21,8 @@ class Twitter extends Controller
 
     /**
      * Returns the variables required for the Twitter template.
+     * 
+     * @todo Include links from tweets that aren't media
      * 
      * @return array $variables
      */
@@ -43,7 +48,6 @@ class Twitter extends Controller
                         }
                     }
                 }
-                // TODO: Include links that aren't media
                 $tweet->text = substr($tweet->text, 0, strpos($tweet->text, "https://t.co")-1);
             } else {
                 $tweet->media = null;

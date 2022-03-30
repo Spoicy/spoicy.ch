@@ -8,7 +8,7 @@ use Illuminate\Http\Request;
 class SRDC extends Controller
 {
     /**
-     * Format the speedrun date to be in a similar format to SRDC
+     * Formats the speedrun date to be in a similar format to SRDC.
      * 
      * @param  string $date
      * @return string $speedrunDate
@@ -50,7 +50,7 @@ class SRDC extends Controller
     }
 
     /**
-     * Format the speedrun time from seconds to h:i:s.ms
+     * Formats the speedrun time from seconds to h:i:s.ms
      * 
      * @param  float  $time
      * @return string $speedrunTime

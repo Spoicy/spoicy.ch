@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 class Stream extends Controller
 {
-    //
-
+    /**
+     * Prepares all of the necessary variables for the stream component templates.
+     * 
+     * @return View $page
+     */
     public static function view() {
         $available_templates = array(
             'srdc' => SRDC::variables(),
