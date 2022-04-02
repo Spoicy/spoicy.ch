@@ -42,3 +42,10 @@
         animation-delay: calc(1.2s + var(--order) * 300ms);
     }
 }
+
+/* Temp CSS hotfix, remove in next commit */
+@media (max-width: 767.98px) {
+    .unitconvert-container {
+        padding-top: 1.5rem;
+    }
+}
