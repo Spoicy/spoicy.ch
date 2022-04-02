@@ -11,7 +11,7 @@
     <title>Vanilla JavaScript</title>
 </head>
 <body class="soft-blue">
-    @include('components/other/overlay')
+    @include('components/other/overlay', ['nav' => 'hJSFrameworks'])
     <div class="container jsfchild-container">
         <div class="main-div">
             <h1>Vanilla JavaScript</h1>
@@ -45,9 +45,11 @@
                     </div>
                 </div>
             </div>
-            <div class="project col-md-6 d-md-block d-none" style="--order: 1">
-                <h2>WIP</h2>
-                <p class="text-center">This is a temporary placeholder section to keep the layout consistent.</p>
+            <div class="project col-md-6" style="--order: 1">
+                <div class="unitconvert-container">
+                    <h2>Unit Converter</h2>
+                </div>
+                <p class="text-center">Unit Converter is currently WIP.</p>
             </div>
         </div>
     </div>

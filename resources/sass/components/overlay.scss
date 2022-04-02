@@ -88,13 +88,15 @@
                     width: 100%;
                     height: 0.1em;
                     background-color: #212529;
-                    transition: opacity 300ms, transform 300ms;
                     opacity: 1;
+                }
+                a:not(.link-active)::after {
+                    transition: opacity 300ms, transform 300ms;
                     transform: scale(0);
                     transform-origin: center;
                 }
-                a:hover::after,
-                a:focus::after {
+                a:not(.link-active):hover::after,
+                a:not(.link-active):focus::after {
                     transform: scale(1);
                 }
             }

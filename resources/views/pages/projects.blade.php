@@ -15,7 +15,7 @@
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body class="light-blue">
-        @include('components/other/overlay')
+        @include('components/other/overlay', ['nav' => 'hHome'])
         <div class="container text-center projects-container">
             <div class="main-div flex-column">
                 <img src="img/fireball.png" alt="fireball.png" />

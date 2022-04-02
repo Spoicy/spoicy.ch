@@ -18,7 +18,7 @@ $i = 0;
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body class="soft-blue">
-        @include('components/other/overlay')
+        @include('components/other/overlay', ['nav' => 'hSocial'])
         <div class="container stream-container">
             <div class="main-div">
                 <h1>Social Media</h1>

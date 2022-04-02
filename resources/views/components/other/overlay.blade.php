@@ -1,3 +1,11 @@
+@php
+    $links = [
+        "hHome" => ["/", "Home"],
+        "hLinktree" => ["/linktree", "Linktree"],
+        "hSocial" => ["/social", "Social Media Stream"],
+        "hJSFrameworks" => ["/jsframework", "JS-Frameworks"],
+    ];
+@endphp
 <div class="overlay-container">
     <div class="background-dim" id="bDim"></div>
     <div class="menuburger">
@@ -9,10 +17,13 @@
     <div class="menu-popout" id="mPopout">
         <button id="mcButton"><i class="fa fa-times"></i></button>
         <ul>
-            <li><a href="/">Home</a></li>
-            <li><a href="/linktree/">Linktree</a></li>
-            <li><a href="/social/">Social Media Stream</a></li>
-            <li><a href="/jsframework/">JS-Frameworks</a></li>
+            @foreach ($links as $key => $data)
+                @if ($key == $nav)
+                    <li><a class="link-active" href="{{$data[0]}}" id="{{$key}}">{{$data[1]}}</a></li>
+                @else
+                    <li><a href="{{$data[0]}}" id="{{$key}}">{{$data[1]}}</a></li>
+                @endif
+            @endforeach
         </ul>
     </div>
 </div>

@@ -13,7 +13,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body class="soft-blue">
-        @include('components/other/overlay')
+        @include('components/other/overlay', ['nav' => 'hJSFrameworks'])
         <div class="container jsframework-container text-center">
             <div class="main-div">
                 <h1>JavaScript Framework Projects</h1>
