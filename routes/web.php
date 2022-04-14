@@ -40,3 +40,13 @@ Route::get('/jsframework/', function () {
 Route::get('/jsframework/vanilla/', function () {
     return view('components/jsframework/vanilla');
 });
+
+Route::get('/blog/', function() {
+    return view('pages/blog');
+});
+
+Route::get('/blog/login/', function () {
+    return view('pages/login');
+});
+
+Route::post('/blog/login/validate', 'Login@validateLogin');
