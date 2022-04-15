@@ -1,0 +1,22 @@
+.blog-container {
+    font-family: 'Karla', sans-serif;
+    letter-spacing: -1px;
+    .main-div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        > * {
+            width: 50%
+        }
+    }
+    .blog-cards {
+        .blog-card {
+            background-color: #FFF;
+            padding: 0.5rem;
+            box-shadow: 0 0 0.3126rem #999;
+        }
+    }
+    textarea {
+        width: 100%;
+    }
+}

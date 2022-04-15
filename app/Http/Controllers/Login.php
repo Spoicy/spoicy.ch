@@ -19,9 +19,14 @@ class Login extends Controller
         if ($password && $token == $request->request->get("_token")) {
             $passwordHash = Hash::make($password);
             if (Hash::check($password, env("BLOG_PASS"))) {
-                return redirect('/blog/login')->with('status', 2);
+                $request->session()->put('loggedin', 1);
+                return redirect('/blog');
             }
             return redirect('/blog/login')->with('status', 1);
         }
+    }
+
+    public static function view() {
+        return view('pages/login');
     }
 }

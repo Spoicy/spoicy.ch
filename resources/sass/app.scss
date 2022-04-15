@@ -5,6 +5,7 @@
 @use 'pages/alphabet';
 @use 'pages/jsframework';
 @use 'pages/login';
+@use 'pages/blog';
 
 @use 'components/overlay';
 @use 'components/jsfchild';
@@ -29,6 +30,13 @@ body.soft-blue {
     background-color: #eef1ff !important;
     .menu-popout {
         background-color: #eef1ff;
+    }
+}
+
+body.light-orange {
+    background-color: #FFDFBF !important;
+    .menu-popout {
+        background-color: #FFDFBF;
     }
 }
 

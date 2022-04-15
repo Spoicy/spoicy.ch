@@ -15,7 +15,7 @@
         <div class="main-div">
             <h1 class="pb-3">Login</h1>
             <form action="/blog/login/validate" method="post">
-                @if (session('status') === 1)
+                @if (session('status'))
                     <p class="password-error">The password is incorrect. Please try again.</p>
                 @endif
                 @csrf
