@@ -11,7 +11,7 @@
     <title>Login</title>
 </head>
 <body class="light-blue">
-    <div class="container login-container text-center d-flex flex-column">
+    <div class="container login-container site-container text-center d-flex flex-column">
         <div class="main-div">
             <h1 class="pb-3">Login</h1>
             <form action="/blog/login/validate" method="post">

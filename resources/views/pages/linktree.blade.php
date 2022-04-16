@@ -17,7 +17,7 @@
     </head>
     <body class="pink">
         @include('components/other/overlay', ['nav' => 'hLinktree'])
-        <div class="container text-center linktree-container">
+        <div class="container text-center linktree-container site-container">
             <div class="main-div flex-column">
                 <img src="img/fireball.png" alt="fireball.png" />
                 <h1>Fireball</h1>

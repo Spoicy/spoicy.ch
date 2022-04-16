@@ -14,7 +14,7 @@
     </head>
     <body class="soft-blue">
         @include('components/other/overlay', ['nav' => 'hJSFrameworks'])
-        <div class="container jsframework-container text-center">
+        <div class="container jsframework-container site-container text-center">
             <div class="main-div">
                 <h1>JavaScript Framework Projects</h1>
             </div>

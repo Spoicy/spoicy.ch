@@ -14,7 +14,7 @@
     <title>Blog</title>
 </head>
 <body class="light-orange">
-    <div class="container blog-container">
+    <div class="container blog-container site-container">
         <div class="main-div">
             <h1 class="text-center">Blog</h1>
             @if (session('loggedin'))

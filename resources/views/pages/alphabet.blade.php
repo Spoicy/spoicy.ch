@@ -18,7 +18,7 @@ $alpharange = range('A', 'Z')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     </head>
     <body>
-        <div class="container alphabet-container">
+        <div class="container alphabet-container site-container">
             <h1>Double Alphabet</h1>
             <h4>First Letter</h4>
             @foreach ($alpharange as $alpha)

@@ -19,7 +19,7 @@ $i = 0;
     </head>
     <body class="soft-blue">
         @include('components/other/overlay', ['nav' => 'hSocial'])
-        <div class="container stream-container">
+        <div class="container stream-container site-container">
             <div class="main-div">
                 <h1>Social Media</h1>
             </div>

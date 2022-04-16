@@ -16,7 +16,7 @@
     </head>
     <body class="light-blue">
         @include('components/other/overlay', ['nav' => 'hHome'])
-        <div class="container text-center projects-container">
+        <div class="container text-center projects-container site-container">
             <div class="main-div flex-column">
                 <img src="img/fireball.png" alt="fireball.png" />
                 <h1>Spoicy</a></h1>

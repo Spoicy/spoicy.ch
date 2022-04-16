@@ -12,7 +12,7 @@
 </head>
 <body class="soft-blue">
     @include('components/other/overlay', ['nav' => 'hJSFrameworks'])
-    <div class="container jsfchild-container">
+    <div class="container jsfchild-container site-container">
         <div class="main-div">
             <h1>Vanilla JavaScript</h1>
         </div>
