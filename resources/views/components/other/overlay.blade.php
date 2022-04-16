@@ -4,6 +4,7 @@
         "hLinktree" => ["/linktree", "Linktree"],
         "hSocial" => ["/social", "Social Media Stream"],
         "hJSFrameworks" => ["/jsframework", "JS-Frameworks"],
+        "hBlog" => ["/blog", "Blog"]
     ];
 @endphp
 <div class="overlay-container">

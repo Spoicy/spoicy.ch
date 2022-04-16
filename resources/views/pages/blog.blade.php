@@ -14,6 +14,7 @@
     <title>Blog</title>
 </head>
 <body class="light-orange">
+    @include('components/other/overlay', ['nav' => 'hBlog'])
     <div class="container blog-container site-container">
         <div class="main-div">
             <h1 class="text-center">Blog</h1>
@@ -27,11 +28,14 @@
                 </div>
             @endif
             <div class="blog-cards">
-                <div class="blog-card">
-                    <h2>April 15th, 2022</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Odit eum similique dicta fuga minus alias porro quaerat tenetur commodi nihil, mollitia magnam, officia unde quos molestias dignissimos illum quisquam nisi.</p>
-                </div>
+                @foreach ($entries as $entry)
+                    <div class="blog-card">
+                        <h2>{{Blog::getDateFormat($entry->date)}}</h2>
+                        <p>{!! $entry->blogtext !!}</p>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
+    <script src="js/app.js"></script>
 </body>
