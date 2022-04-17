@@ -47,13 +47,27 @@ class Blog extends Controller
     /**
      * Edit an existing blog entry
      * 
+     * @param Request $request
      * @param int $id
      * @return bool $success
      */
-    public static function editBlogEntry($id) {
-
+    public static function editBlogEntry(Request $request, $id) {
+        $text = strip_tags(trim($request->request->get('blogEditText'.$id)), '<b><i>');
+        $entriesTable = DB::table('blogentries');
+        if (strlen($text)) {
+            $entriesTable->where('id', $id)->update(['blogtext' => $text]);
+            return redirect('/blog')->with('status', 3);
+        } else {
+            return redirect('/blog')->with('status', 4);
+        }
     }
 
+    /**
+     * Formats the date to include the day suffix.
+     * 
+     * @param int $date
+     * @return string
+     */
     public static function getDateFormat($date) {
         $month = date('F', $date);
         $day = date('j', $date);

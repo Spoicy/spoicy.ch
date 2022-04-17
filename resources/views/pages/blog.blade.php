@@ -31,7 +31,17 @@
                 @foreach ($entries as $entry)
                     <div class="blog-card">
                         <h2>{{Blog::getDateFormat($entry->date)}}</h2>
-                        <p>{!! $entry->blogtext !!}</p>
+                        <p id="blogEntryText{{$entry->id}}">{!! $entry->blogtext !!}</p>
+                        @if (session('loggedin'))
+                            <button class="button-blog-edit" id="blogEditButton{{$entry->id}}"><i class="fa fa-pencil" id="blogEditButton{{$entry->id}}"></i></button>
+                            <form action="/blog/edit/{{$entry->id}}" method="post">
+                                @csrf
+                                <textarea class="d-none" name="blogEditText{{$entry->id}}" id="blogEditText{{$entry->id}}" rows="6">{{$entry->blogtext}}</textarea>
+                                <div class="d-flex justify-content-end">
+                                    <button class="btn btn-secondary d-none" id="blogSaveEntry{{$entry->id}}">Save entry</button>
+                                </div>
+                            </form>
+                        @endif
                     </div>
                 @endforeach
             </div>

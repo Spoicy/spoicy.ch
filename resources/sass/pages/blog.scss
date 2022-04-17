@@ -15,9 +15,10 @@
     }
     .blog-cards {
         .blog-card {
+            position: relative;
             background-color: #FFF;
             padding: 0.5rem;
-            box-shadow: 0 0 0.3126rem #999;
+            box-shadow: 0 0 0.3125rem #999;
             margin-bottom: 1rem;
             p {
                 word-break: break-word;
@@ -25,6 +26,21 @@
                 -webkit-hyphens: auto;
                 -moz-hyphens: auto;
                 hyphens: auto;
+            }
+            button:not(.btn) {
+                position: absolute;
+                top: 0;
+                right: 0;
+                background-color: rgba(0,0,0,0);
+                border: none;
+                outline: none;
+                font-size: 1.25rem;
+                color: #212529;
+                opacity: 0.6;
+                transition: 0.3s;
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
     }
@@ -36,6 +52,17 @@
     .blog-container {
         .main-div > * {
             width: 75%;
+        }
+    }
+}
+
+@media (max-width: 575.98px) {
+    .blog-container {
+        .main-div > * {
+            width: 80%;
+        }
+        h2 {
+            font-size: 1.75rem;
         }
     }
 }
