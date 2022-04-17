@@ -22,10 +22,6 @@
             margin-bottom: 1rem;
             p {
                 word-break: break-word;
-                // TODO: Fix hyphens not working
-                -webkit-hyphens: auto;
-                -moz-hyphens: auto;
-                hyphens: auto;
             }
             button:not(.btn) {
                 position: absolute;
