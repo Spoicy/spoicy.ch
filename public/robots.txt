@@ -4,3 +4,4 @@ Disallow: /blog/login/validate/
 Disallow: /blog/add/
 Disallow: /blog/edit/
 Disallow: /alphabet/
+Sitemap: https://spoicy.ch/sitemap.xml
