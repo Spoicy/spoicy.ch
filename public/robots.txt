@@ -1,2 +1,6 @@
 User-agent: *
-Disallow:
+Disallow: /blog/login/
+Disallow: /blog/login/validate/
+Disallow: /blog/add/
+Disallow: /blog/edit/
+Disallow: /alphabet/
