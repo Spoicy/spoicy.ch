@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
     
         <title>JS-Framework Projects</title>
-        <meta name="description" content="Spoicy">
+        <meta name="description" content="Spoicy's collection of projects utilizing JavaScript and its vast amount of frameworks/variants.">
     
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="css/app.css">
