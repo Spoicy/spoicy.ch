@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class Youtube extends Controller
@@ -24,8 +25,8 @@ class Youtube extends Controller
      * @return string $speedrunDate
      */
     public static function getDateFormat($date) {
-        $date = substr(str_replace('T', ' ', $date), 0, -1);
-        $runDate = new \DateTime($date);
+        $runDate = new \DateTime();
+        $runDate->setTimestamp($date);
         $now = new \DateTime();
         $diff = date_diff($runDate, $now);
         $years = $diff->format('%y');
@@ -66,18 +67,13 @@ class Youtube extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $videos = self::getVideos();
-        $youtubeVideos = array();
-        foreach ($videos as $key => $video) {
-            $temp = new \stdClass();
-            $temp->id = $video->snippet->resourceId->videoId;
-            $temp->thumbnail = $video->snippet->thumbnails->high->url;
-            $temp->title = $video->snippet->title;
-            $temp->date = self::getDateFormat($video->snippet->publishedAt);
-            $youtubeVideos[] = $temp;
+        $videosQuery = DB::table('ytvideos')->orderby('date', 'desc')->get();
+        $videos = array();
+        foreach ($videosQuery as $video) {
+            $youtubeVideos[] = $video;
         }
         return array(
-            'youtubeVideos' => $youtubeVideos
+            'youtubeVideos' => array_slice($youtubeVideos, 0, 5)
         );
     }
 }
