@@ -11,7 +11,7 @@ use App\Http\Controllers\Twitter;
                 <span>{{$tweet->text}}</span>
                 <a href="{{$tweet->link}}"><i class="fa fa-external-link"></i></a>
                 <br>
-                <p>{{$tweet->datetime}}</p>
+                <p>{{$tweet->date}}</p>
             </div>
             <div class="col-lg-4 col-md-3 col-sm-4 col-5 tweet-media">
                 <a href="{{$tweet->link}}">
@@ -25,7 +25,7 @@ use App\Http\Controllers\Twitter;
                 <span>{{$tweet->text}}</span>
                 <a href="{{$tweet->link}}"><i class="fa fa-external-link"></i></a>
                 <br>
-                <p>{{$tweet->datetime}}</p>
+                <p>{{$tweet->date}}</p>
             </div>
         @endif
     </div>
