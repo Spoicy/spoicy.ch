@@ -15,7 +15,7 @@ class UpdateGitHub extends Command
      *
      * @var string
      */
-    protected $signature = 'update:github';
+    protected $signature = 'github:update';
 
     /**
      * The console command description.

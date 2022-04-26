@@ -24,9 +24,10 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->call(function () {
-
-        })->cron('*/10 * * * *');
+        $schedule->command('srdc:update')->everyFifteenMinutes();
+        $schedule->command('youtube:update')->everyFifteenMinutes();
+        $schedule->command('twitter:update')->everyFifteenMinutes();
+        $schedule->command('github:update')->everyFifteenMinutes();
     }
 
     /**
