@@ -61,7 +61,7 @@ class UpdateYoutube extends Command
         $playlistItems = array_reverse($playlistItems->items);
 
         foreach ($playlistItems as $video) {
-            if (!in_array($video->id, $sids)) {
+            if (!in_array($video->snippet->resourceId->videoId, $sids)) {
                 $datetime = new \DateTime(substr(str_replace('T', ' ', $video->snippet->publishedAt), 0, -1));
                 $tableVideos->insert(
                     [
