@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
 
 class GitHub extends Controller
 {
@@ -29,7 +30,8 @@ class GitHub extends Controller
         $entry->link = (string) $data->link->attributes()->href;
         $entry->author = (string) $data->author->name;
         $date = new \DateTime((string) $data->published);
-        $entry->datetime = $date->format("M j, Y");
+        $entry->datetime = $date->getTimestamp();
+        //$entry->datetime = $date->format("M j, Y");
         return $entry;
     }
 
@@ -55,17 +57,18 @@ class GitHub extends Controller
      */
     public static function processPush($data) {
         $entry = self::createEntry($data);
+        $entry->entrydata = array();
         $entry->type = "Push";
-        $entry->repo = explode("/compare", explode("https://github.com/", $entry->link)[1])[0];
-        $entry->branch = explode(" in", explode("pushed to ", $entry->title)[1])[0];
-        $entry->commits = array();
+        $entry->entrydata["repo"] = explode("/compare", explode("https://github.com/", $entry->link)[1])[0];
+        $entry->entrydata["branch"] = explode(" in", explode("pushed to ", $entry->title)[1])[0];
+        $entry->entrydata["commits"] = array();
         $commits = self::callGitHubAPI($entry->link);
         foreach ($commits->commits as $commit) {
             $commitEntry = new \stdClass();
             $commitEntry->id = substr($commit->sha, 0, 7);
             $commitEntry->link = $commit->html_url;
             $commitEntry->message = $commit->commit->message;
-            $entry->commits[] = $commitEntry;
+            $entry->entrydata["commits"][] = $commitEntry;
         }
         return $entry;
     }
@@ -78,11 +81,12 @@ class GitHub extends Controller
      */
     public static function processWatch($data) {
         $entry = self::createEntry($data);
+        $entry->entrydata = array();
         $entry->type = "Watch";
         $repo = self::callGitHubAPI($entry->link);
-        $entry->repo = $repo->full_name;
-        $entry->repodesc = $repo->description;
-        $entry->lang = $repo->language;
+        $entry->entrydata["repo"] = $repo->full_name;
+        $entry->entrydata["repodesc"] = $repo->description;
+        $entry->entrydata["lang"] = $repo->language;
         return $entry;
     }
 
@@ -94,12 +98,13 @@ class GitHub extends Controller
      */
     public static function processIssue($data) {
         $entry = self::createEntry($data);
+        $entry->entrydata = array();
         $entry->type = "Issue";
-        $entry->repo = explode("/issues", explode("https://github.com/", $entry->link)[1])[0];
-        $entry->issuetype = explode(" an", explode($entry->author . " ", $entry->title)[1])[0];
+        $entry->entrydata["repo"] = explode("/issues", explode("https://github.com/", $entry->link)[1])[0];
+        $entry->entrydata["issuetype"] = explode(" an", explode($entry->author . " ", $entry->title)[1])[0];
         $issue = self::callGitHubAPI($entry->link);
-        $entry->issuename = $issue->title;
-        $entry->issuenum = $issue->number;
+        $entry->entrydata["issuename"] = $issue->title;
+        $entry->entrydata["issuenum"] = $issue->number;
         return $entry;
     }
 
@@ -109,44 +114,18 @@ class GitHub extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $feed = self::getFeed();
+        $githubQuery = DB::table('github')->orderby('date', 'desc')->get();
         $githubEntries = array();
-        $j = 0;
-        for ($i = 0; $i < count($feed->entry); $i++) {
-            $eventtype = explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
-            /**
-             * Events to add in the future:
-             * - CommitCommentEvent
-             * - CreateEvent
-             * - DeleteEvent
-             * - ForkEvent
-             * - IssueCommentEvent
-             * - PullRequestEvent
-             * - PullRequestReviewEvent
-             * - PullRequestReviewCommentEvent
-             * - ReleaseEvent
-             */
-            switch ($eventtype) {
-                case "PushEvent":
-                    $entry = self::processPush($feed->entry[$i]);
-                    break;
-                case "IssuesEvent":
-                    $entry = self::processIssue($feed->entry[$i]);
-                    break;
-                case "WatchEvent":
-                    $entry = self::processWatch($feed->entry[$i]);
-                    break;
-                default:
-                    continue 2;
-            }
-            $j++;
-            $githubEntries[$i] = $entry;
-            if ($j == 4) {
-                break;
-            }
+        foreach ($githubQuery as $entry) {
+            $datetime = new \DateTime();
+            $datetime->setTimestamp($entry->date);
+            $entry->date = $datetime->format("M j, Y");
+            $entry->entrydata = json_decode($entry->entrydata);
+            $githubEntries[] = $entry;
         }
+
         return array(
-            'githubEntries' => $githubEntries
+            'githubEntries' => array_slice($githubEntries, 0, 4)
         );
     }
 }

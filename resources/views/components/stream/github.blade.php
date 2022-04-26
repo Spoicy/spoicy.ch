@@ -9,17 +9,17 @@ use App\Http\Controllers\GitHub;
             @switch($entry->type)
                 @case("Push")
                     <div class="entry-link">
-                        <a href="https://github.com/{{$entry->author}}">{{$entry->author}}</a> pushed to <a href="https://github.com/{{$entry->repo}}/tree/{{$entry->branch}}">{{$entry->branch}}</a> in <a href="https://github.com/{{$entry->repo}}">{{$entry->repo}}</a>
-                        <span>{{$entry->datetime}}</span>
+                        <a href="https://github.com/{{$entry->author}}">{{$entry->author}}</a> pushed to <a href="https://github.com/{{$entry->entrydata->repo}}/tree/{{$entry->entrydata->branch}}">{{$entry->entrydata->branch}}</a> in <a href="https://github.com/{{$entry->entrydata->repo}}">{{$entry->entrydata->repo}}</a>
+                        <span>{{$entry->date}}</span>
                     </div>
                     <div class="entry-actions">
-                        @if (count($entry->commits) > 1)
-                            <span>{{count($entry->commits)}} commits to </span><a href="https://github.com/{{$entry->repo}}/tree/{{$entry->branch}}">{{$entry->branch}}</a>
+                        @if (count($entry->entrydata->commits) > 1)
+                            <span>{{count($entry->entrydata->commits)}} commits to </span><a href="https://github.com/{{$entry->entrydata->repo}}/tree/{{$entry->entrydata->branch}}">{{$entry->entrydata->branch}}</a>
                         @else
-                            <span>1 commit to </span><a href="https://github.com/{{$entry->repo}}/tree/{{$entry->branch}}">{{$entry->branch}}</a>
+                            <span>1 commit to </span><a href="https://github.com/{{$entry->entrydata->repo}}/tree/{{$entry->entrydata->branch}}">{{$entry->entrydata->branch}}</a>
                         @endif
                         <ul>
-                            @foreach ($entry->commits as $commit)
+                            @foreach ($entry->entrydata->commits as $commit)
                                 <li>
                                     <a href="{{$commit->link}}">{{$commit->id}} </a><span>{{$commit->message}}</span>
                                 </li>
@@ -29,22 +29,22 @@ use App\Http\Controllers\GitHub;
                     @break
                 @case("Issue")
                     <div class="entry-link">
-                        <a href="https://github.com/{{$entry->author}}">{{$entry->author}}</a> {{$entry->issuetype}} an issue in <a href="https://github.com/{{$entry->repo}}">{{$entry->repo}}</a>
-                        <span>{{$entry->datetime}}</span>
+                        <a href="https://github.com/{{$entry->author}}">{{$entry->author}}</a> {{$entry->entrydata->issuetype}} an issue in <a href="https://github.com/{{$entry->entrydata->repo}}">{{$entry->entrydata->repo}}</a>
+                        <span>{{$entry->date}}</span>
                     </div>
                     <div class="entry-actions">
-                        <a href="{{$entry->link}}">{{$entry->issuename}}</a><span> #{{$entry->issuenum}}</span>
+                        <a href="{{$entry->link}}">{{$entry->entrydata->issuename}}</a><span> #{{$entry->entrydata->issuenum}}</span>
                     </div>
                     @break
                 @case("Watch")
                     <div class="entry-link">
-                        <a href="https://github.com/{{$entry->author}}">{{$entry->author}}</a> starred <a href="https://github.com/{{$entry->repo}}">{{$entry->repo}}</a>
-                        <span>{{$entry->datetime}}</span>
+                        <a href="https://github.com/{{$entry->author}}">{{$entry->author}}</a> starred <a href="https://github.com/{{$entry->entrydata->repo}}">{{$entry->entrydata->repo}}</a>
+                        <span>{{$entry->date}}</span>
                     </div>
                     <div class="entry-actions">
-                        <a href="https://github.com/{{$entry->repo}}">{{$entry->repo}}</a>
+                        <a href="https://github.com/{{$entry->entrydata->repo}}">{{$entry->entrydata->repo}}</a>
                         <br>
-                        <p>{{$entry->repodesc}}</p>
+                        <p>{{$entry->entrydata->repodesc}}</p>
                     </div>
                     @break
             @endswitch

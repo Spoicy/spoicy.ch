@@ -24,7 +24,6 @@ class Twitter extends Controller
             $twitterPosts[] = $tweet;
         }
 
-        
         return array(
             'twitterPosts' => array_slice($twitterPosts, 0, 5)
         );
