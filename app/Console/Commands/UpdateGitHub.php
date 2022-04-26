@@ -67,30 +67,32 @@ class UpdateGitHub extends Command
             for ($i = count($feed->entry) - 1; $i >= 0; $i--) {
                 $eventtype = explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
                 $sid = explode("/", $feed->entry[$i]->id)[1];
-                $entry = null;
-                switch ($eventtype) {
-                    case "PushEvent":
-                        $entry = GitHub::processPush($feed->entry[$i]);
-                        break;
-                    case "IssuesEvent":
-                        $entry = GitHub::processIssue($feed->entry[$i]);
-                        break;
-                    case "WatchEvent":
-                        $entry = GitHub::processWatch($feed->entry[$i]);
-                        break;
-                    default:
-                        continue 2;
-                }
-                if ($entry) {
-                    $tableGithub->insert([
-                        'sid' => $sid,
-                        'title' => $entry->title,
-                        'link' => $entry->link,
-                        'author' => $entry->author,
-                        'date' => $entry->datetime,
-                        'type' => $entry->type,
-                        'entrydata' => json_encode($entry->entrydata)
-                    ]);
+                if (!in_array($sid, $sids)){
+                    $entry = null;
+                    switch ($eventtype) {
+                        case "PushEvent":
+                            $entry = GitHub::processPush($feed->entry[$i]);
+                            break;
+                        case "IssuesEvent":
+                            $entry = GitHub::processIssue($feed->entry[$i]);
+                            break;
+                        case "WatchEvent":
+                            $entry = GitHub::processWatch($feed->entry[$i]);
+                            break;
+                        default:
+                            continue 2;
+                    }
+                    if ($entry) {
+                        $tableGithub->insert([
+                            'sid' => $sid,
+                            'title' => $entry->title,
+                            'link' => $entry->link,
+                            'author' => $entry->author,
+                            'date' => $entry->datetime,
+                            'type' => $entry->type,
+                            'entrydata' => json_encode($entry->entrydata)
+                        ]);
+                    }
                 }
             }
         } catch (\Exception $e) {
