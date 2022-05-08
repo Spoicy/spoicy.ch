@@ -10,7 +10,7 @@
         flex-direction: column;
         align-items: center;
         > * {
-            width: 50%
+            width: 65%
         }
     }
     .blog-cards {
@@ -22,6 +22,7 @@
             margin-bottom: 1rem;
             p {
                 word-break: break-word;
+                font-size: 1.125rem;
             }
             button:not(.btn) {
                 position: absolute;
@@ -47,7 +48,7 @@
 @media (max-width: 991.98px) {
     .blog-container {
         .main-div > * {
-            width: 75%;
+            width: 85%;
         }
     }
 }

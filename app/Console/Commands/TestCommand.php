@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 
-use App\Http\Controllers\GitHub;
+use App\Http\Controllers\Blog;
 
 class TestCommand extends Command
 {
@@ -39,8 +39,8 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $test = GitHub::getFeed();
-        echo "asdfjkasjhdasdd";
+        $test = Blog::getBlogtextFormat('pg:This is a test a[string](google.com). b[Bold test string, i[Italic nested b[Bold nested string] string.] Test]');
+        echo "$test";
         return 0;
     }
 }
