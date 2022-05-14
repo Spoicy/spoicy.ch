@@ -13,23 +13,43 @@
             padding: 0.5rem;
             border-radius: 0.5rem;
             text-decoration: none;
-            box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+            transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            &:hover, &:focus {
+                box-shadow: 0 0 12px rgba(0, 0, 0, 0.5);
+                transition: box-shadow 0.3s ease, background-color 0.3s ease;
+            }
         }
         .card-white {
-            background-color: #FFF;
+            background-color: hsl(0, 0%, 100%);
             color: #000;
+            &:hover, &:focus {
+                background-color: hsl(0, 0%, 95%);
+            }
         }
         .card-blue  {
-            background-color: #0062CC;
-            color: #FFF
+            background-color: hsl(211, 100%, 40%);
+            color: #FFF;
+            &:hover, &:focus {
+                background-color: hsl(211, 100%, 35%);
+            }
         }
         .card-dark {
-            background-color: #040730;
+            background-color: hsl(236, 85%, 10%);
             color: #FFF;
+            &:hover, &:focus {
+                background-color: hsl(236, 85%, 5%);
+            }
         }
         .card-gray {
-            background-color: #71797E;
+            background-color: hsl(203, 5%, 47%);
             color: #FFF;
+            &:hover, &:focus {
+                background-color: hsl(203, 5%, 45%);
+            }
+        }
+        @media (max-width: 767.98px) {
+            grid-template-columns: 1fr;
         }
     }
     .main-div,
@@ -43,18 +63,9 @@
     .jsf-grid-card {
         animation-delay: calc(1.2s + var(--order) * 300ms);
     }
-}
-
-@media (min-width: 1200px) {
-    .container.jsframework-container {
-        max-width: 960px;
-    }
-}
-
-@media (max-width: 767.98px) {
-    .jsframework-container {
-        .jsf-grid {
-            grid-template-columns: 1fr;
+    @media (min-width: 1200px) {
+        &.container {
+            max-width: 960px;
         }
     }
 }

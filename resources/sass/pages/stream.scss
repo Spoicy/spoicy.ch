@@ -119,20 +119,16 @@
             padding-bottom: 0;
         }
     }
-}
-
-@media (max-width: 991.98px) {
-    .youtube-container,
-    .twitter-container,
-    .twitch-container {
-        h1 {
-            padding-top: 1.25rem;
+    @media (max-width: 991.98px) {
+        .youtube-container,
+        .twitter-container,
+        .twitch-container {
+            h1 {
+                padding-top: 1.25rem;
+            }
         }
     }
-}
-
-@media (max-width: 575.98px) {
-    .stream-container {
+    @media (max-width: 575.98px) {
         .srdc-container {
             .speedrun-date {
                 display: none;
@@ -148,3 +144,4 @@
         }
     }
 }
+

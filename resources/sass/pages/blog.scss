@@ -10,7 +10,13 @@
         flex-direction: column;
         align-items: center;
         > * {
-            width: 65%
+            width: 65%;
+            @media (max-width: 991.98px) {
+                width: 85%;
+            }
+            @media (max-width: 575.98px) {
+                width: 90%;
+            }
         }
     }
     .blog-cards {
@@ -44,20 +50,7 @@
     textarea {
         width: 100%;
     }
-}
-@media (max-width: 991.98px) {
-    .blog-container {
-        .main-div > * {
-            width: 85%;
-        }
-    }
-}
-
-@media (max-width: 575.98px) {
-    .blog-container {
-        .main-div > * {
-            width: 90%;
-        }
+    @media (max-width: 575.98px) {
         h2 {
             font-size: 1.75rem;
         }
