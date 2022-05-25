@@ -1,5 +1,6 @@
 @php
     use App\Http\Controllers\Blog;
+    use Illuminate\Support\Facades\Hash;
 @endphp
 <!DOCTYPE html>
 <html lang="en">
@@ -19,7 +20,7 @@
         <div class="container blog-container site-container">
             <div class="main-div">
                 <h1 class="text-center">Blog</h1>
-                @if (session('loggedin'))
+                @if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS")))
                     <div class="admin-div mb-3">
                         <form action="/blog/add" method="post">
                             @csrf
@@ -33,7 +34,7 @@
                         <div class="blog-card">
                             <h2>{{Blog::getDateFormat($entry->date)}}</h2>
                             <div id="blogEntryText{{$entry->id}}">{!! Blog::getBlogtextFormat($entry->blogtext) !!}</div>
-                            @if (session('loggedin'))
+                            @if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS")))
                                 <button class="button-blog-edit" id="blogEditButton{{$entry->id}}"><i class="fa fa-pencil" id="blogEditButton{{$entry->id}}"></i></button>
                                 <form action="/blog/edit/{{$entry->id}}" method="post">
                                     @csrf
