@@ -39,14 +39,26 @@
         }
     }
     .menu-popout {
-        position: absolute;
-        height: 100vh;
-        width: min(300px, 80%);
-        transform: translateX(-100%);
-        z-index: 2;
-        transition: transform 0.5s ease-in;
-        background-color: #eee;
+        display: flex;
+        position: fixed;
         padding: 0.75rem;
+        padding-left: 1rem;
+        top: 0;
+        left: 0;
+        width: min(300px, 80%);
+        height: 100vh;
+        z-index: 101;
+        flex-direction: column;
+        align-items: flex-start;
+        transform: translateX(-100%);
+        transition: transform .5s ease-in;
+        ul {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 0;
+            list-style-type: none;
+        }
         button {
             position: absolute;
             right: -48px;
@@ -64,25 +76,19 @@
         .menuclose-show {
             visibility: visible;
         }
-        ul {
-            margin: 0;
-            padding: 0;
-            padding-left: 0.25rem;
-            list-style-type: none;
-            font-size: 1.5rem;
-            :first-child {
-                padding-top: 0.5rem;
-            }
-        }
         li {
             padding-top: 1rem;
             line-height: 1;
-            font-weight: 700; 
+            &:first-of-type {
+                padding-top: 0.5rem;
+            }
         }
         a {
             color: #000;
             text-decoration: none;
             position: relative;
+            font-size: 1.5rem;
+            font-weight: 700;
             /* Code for underline animation from css-irl.info */
             &::after {
                 content: '';
@@ -104,23 +110,32 @@
                 transform: scale(1);
             }
         }
+        @media (max-width: calc(300px * 1.25 - 0.02px)) {
+            a {
+                font-size: 1.375rem;
+            }
+            li {
+                padding-top: 0.75rem;
+            }
+        }
     }
     .menu-show {
         transform: translateX(0);
     }
     .background-dim {
         background-color: #000;
-        position: absolute;
-        opacity: 0;
-        z-index: 1;
-        width: 100%;
-        height: 100vh;
         visibility: hidden;
-        transition: visibility 0.5s, opacity 0.5s ease-in;
+        height: 100vh;
+        width: 100%;
+        position: fixed;
+        transition: visibility .5s, opacity .5s ease-in;
+        z-index: 100;
+        top: 0;
+        opacity: 0;
     }
     .active {
         visibility: visible;
-        opacity: 0.35;
+        opacity: .35;
     }
     @media (max-width: 575.98px) {
         .menuburger {
