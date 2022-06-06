@@ -12,6 +12,9 @@
         padding-bottom: 0.625rem;
         text-align: center;
     }
+    .emoji {
+        width: 1.3125rem;
+    }
     .main-div,
     .streamchild-container {
         opacity: 0;
@@ -66,9 +69,6 @@
             margin-top: auto;
             margin-bottom: auto;
             padding-left: 2rem;
-            .emoji {
-                width: 1.3125rem;
-            }
         }
         .tweet-media {
             text-align: center;
