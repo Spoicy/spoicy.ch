@@ -1,0 +1,11 @@
+.error-container {
+    height: 100vh;
+    position: relative;
+    text-align: center;
+    .main-div {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(-50%, -50%, 0);
+    }
+}

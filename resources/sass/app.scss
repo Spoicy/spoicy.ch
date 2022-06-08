@@ -13,6 +13,8 @@
 @use 'components/wip';
 @use 'components/anim';
 
+@use 'errors/error';
+
 body.pink {
     background-color: #fadadd !important;
     .menu-popout {

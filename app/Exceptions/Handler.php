@@ -4,6 +4,7 @@ namespace App\Exceptions;
 
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class Handler extends ExceptionHandler
 {
@@ -50,6 +51,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        $test = 1;
+        if ($exception instanceof \Symfony\Component\HttpKernel\Exception\HttpExceptionInterface && ! view()->exists("errors.{$exception->getStatusCode()}")) {
+            return response()->view('errors.default', ['exception' => $exception], 500, $exception->getHeaders());
+        }
         return parent::render($request, $exception);
     }
 }
