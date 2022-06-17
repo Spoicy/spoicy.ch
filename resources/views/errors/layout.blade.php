@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Error | {{$exception->getStatusCode()}}</title>
+        <title>@yield('title')</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
@@ -17,7 +17,7 @@
     <body class="soft-blue">
         <div class="error-container site-container">
             <div class="main-div">
-                <h1>{{$exception->getStatusCode()}} | {{str_replace('.', '', $exception->getMessage())}}</h1>
+                <h1>@yield('code') | @yield('title')</h1>
             </div>
         </div>
     </body>
