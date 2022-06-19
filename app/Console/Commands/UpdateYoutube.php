@@ -40,13 +40,7 @@ class UpdateYoutube extends Command
     public function handle()
     {
         if (!Schema::hasTable('ytvideos')) {
-            Schema::create('ytvideos', function ($table) {
-                $table->increments('id');
-                $table->char('sid', 11);
-                $table->string('title', 255);
-                $table->string('thumbnail', 255);
-                $table->integer('date');
-            });
+            die("No table found, please run migrations first.");
         }
         $tableVideos = DB::table('ytvideos');
 

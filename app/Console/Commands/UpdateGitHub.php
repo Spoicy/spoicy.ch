@@ -42,16 +42,7 @@ class UpdateGitHub extends Command
     public function handle()
     {
         if (!Schema::hasTable('github')) {
-            Schema::create('github', function ($table) {
-                $table->increments('id');
-                $table->char('sid', 11);
-                $table->string('title', 255);
-                $table->string('link', 255);
-                $table->string('author', 255);
-                $table->string('type', 255);
-                $table->text('entrydata');
-                $table->integer('date');
-            });
+            die("No table found, please run migrations first.");
         }
         $tableGithub = DB::table('github');
 

@@ -15,11 +15,7 @@ class Blog extends Controller
      */
     public static function getBlogEntries() {
         if (!Schema::hasTable('blogentries')) {
-            Schema::create('blogentries', function ($table) {
-                $table->increments('id');
-                $table->integer('date');
-                $table->text('blogtext');
-            });
+            return array();
         }
         $entries = DB::table('blogentries')->orderby('date', 'desc')->get();
         return $entries;

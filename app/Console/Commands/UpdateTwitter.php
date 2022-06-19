@@ -41,14 +41,7 @@ class UpdateTwitter extends Command
     public function handle()
     {
         if (!Schema::hasTable('tweets')) {
-            Schema::create('tweets', function ($table) {
-                $table->increments('id');
-                $table->char('sid', 19);
-                $table->string('text', 255);
-                $table->string('link', 255);
-                $table->string('media', 255)->default(null);
-                $table->integer('date');
-            });
+            die("No table found, please run migrations first.");
         }
         $tableTweets = DB::table('tweets');
 

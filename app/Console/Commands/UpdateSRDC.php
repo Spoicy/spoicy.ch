@@ -40,17 +40,7 @@ class UpdateSRDC extends Command
     public function handle()
     {
         if (!Schema::hasTable('speedruns')) {
-            Schema::create('speedruns', function ($table) {
-                $table->increments('id');
-                $table->char('sid', 8);
-                $table->string('game', 255);
-                $table->string('game_link', 255);
-                $table->string('category', 255);
-                $table->string('category_link', 255);
-                $table->date('date');
-                $table->float('time');
-                $table->string('image', 255);
-            });
+            die("No table found, please run migrations first.");
         }
         $tableSpeedruns = DB::table('speedruns');
 
