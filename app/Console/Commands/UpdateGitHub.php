@@ -41,10 +41,10 @@ class UpdateGitHub extends Command
      */
     public function handle()
     {
-        if (!Schema::hasTable('github')) {
+        if (!Schema::hasTable('github_events')) {
             die("No table found, please run migrations first.");
         }
-        $tableGithub = DB::table('github');
+        $tableGithub = DB::table('github_events');
 
         $query = $tableGithub->get('sid');
         $sids = array();
