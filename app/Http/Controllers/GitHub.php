@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class GitHub extends Controller
 {
@@ -114,7 +115,10 @@ class GitHub extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $githubQuery = DB::table('github')->orderby('date', 'desc')->get();
+        if (!Schema::hasTable('github_events')) {
+            return array();
+        }
+        $githubQuery = DB::table('github_events')->orderby('date', 'desc')->get();
         $githubEntries = array();
         foreach ($githubQuery as $entry) {
             $datetime = new \DateTime();

@@ -58,7 +58,6 @@
         }
     }
     .twitter-container {
-        padding-top: 1.5rem;
         animation-delay: 1.8s;
         .tweet-media a,
         .tweet-media img {
@@ -94,7 +93,6 @@
         }
     }
     .github-container {
-        padding-top: 1.5rem;
         animation-delay: 2.1s;
         .entry {
             padding: 0.5rem;
@@ -122,13 +120,15 @@
             padding-bottom: 0;
         }
     }
+    @media (min-width: 992px) {
+        .stream-rows .stream-row:not(:first-child) {
+            padding-top: 1.5rem;
+        }
+    }
     @media (max-width: 991.98px) {
-        .youtube-container,
-        .twitter-container,
-        .twitch-container {
-            h1 {
-                padding-top: 1.25rem;
-            }
+        .streamchild-container:not(:first-of-type),
+        .stream-rows .stream-row:not(:first-child) .streamchild-container {
+            padding-top: 1.5rem;
         }
     }
     @media (max-width: 575.98px) {

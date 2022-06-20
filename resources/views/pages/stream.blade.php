@@ -24,28 +24,30 @@ $i = 0;
             <div class="main-div">
                 <h1>Social Media</h1>
             </div>
-            @foreach ($available_templates as $template => $variables)
-                @if (View::exists('components/stream/'.$template))
-                    @if ($i % 2 == 0)
-                        <div class="row">
-                            <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
-                                @include('components/stream/'.$template, ['variables' => $variables])
+            <div class="stream-rows">
+                @foreach ($available_templates as $template => $variables)
+                    @if (View::exists('components/stream/'.$template) && count($variables) > 0)
+                        @if ($i % 2 == 0)
+                            <div class="row stream-row">
+                                <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
+                                    @include('components/stream/'.$template, ['variables' => $variables])
+                                </div>
+                        @else
+                                <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
+                                    @include('components/stream/'.$template, ['variables' => $variables])
+                                </div>
                             </div>
-                    @else
-                            <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
-                                @include('components/stream/'.$template, ['variables' => $variables])
-                            </div>
-                        </div>
+                        @endif
+                        @php
+                            $i++;
+                        @endphp
                     @endif
-                    @php
-                        $i++;
-                    @endphp
+                @endforeach
+    
+                @if ($i % 2 == 1)
+                            </div>
                 @endif
-            @endforeach
-
-            @if ($i % 2 == 1)
-                        </div>
-            @endif
+            </div>
         </div>
         <script src="js/app.js"></script>
         <script>twemoji.parse(document.body);</script>

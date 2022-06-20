@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Schema;
 
 class Youtube extends Controller
 {
@@ -67,7 +68,10 @@ class Youtube extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $videosQuery = DB::table('ytvideos')->orderby('date', 'desc')->get();
+        if (!Schema::hasTable('youtube_videos')) {
+            return array();
+        }
+        $videosQuery = DB::table('youtube_videos')->orderby('date', 'desc')->get();
         $videos = array();
         foreach ($videosQuery as $video) {
             $youtubeVideos[] = $video;
