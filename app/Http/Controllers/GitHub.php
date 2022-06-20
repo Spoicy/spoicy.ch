@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\GithubEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
@@ -19,6 +20,19 @@ class GitHub extends Controller
         return $feed;
     }
 
+    /**
+     * Formats the event date to be in a similar format to GitHub.
+     * 
+     * @param  string $date
+     * @return string $eventDate
+     */
+    public static function getDateFormat($date) {
+        $datetime = new \DateTime();
+        $datetime->setTimestamp($date);
+        $eventDate = $datetime->format("M j, Y");
+        return $eventDate;
+    }
+    
     /**
      * Creates a base entry class for the process functions.
      * 
@@ -118,18 +132,9 @@ class GitHub extends Controller
         if (!Schema::hasTable('github_events')) {
             return array();
         }
-        $githubQuery = DB::table('github_events')->orderby('date', 'desc')->get();
-        $githubEntries = array();
-        foreach ($githubQuery as $entry) {
-            $datetime = new \DateTime();
-            $datetime->setTimestamp($entry->date);
-            $entry->date = $datetime->format("M j, Y");
-            $entry->entrydata = json_decode($entry->entrydata);
-            $githubEntries[] = $entry;
-        }
-
+        $githubEvents = GithubEvent::orderby('date', 'desc')->get();
         return array(
-            'githubEntries' => array_slice($githubEntries, 0, 4)
+            'githubEntries' => $githubEvents->slice(0, 5)
         );
     }
 }

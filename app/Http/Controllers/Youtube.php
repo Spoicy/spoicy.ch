@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\YoutubeVideo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;
@@ -71,13 +72,9 @@ class Youtube extends Controller
         if (!Schema::hasTable('youtube_videos')) {
             return array();
         }
-        $videosQuery = DB::table('youtube_videos')->orderby('date', 'desc')->get();
-        $videos = array();
-        foreach ($videosQuery as $video) {
-            $youtubeVideos[] = $video;
-        }
+        $youtubeVideos = YoutubeVideo::orderby('date', 'desc')->get();
         return array(
-            'youtubeVideos' => array_slice($youtubeVideos, 0, 5)
+            'youtubeVideos' => $youtubeVideos->slice(0, 5)
         );
     }
 }

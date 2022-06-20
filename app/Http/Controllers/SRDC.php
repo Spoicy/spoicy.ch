@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Speedrun;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
@@ -87,13 +88,9 @@ class SRDC extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $speedrunsQuery = DB::table('speedruns')->orderby('date', 'desc')->get();
-        $speedruns = array();
-        foreach($speedrunsQuery as $speedrun) {
-            $speedruns[] = $speedrun;
-        }
+        $speedruns = Speedrun::orderby('date', 'desc')->get();
         return array(
-            'srdcRuns' => array_slice($speedruns, 0, 5)
+            'srdcRuns' => $speedruns->slice(0, 5)
         );
     }
 }

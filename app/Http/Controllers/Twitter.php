@@ -2,11 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use DateTime;
+use App\Tweet;
 use Illuminate\Support\Facades\DB;
 
 class Twitter extends Controller
 {
+    /**
+     * Formats the tweet date to be in a similar format to Twitter.
+     * 
+     * @param  string $date
+     * @return string $tweetDate
+     */
+    public static function getDateFormat($date) {
+        $datetime = new \DateTime();
+        $datetime->setTimestamp($date);
+        $tweetDate = $datetime->format("g:i A · M j, Y");
+        return $tweetDate;
+    }
+
     /**
      * Returns the variables required for the Twitter template.
      * 
@@ -15,17 +28,9 @@ class Twitter extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $tweetsQuery = DB::table('tweets')->orderby('date', 'desc')->get();
-        $tweets = array();
-        foreach($tweetsQuery as $tweet) {
-            $datetime = new DateTime();
-            $datetime->setTimestamp($tweet->date);
-            $tweet->date = $datetime->format("g:i A · M j, Y");
-            $twitterPosts[] = $tweet;
-        }
-
+        $tweets = Tweet::orderby('date', 'desc')->get();
         return array(
-            'twitterPosts' => array_slice($twitterPosts, 0, 5)
+            'twitterPosts' => $tweets->slice(0, 5)
         );
     }
 }
