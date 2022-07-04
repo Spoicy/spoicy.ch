@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Tweet;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -43,46 +44,45 @@ class UpdateTwitter extends Command
         if (!Schema::hasTable('tweets')) {
             die("No table found, please run migrations first.");
         }
-        $tableTweets = DB::table('tweets');
-
-        $query = $tableTweets->get('sid');
+        /* Put all tweet sids into array */
+        $query = Tweet::all();
         $sids = array();
         foreach ($query as $result) {
             $sids[] = $result->sid;
         }
 
+        /* Retrieve all tweets and media from API */
         $response = Http::withToken(env("TWITTER_BEARER_TOKEN"))->get('https://api.twitter.com/2/users/1191275816/tweets?max_results=30&media.fields=preview_image_url,url&expansions=attachments.media_keys&tweet.fields=referenced_tweets,created_at&exclude=retweets,replies');
         $tweets = json_decode($response);
         $includes = $tweets->includes->media;
         $tweets = array_reverse($tweets->data);
 
         foreach ($tweets as $tweet) {
+            /* Check if tweet is already in database */
             if (!in_array($tweet->id, $sids)) {
                 $datetime = new \DateTime($tweet->created_at);
-                $tweetarray = [
-                    'sid' => $tweet->id,
-                    'text' => $tweet->text,
-                    'link' => "https://www.twitter.com/OnlyFireball_/status/" . $tweet->id,
-                    'date' => $datetime->getTimestamp(),
-                    'media' => ''
-                ];
+                $newTweet = new Tweet();
+                $newTweet->sid = $tweet->id;
+                $newTweet->text = $tweet->text;
+                $newTweet->link = 'https://www.twitter.com/OnlyFireball_/status/' . $tweet->id;
+                $newTweet->date = $datetime->getTimestamp();
+                $newTweet->media = '';
+                /* Check if there's available media to display */
                 if (isset($tweet->attachments)) {
                     $mediakey = $tweet->attachments->media_keys[0];
                     foreach ($includes as $media) {
                         if ($media->media_key == $mediakey) {
                             if ($media->type == "photo") {
-                                $tweetarray['media'] = $media->url;
+                                $newTweet->media = $media->url;
                             } else {
-                                $tweetarray['media'] = $media->preview_image_url;
+                                $newTweet->media = $media->preview_image_url;
                             }
-                            $i = 0;
                         }
                     }
                 }
-                $tableTweets->insert($tweetarray);
+                $newTweet->save();
             }
         }
-
         return 0;
     }
 }

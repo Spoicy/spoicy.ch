@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\GithubEvent;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -44,9 +45,8 @@ class UpdateGitHub extends Command
         if (!Schema::hasTable('github_events')) {
             die("No table found, please run migrations first.");
         }
-        $tableGithub = DB::table('github_events');
 
-        $query = $tableGithub->get('sid');
+        $query = GithubEvent::all();
         $sids = array();
         foreach ($query as $result) {
             $sids[] = $result->sid;
@@ -72,17 +72,6 @@ class UpdateGitHub extends Command
                             break;
                         default:
                             continue 2;
-                    }
-                    if ($entry) {
-                        $tableGithub->insert([
-                            'sid' => $sid,
-                            'title' => $entry->title,
-                            'link' => $entry->link,
-                            'author' => $entry->author,
-                            'date' => $entry->datetime,
-                            'type' => $entry->type,
-                            'entrydata' => json_encode($entry->entrydata)
-                        ]);
                     }
                 }
             }

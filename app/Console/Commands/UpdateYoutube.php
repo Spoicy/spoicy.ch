@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\YoutubeVideo;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -42,13 +43,12 @@ class UpdateYoutube extends Command
         if (!Schema::hasTable('youtube_videos')) {
             die("No table found, please run migrations first.");
         }
-        $tableVideos = DB::table('youtube_videos');
 
-        $query = $tableVideos->get('sid');
+        $youtubeVideos = YoutubeVideo::all();
         $sids = array();
-        foreach ($query as $result) {
-            $sids[] = $result->sid;
-        }
+        foreach ($youtubeVideos as $item) {
+            $sids[] = $item->sid;
+        } 
 
         $playlistItems = json_decode(implode('', file("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUsVw7FLt28Boqi7e6CnkoXg&maxResults=30&key=" .
             env("YOUTUBE_API_KEY"))));
@@ -57,14 +57,12 @@ class UpdateYoutube extends Command
         foreach ($playlistItems as $video) {
             if (!in_array($video->snippet->resourceId->videoId, $sids)) {
                 $datetime = new \DateTime(substr(str_replace('T', ' ', $video->snippet->publishedAt), 0, -1));
-                $tableVideos->insert(
-                    [
-                        'sid' => $video->snippet->resourceId->videoId,
-                        'title' => $video->snippet->title,
-                        'thumbnail' => $video->snippet->thumbnails->high->url,
-                        'date' => $datetime->getTimestamp(),
-                    ]
-                );
+                $newVideo = new YoutubeVideo();
+                $newVideo->sid = $video->snippet->resourceId->videoId;
+                $newVideo->title = $video->snippet->title;
+                $newVideo->thumbnail = $video->snippet->thumbnails->high->url;
+                $newVideo->date = $datetime->getTimestamp();
+                $newVideo->save();
             }
         }
         return 0;

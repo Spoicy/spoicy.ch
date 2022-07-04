@@ -40,12 +40,13 @@ class GitHub extends Controller
      * @return stdClass         $entry
      */
     public static function createEntry($data) {
-        $entry = new \stdClass();
+        $entry = new GithubEvent();
+        $entry->sid = explode("/", $data->id)[1];
         $entry->title = (string) $data->title;
         $entry->link = (string) $data->link->attributes()->href;
         $entry->author = (string) $data->author->name;
         $date = new \DateTime((string) $data->published);
-        $entry->datetime = $date->getTimestamp();
+        $entry->date = $date->getTimestamp();
         //$entry->datetime = $date->format("M j, Y");
         return $entry;
     }
@@ -68,24 +69,24 @@ class GitHub extends Controller
      * Processes the data for PushEvents
      * 
      * @param  SimpleXMLElement $data
-     * @return stdClass         $entry
      */
     public static function processPush($data) {
         $entry = self::createEntry($data);
-        $entry->entrydata = array();
+        $entrydata = array();
         $entry->type = "Push";
-        $entry->entrydata["repo"] = explode("/compare", explode("https://github.com/", $entry->link)[1])[0];
-        $entry->entrydata["branch"] = explode(" in", explode("pushed to ", $entry->title)[1])[0];
-        $entry->entrydata["commits"] = array();
+        $entrydata["repo"] = explode("/compare", explode("https://github.com/", $entry->link)[1])[0];
+        $entrydata["branch"] = explode(" in", explode("pushed to ", $entry->title)[1])[0];
+        $entrydata["commits"] = array();
         $commits = self::callGitHubAPI($entry->link);
         foreach ($commits->commits as $commit) {
             $commitEntry = new \stdClass();
             $commitEntry->id = substr($commit->sha, 0, 7);
             $commitEntry->link = $commit->html_url;
             $commitEntry->message = $commit->commit->message;
-            $entry->entrydata["commits"][] = $commitEntry;
+            $entrydata["commits"][] = $commitEntry;
         }
-        return $entry;
+        $entry->entrydata = json_encode($entrydata);
+        $entry->save();
     }
 
     /**
@@ -96,13 +97,14 @@ class GitHub extends Controller
      */
     public static function processWatch($data) {
         $entry = self::createEntry($data);
-        $entry->entrydata = array();
+        $entrydata = array();
         $entry->type = "Watch";
         $repo = self::callGitHubAPI($entry->link);
-        $entry->entrydata["repo"] = $repo->full_name;
-        $entry->entrydata["repodesc"] = $repo->description;
-        $entry->entrydata["lang"] = $repo->language;
-        return $entry;
+        $entrydata["repo"] = $repo->full_name;
+        $entrydata["repodesc"] = $repo->description;
+        $entrydata["lang"] = $repo->language;
+        $entry->entrydata = json_encode($entrydata);
+        $entry->save();
     }
 
     /**
@@ -113,14 +115,15 @@ class GitHub extends Controller
      */
     public static function processIssue($data) {
         $entry = self::createEntry($data);
-        $entry->entrydata = array();
+        $entrydata = array();
         $entry->type = "Issue";
-        $entry->entrydata["repo"] = explode("/issues", explode("https://github.com/", $entry->link)[1])[0];
-        $entry->entrydata["issuetype"] = explode(" an", explode($entry->author . " ", $entry->title)[1])[0];
+        $entrydata["repo"] = explode("/issues", explode("https://github.com/", $entry->link)[1])[0];
+        $entrydata["issuetype"] = explode(" an", explode($entry->author . " ", $entry->title)[1])[0];
         $issue = self::callGitHubAPI($entry->link);
-        $entry->entrydata["issuename"] = $issue->title;
-        $entry->entrydata["issuenum"] = $issue->number;
-        return $entry;
+        $entrydata["issuename"] = $issue->title;
+        $entrydata["issuenum"] = $issue->number;
+        $entry->entrydata = json_encode($entrydata);
+        $entry->save();
     }
 
     /**

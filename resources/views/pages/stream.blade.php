@@ -19,14 +19,14 @@ $i = 0;
         <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="soft-blue">
-        @include('components/other/overlay', ['nav' => 'hSocial'])
+        @include('components.other.overlay', ['nav' => 'hSocial'])
         <div class="container stream-container site-container">
             <div class="main-div">
                 <h1>Social Media</h1>
             </div>
             <div class="stream-rows">
                 @foreach ($available_templates as $template => $variables)
-                    @if (View::exists('components/stream/'.$template) && count($variables) > 0)
+                    @if (View::exists('components.stream.'.$template) && count($variables) > 0)
                         @if ($i % 2 == 0)
                             <div class="row stream-row">
                                 <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
