@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Speedrun;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -42,16 +43,15 @@ class UpdateSRDC extends Command
         if (!Schema::hasTable('speedruns')) {
             die("No table found, please run migrations first.");
         }
-        $tableSpeedruns = DB::table('speedruns');
 
-        $query = $tableSpeedruns->get('sid');
+        $query = Speedrun::all();
         $sids = array();
         
         foreach ($query as $result) {
             $sids[] = $result->sid;
         }
 
-        $speedruns = array_reverse(json_decode(file("https://www.speedrun.com/api/v1/runs?user=kj9407x4&orderby=submitted&direction=desc")[0])->data);
+        $speedruns = array_reverse(json_decode(file("https://www.speedrun.com/api/v1/runs?embed=game,category,level&user=kj9407x4&orderby=submitted&direction=desc")[0])->data);
         foreach ($speedruns as $key => $speedrun) {
             // TODO make this more efficient by utilizing less API calls
             if (!in_array($speedrun->id, $sids) && $speedrun->status->status == "verified") {
@@ -59,12 +59,11 @@ class UpdateSRDC extends Command
                 foreach ($speedrun->links as $link) {
                     $speedrunLinks[$link->rel] = $link->uri;
                 }
-                $game = json_decode(file($speedrunLinks["game"])[0])->data;
-                try {
-                    $category = json_decode(file($speedrunLinks["category"])[0])->data;
-                } catch (\Exception $e) {
+                $game = $speedrun->game->data;
+                if (!isset($speedrun->category->data)) {
                     continue;
                 }
+                $category = $speedrun->category->data;
                 $categoryLinks = array();
                 foreach ($category->links as $link) {
                     $categoryLinks[$link->rel] = $link->uri;
@@ -87,8 +86,8 @@ class UpdateSRDC extends Command
                     }
                 }
                 $level = null;
-                if (in_array("level", array_keys($speedrunLinks))) {
-                    $level = json_decode(file($speedrunLinks["level"])[0])->data;
+                if (isset($speedrun->level->data)) {
+                    $level = $speedrun->level->data;
                     $levelCategories = json_decode(file($level->links[2]->uri)[0])->data;
                     foreach ($levelCategories as $levelKey => $levelcategory) {
                         if ($levelcategory->id == $category->id) {
@@ -108,18 +107,16 @@ class UpdateSRDC extends Command
                 }
                 $date = $speedrun->date;
                 //inserts
-                $tableSpeedruns->insert(
-                    [
-                        'sid' => $speedrun->id,
-                        'game' => $game->names->international,
-                        'game_link' => $game->weblink,
-                        'category' => $category_name,
-                        'category_link' => $category_weblink,
-                        'date' => $date,
-                        'time' => $time,
-                        'image' => $logo
-                    ]
-                );
+                $newSpeedrun = Speedrun::create([
+                    'sid' => $speedrun->id,
+                    'game' => $game->names->international,
+                    'game_link' => $game->weblink,
+                    'category' => $category_name,
+                    'category_link' => $category_weblink,
+                    'date' => $date,
+                    'time' => $time,
+                    'image' => $logo
+                ]);
             }
         }
         return 0;

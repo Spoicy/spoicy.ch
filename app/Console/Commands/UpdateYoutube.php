@@ -57,12 +57,12 @@ class UpdateYoutube extends Command
         foreach ($playlistItems as $video) {
             if (!in_array($video->snippet->resourceId->videoId, $sids)) {
                 $datetime = new \DateTime(substr(str_replace('T', ' ', $video->snippet->publishedAt), 0, -1));
-                $newVideo = new YoutubeVideo();
-                $newVideo->sid = $video->snippet->resourceId->videoId;
-                $newVideo->title = $video->snippet->title;
-                $newVideo->thumbnail = $video->snippet->thumbnails->high->url;
-                $newVideo->date = $datetime->getTimestamp();
-                $newVideo->save();
+                $newVideo = YoutubeVideo::create([
+                    'sid' => $video->snippet->resourceId->videoId,
+                    'title' => $video->snippet->title,
+                    'thumbnail' => $video->snippet->thumbnails->high->url,
+                    'date' => $datetime->getTimestamp()
+                ]);
             }
         }
         return 0;

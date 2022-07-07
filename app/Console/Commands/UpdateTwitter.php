@@ -61,12 +61,13 @@ class UpdateTwitter extends Command
             /* Check if tweet is already in database */
             if (!in_array($tweet->id, $sids)) {
                 $datetime = new \DateTime($tweet->created_at);
-                $newTweet = new Tweet();
-                $newTweet->sid = $tweet->id;
-                $newTweet->text = $tweet->text;
-                $newTweet->link = 'https://www.twitter.com/OnlyFireball_/status/' . $tweet->id;
-                $newTweet->date = $datetime->getTimestamp();
-                $newTweet->media = '';
+                $newTweet = Tweet::create([
+                    'sid' => $tweet->id,
+                    'text' => $tweet->text,
+                    'link' => 'https://www.twitter.com/OnlyFireball_/status/' . $tweet->id,
+                    'date' => $datetime->getTimestamp(),
+                    'media' => ''
+                ]);
                 /* Check if there's available media to display */
                 if (isset($tweet->attachments)) {
                     $mediakey = $tweet->attachments->media_keys[0];
