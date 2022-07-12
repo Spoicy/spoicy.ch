@@ -4,7 +4,6 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Storage;
-use stdClass;
 
 class RefunctRuns extends Command
 {
@@ -48,7 +47,7 @@ class RefunctRuns extends Command
             if ($runs) {
                 foreach ($runs as $run) {
                     if ($run->status->status == "verified" && $run->values->$variablename == "21d6v8pq") {
-                        $newRun = new stdClass();
+                        $newRun = new \stdClass();
                         if (isset($run->players->data[0]->names->international)) {
                             $newRun->name = $run->players->data[0]->names->international;
                             $newRun->pfp = $run->players->data[0]->assets->image->uri.'.png';

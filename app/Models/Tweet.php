@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GithubEvent extends Model
+class Tweet extends Model
 {
     /**
      * Indicates if the model should be timestamped.
@@ -12,4 +12,11 @@ class GithubEvent extends Model
      * @var bool
      */
     public $timestamps = false;
+
+    /**
+     * The attributes that aren't mass assignable.
+     *
+     * @var array
+     */
+    protected $guarded = [];
 }

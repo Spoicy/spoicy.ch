@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Tweet;
+use App\Models\Tweet;
 use Illuminate\Support\Facades\DB;
 
 class Twitter extends Controller

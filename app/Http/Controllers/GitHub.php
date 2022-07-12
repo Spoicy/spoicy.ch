@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\GithubEvent;
+use App\Models\GithubEvent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
@@ -137,7 +137,7 @@ class GitHub extends Controller
         }
         $githubEvents = GithubEvent::orderby('date', 'desc')->get();
         return array(
-            'githubEntries' => $githubEvents->slice(0, 5)
+            'githubEntries' => $githubEvents->slice(0, 4)
         );
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\YoutubeVideo;
+use App\Models\YoutubeVideo;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Schema;

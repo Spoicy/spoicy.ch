@@ -2,9 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Speedrun;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Http\Request;
+use App\Models\Speedrun;
 
 class SRDC extends Controller
 {

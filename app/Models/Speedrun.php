@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class YoutubeVideo extends Model
+class Speedrun extends Model
 {
     /**
      * Indicates if the model should be timestamped.
