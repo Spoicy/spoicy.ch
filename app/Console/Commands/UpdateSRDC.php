@@ -86,7 +86,8 @@ class UpdateSRDC extends Command
                     }
                 }
                 $level = null;
-                if (isset($speedrun->level->data)) {
+                if ($speedrun->level->data) {
+                    $type = 'level';
                     $level = $speedrun->level->data;
                     $levelCategories = json_decode(file($level->links[2]->uri)[0])->data;
                     foreach ($levelCategories as $levelKey => $levelcategory) {
@@ -94,6 +95,8 @@ class UpdateSRDC extends Command
                             $category_weblink = $levelcategory->weblink;
                         }
                     }
+                } else {
+                    $type = 'fullgame';
                 }
                 $logo = $game->assets->{'cover-medium'}->uri;
                 $time = $speedrun->times->primary_t;
@@ -115,7 +118,8 @@ class UpdateSRDC extends Command
                     'category_link' => $category_weblink,
                     'date' => $date,
                     'time' => $time,
-                    'image' => $logo
+                    'image' => $logo,
+                    'type' => $type
                 ]);
             }
         }
