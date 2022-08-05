@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\SpeedrunResource;
 use App\Models\Speedrun;
 
 class SRDC extends Controller
@@ -86,7 +87,7 @@ class SRDC extends Controller
      * @return array $variables
      */
     public static function variables() {
-        $speedruns = Speedrun::orderby('date', 'desc')->get();
+        $speedruns = SpeedrunResource::collection(Speedrun::orderby('date', 'desc')->get());
         return array(
             'srdcRuns' => $speedruns->slice(0, 5)
         );
