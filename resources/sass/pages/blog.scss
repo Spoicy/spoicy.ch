@@ -10,7 +10,7 @@
         flex-direction: column;
         align-items: center;
         > * {
-            width: 65%;
+            width: 75%;
             @media (max-width: 991.98px) {
                 width: 85%;
             }
@@ -30,19 +30,27 @@
                 word-break: break-word;
                 font-size: 1.125rem;
             }
-            button:not(.btn) {
+            .blog-buttons {
                 position: absolute;
                 top: 0;
                 right: 0;
-                background-color: rgba(0,0,0,0);
-                border: none;
-                outline: none;
-                font-size: 1.25rem;
-                color: #212529;
-                opacity: 0.6;
-                transition: 0.3s;
-                &:hover {
-                    opacity: 1;
+                button, a {
+                    background-color: rgba(0,0,0,0);
+                    border: none;
+                    outline: none;
+                    font-size: 1.25rem;
+                    color: #212529;
+                    opacity: 0.6;
+                    transition: 0.3s;
+                    &:hover {
+                        opacity: 1;
+                    }
+                }
+                .button-blog-view {
+                    padding-right: 0.5rem;
+                }
+                .button-blog-edit {
+                    padding-left: 0;
                 }
             }
         }

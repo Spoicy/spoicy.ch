@@ -2,23 +2,24 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BlogPost;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class Blog extends Controller
 {
     /**
-     * Retrieves all blog entries from the database.
+     * Validates a blog action
      * 
-     * @return Collection $entries
+     * @return bool
      */
-    public static function getBlogEntries() {
-        if (!Schema::hasTable('blogentries')) {
-            return array();
+    public static function validateBlogAction() {
+        if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS"))) {
+            return true;
         }
-        $entries = DB::table('blogentries')->orderby('date', 'desc')->get();
-        return $entries;
+        return false;
     }
 
     /**
@@ -28,16 +29,16 @@ class Blog extends Controller
      */
     public static function addBlogEntry(Request $request) {
         $text = strip_tags(trim($request->request->get('blogTextarea')));
-        $entriesTable = DB::table('blogentries');
-        if (strlen($text)) {
-            $entriesTable->insert([
+        $title = strip_tags(trim($request->request->get('blogEditTitle')));
+        if (strlen($text) && self::validateBlogAction()) {
+            $newBlogPost = BlogPost::create([
                 'date' => time(),
-                'blogtext' => $text
+                'blogtext' => $text,
+                'title' => $title
             ]);
             return redirect('/blog')->with('status', 1);
-        } else {
-            return redirect('/blog')->with('status', 2);
         }
+        return redirect('/blog')->with('status', 2);
     }
 
     /**
@@ -49,13 +50,12 @@ class Blog extends Controller
      */
     public static function editBlogEntry(Request $request, $id) {
         $text = strip_tags(trim($request->request->get('blogEditText'.$id)));
-        $entriesTable = DB::table('blogentries');
-        if (strlen($text)) {
-            $entriesTable->where('id', $id)->update(['blogtext' => $text]);
+        $title = strip_tags(trim($request->request->get('blogEditTitle'.$id)));
+        if (strlen($text) && self::validateBlogAction()) {
+            BlogPost::where('id', $id)->update(['blogtext' => $text, 'title' => $title]);
             return redirect('/blog')->with('status', 3);
-        } else {
-            return redirect('/blog')->with('status', 4);
         }
+        return redirect('/blog')->with('status', 4);
     }
 
     /**
@@ -89,21 +89,25 @@ class Blog extends Controller
     }
 
     /**
+     * Format the blog post's text into HTML to be displayed.
      * 
+     * @param string $text
+     * @return string $newtext
      */
     public static function getBlogtextFormat($text) {
         $modifiers = ['b' => 'normal', 'i' => 'normal', 'a' => 'link'];
         $pg = 'pg:';
 
-        $textexplode = explode($pg, $text);
-        if ($textexplode[0] == "") {
-            array_shift($textexplode);
+        $textParagraphs = explode($pg, $text);
+        if ($textParagraphs[0] == "") {
+            array_shift($textParagraphs);
         }
         $newtext = "<p>";
-        foreach ($textexplode as $item) {
+        foreach ($textParagraphs as $item) {
             $newtext .= $item . '</p><p>';
         }
         $newtext = substr($newtext, 0, strlen($newtext) - 3);
+        /* Apply modifiers to the semi-formatted text */
         foreach ($modifiers as $modifier => $type) {
             if ($type == 'link') {
                 $modStart = strpos($newtext, $modifier.'[');
@@ -136,16 +140,36 @@ class Blog extends Controller
         return $newtext;
     }
 
+    /**
+     * Returns the view for all blog posts
+     * 
+     * @return View $page
+     */
     public static function view() {
-        $entries = self::getBlogEntries();
+        $posts = BlogPost::orderby('date', 'desc')->get();
         $temp = array();
-        foreach ($entries as $entry) {
-            $entry->rawtext = $entry->blogtext;
-            $entry->blogtext = strip_tags($entry->blogtext);
-            $temp[] = $entry;
+        foreach ($posts as $post) {
+            $post->rawtext = $post->blogtext;
+            $post->blogtext = strip_tags($post->blogtext);
+            $temp[] = $post;
         }
         return view('pages/blog', [
-            'entries' => $entries
+            'posts' => $posts
+        ]);
+    }
+
+    /**
+     * Returns the view for an individual blog post
+     * 
+     * @param int $id
+     * @return View $page
+     */
+    public static function viewPost($id) {
+        $post = BlogPost::find($id);
+        $post->rawtext = $post->blogtext;
+        $post->blogtext = strip_tags($post->blogtext);
+        return view('pages/blogpost', [
+            'post' => $post
         ]);
     }
 }
