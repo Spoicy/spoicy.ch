@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\BlogPost;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
@@ -15,7 +13,7 @@ class Blog extends Controller
      * 
      * @return bool
      */
-    public static function validateBlogAction() {
+    public static function validateBlogAction(): bool {
         if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS"))) {
             return true;
         }
@@ -26,6 +24,7 @@ class Blog extends Controller
      * Adds a new entry to the blog
      * 
      * @param Request $request
+     * @return void $redirect
      */
     public static function addBlogEntry(Request $request) {
         $text = strip_tags(trim($request->request->get('blogTextarea')));
@@ -46,9 +45,9 @@ class Blog extends Controller
      * 
      * @param Request $request
      * @param int $id
-     * @return bool $success
+     * @return void $success
      */
-    public static function editBlogEntry(Request $request, $id) {
+    public static function editBlogEntry(Request $request, int $id) {
         $text = strip_tags(trim($request->request->get('blogEditText'.$id)));
         $title = strip_tags(trim($request->request->get('blogEditTitle'.$id)));
         if (strlen($text) && self::validateBlogAction()) {
@@ -64,7 +63,7 @@ class Blog extends Controller
      * @param int $date
      * @return string
      */
-    public static function getDateFormat($date) {
+    public static function getDateFormat(int $date): string {
         $month = date('F', $date);
         $day = date('j', $date);
         $year = date('Y', $date);
@@ -94,7 +93,7 @@ class Blog extends Controller
      * @param string $text
      * @return string $newtext
      */
-    public static function getBlogtextFormat($text) {
+    public static function getBlogtextFormat(string $text): string {
         $modifiers = ['b' => 'normal', 'i' => 'normal', 'a' => 'link'];
         $pg = 'pg:';
 
@@ -145,7 +144,7 @@ class Blog extends Controller
      * 
      * @return View $page
      */
-    public static function view() {
+    public static function view(): \Illuminate\Contracts\View\View {
         $posts = BlogPost::orderby('date', 'desc')->get();
         $temp = array();
         foreach ($posts as $post) {
@@ -164,7 +163,7 @@ class Blog extends Controller
      * @param int $id
      * @return View $page
      */
-    public static function viewPost($id) {
+    public static function viewPost(int $id): \Illuminate\Contracts\View\View {
         $post = BlogPost::find($id);
         $post->rawtext = $post->blogtext;
         $post->blogtext = strip_tags($post->blogtext);

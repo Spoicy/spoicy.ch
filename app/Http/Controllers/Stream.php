@@ -11,7 +11,7 @@ class Stream extends Controller
      * 
      * @return View $page
      */
-    public static function view() {
+    public static function view(): \Illuminate\Contracts\View\View {
         $available_templates = array(
             'srdc' => SRDC::variables(),
             'youtube' => Youtube::variables(),

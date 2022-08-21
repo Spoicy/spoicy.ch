@@ -14,7 +14,7 @@ class Youtube extends Controller
      * 
      * @return array $items
      */
-    public static function getVideos() {
+    public static function getVideos(): iterable {
         $playlistItems = json_decode(implode('', file("https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=UUsVw7FLt28Boqi7e6CnkoXg&key=" .
             env("YOUTUBE_API_KEY"))));
         return $playlistItems->items;
@@ -26,7 +26,7 @@ class Youtube extends Controller
      * @param  string $date
      * @return string $speedrunDate
      */
-    public static function getDateFormat($date) {
+    public static function getDateFormat(string $date): string {
         $runDate = new \DateTime();
         $runDate->setTimestamp($date);
         $now = new \DateTime();
@@ -68,7 +68,7 @@ class Youtube extends Controller
      * 
      * @return array $variables
      */
-    public static function variables() {
+    public static function variables(): iterable {
         if (!Schema::hasTable('youtube_videos')) {
             return array();
         }

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
+use SimpleXMLElement;
 
 class GitHub extends Controller
 {
@@ -15,7 +16,7 @@ class GitHub extends Controller
      * 
      * @return SimpleXMLElement $feed
      */
-    public static function getFeed() {
+    public static function getFeed(): SimpleXMLElement {
         $feed = simplexml_load_file("https://github.com/spoicy.atom");
         return $feed;
     }
@@ -26,7 +27,7 @@ class GitHub extends Controller
      * @param  string $date
      * @return string $eventDate
      */
-    public static function getDateFormat($date) {
+    public static function getDateFormat(string $date): string {
         $datetime = new \DateTime();
         $datetime->setTimestamp($date);
         $eventDate = $datetime->format("M j, Y");
@@ -37,9 +38,9 @@ class GitHub extends Controller
      * Creates a base entry class for the process functions.
      * 
      * @param  SimpleXMLElement $data
-     * @return stdClass         $entry
+     * @return GithubEvent         $entry
      */
-    public static function createEntry($data) {
+    public static function createEntry(SimpleXMLElement $data): GithubEvent {
         $entry = new GithubEvent();
         $entry->sid = explode("/", $data->id)[1];
         $entry->title = (string) $data->title;
@@ -57,7 +58,7 @@ class GitHub extends Controller
      * @param  string   $link
      * @return stdClass $response
      */
-    public static function callGitHubAPI($link) {
+    public static function callGitHubAPI(string $link): \stdClass {
         $response = Http::withHeaders([
             'User-Agent' => 'request'
         ])->get("https://api.github.com/repos".explode("https://github.com", $link)[1]);
@@ -70,7 +71,7 @@ class GitHub extends Controller
      * 
      * @param  SimpleXMLElement $data
      */
-    public static function processPush($data) {
+    public static function processPush(SimpleXMLElement $data) {
         $entry = self::createEntry($data);
         $entrydata = array();
         $entry->type = "Push";
@@ -93,9 +94,8 @@ class GitHub extends Controller
      * Processes the data for WatchEvents
      * 
      * @param  SimpleXMLElement $data
-     * @return stdClass         $entry
      */
-    public static function processWatch($data) {
+    public static function processWatch(SimpleXMLElement $data) {
         $entry = self::createEntry($data);
         $entrydata = array();
         $entry->type = "Watch";
@@ -111,9 +111,8 @@ class GitHub extends Controller
      * Processes the data for IssueEvents
      * 
      * @param  SimpleXMLElement $data
-     * @return stdClass         $entry
      */
-    public static function processIssue($data) {
+    public static function processIssue(SimpleXMLElement $data) {
         $entry = self::createEntry($data);
         $entrydata = array();
         $entry->type = "Issue";
@@ -131,7 +130,7 @@ class GitHub extends Controller
      * 
      * @return array $variables
      */
-    public static function variables() {
+    public static function variables(): iterable {
         if (!Schema::hasTable('github_events')) {
             return array();
         }

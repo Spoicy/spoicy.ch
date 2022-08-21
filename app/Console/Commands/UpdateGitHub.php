@@ -59,16 +59,15 @@ class UpdateGitHub extends Command
                 $eventtype = explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
                 $sid = explode("/", $feed->entry[$i]->id)[1];
                 if (!in_array($sid, $sids)){
-                    $entry = null;
                     switch ($eventtype) {
                         case "PushEvent":
-                            $entry = GitHub::processPush($feed->entry[$i]);
+                            GitHub::processPush($feed->entry[$i]);
                             break;
                         case "IssuesEvent":
-                            $entry = GitHub::processIssue($feed->entry[$i]);
+                            GitHub::processIssue($feed->entry[$i]);
                             break;
                         case "WatchEvent":
-                            $entry = GitHub::processWatch($feed->entry[$i]);
+                            GitHub::processWatch($feed->entry[$i]);
                             break;
                         default:
                             continue 2;

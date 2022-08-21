@@ -11,7 +11,7 @@ class Login extends Controller
      * Validates the user inputted password.
      * 
      * @param Request $request
-     * @return bool
+     * @return void $redirect
      */
     public static function validateLogin(Request $request) {
         $password = $request->request->get("loginPass");
@@ -26,7 +26,12 @@ class Login extends Controller
         }
     }
 
-    public static function view() {
+    /**
+     * Returns the view for the login page.
+     * 
+     * @return View $view
+     */
+    public static function view(): \Illuminate\Contracts\View\View {
         return view('pages/login');
     }
 }

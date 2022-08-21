@@ -13,7 +13,7 @@ class SRDC extends Controller
      * @param  string $date
      * @return string $speedrunDate
      */
-    public static function getDateFormat($date) {
+    public static function getDateFormat(string $date): string {
         $runDate = new \DateTime($date . " 12:00:00");
         $now = new \DateTime();
         $diff = date_diff($runDate, $now);
@@ -55,7 +55,7 @@ class SRDC extends Controller
      * @param  float  $time
      * @return string $speedrunTime
      */
-    public static function getTimeFormat($time) {
+    public static function getTimeFormat(float $time): string {
         if ($time < 3600) {
             $timePattern = "i:s";
         } else {
@@ -86,7 +86,7 @@ class SRDC extends Controller
      * 
      * @return array $variables
      */
-    public static function variables() {
+    public static function variables(): iterable {
         $speedruns = SpeedrunResource::collection(Speedrun::orderby('date', 'desc')->get());
         return array(
             'srdcRuns' => $speedruns->slice(0, 5)

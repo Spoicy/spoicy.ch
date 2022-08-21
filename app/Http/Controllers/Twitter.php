@@ -13,7 +13,7 @@ class Twitter extends Controller
      * @param  string $date
      * @return string $tweetDate
      */
-    public static function getDateFormat($date) {
+    public static function getDateFormat(string $date): string {
         $datetime = new \DateTime();
         $datetime->setTimestamp($date);
         $tweetDate = $datetime->format("g:i A · M j, Y");
@@ -27,7 +27,7 @@ class Twitter extends Controller
      * 
      * @return array $variables
      */
-    public static function variables() {
+    public static function variables(): iterable {
         $tweets = Tweet::orderby('date', 'desc')->get();
         return array(
             'twitterPosts' => $tweets->slice(0, 5)
