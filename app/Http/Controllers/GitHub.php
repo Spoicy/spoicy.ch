@@ -71,7 +71,7 @@ class GitHub extends Controller
      * 
      * @param  SimpleXMLElement $data
      */
-    public static function processPush(SimpleXMLElement $data) {
+    public static function processPushEvent(SimpleXMLElement $data) {
         $entry = self::createEntry($data);
         $entrydata = array();
         $entry->type = "Push";
@@ -95,7 +95,7 @@ class GitHub extends Controller
      * 
      * @param  SimpleXMLElement $data
      */
-    public static function processWatch(SimpleXMLElement $data) {
+    public static function processWatchEvent(SimpleXMLElement $data) {
         $entry = self::createEntry($data);
         $entrydata = array();
         $entry->type = "Watch";
@@ -112,7 +112,7 @@ class GitHub extends Controller
      * 
      * @param  SimpleXMLElement $data
      */
-    public static function processIssue(SimpleXMLElement $data) {
+    public static function processIssuesEvent(SimpleXMLElement $data) {
         $entry = self::createEntry($data);
         $entrydata = array();
         $entry->type = "Issue";

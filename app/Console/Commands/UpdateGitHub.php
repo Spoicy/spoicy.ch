@@ -56,26 +56,14 @@ class UpdateGitHub extends Command
         $i = count($feed->entry) - 1;
         try {
             for ($i = count($feed->entry) - 1; $i >= 0; $i--) {
-                $eventtype = explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
+                $eventProcess = "process" . explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
                 $sid = explode("/", $feed->entry[$i]->id)[1];
-                if (!in_array($sid, $sids)){
-                    switch ($eventtype) {
-                        case "PushEvent":
-                            GitHub::processPush($feed->entry[$i]);
-                            break;
-                        case "IssuesEvent":
-                            GitHub::processIssue($feed->entry[$i]);
-                            break;
-                        case "WatchEvent":
-                            GitHub::processWatch($feed->entry[$i]);
-                            break;
-                        default:
-                            continue 2;
-                    }
+                if (!in_array($sid, $sids) && method_exists(GitHub::class, $eventProcess)){
+                    GitHub::$eventProcess($feed->entry[$i]);
                 }
             }
         } catch (\Exception $e) {
-            echo "Max API calls was reached.";
+            echo "Max API calls for GitHub was reached.";
         }
         return 0;
     }
