@@ -18,4 +18,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('speedruns', 'SRDC@variables');
+Route::apiResource('speedruns', 'Api\SpeedrunController');
+Route::apiResource('youtubevideos', 'Api\YoutubeVideoController');
+Route::apiResource('tweets', 'Api\TweetController');
+Route::apiResource('githubevents', 'Api\GithubEventController');

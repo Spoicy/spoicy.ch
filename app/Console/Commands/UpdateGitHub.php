@@ -2,12 +2,10 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\GithubEventHelper;
 use App\Models\GithubEvent;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
-use App\Http\Controllers\GitHub;
-use Illuminate\Support\Facades\Http;
 
 class UpdateGitHub extends Command
 {
@@ -58,12 +56,12 @@ class UpdateGitHub extends Command
             for ($i = count($feed->entry) - 1; $i >= 0; $i--) {
                 $eventProcess = "process" . explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
                 $sid = explode("/", $feed->entry[$i]->id)[1];
-                if (!in_array($sid, $sids) && method_exists(GitHub::class, $eventProcess)){
-                    GitHub::$eventProcess($feed->entry[$i]);
+                if (!in_array($sid, $sids) && method_exists(GithubEventHelper::class, $eventProcess)){
+                    GithubEventHelper::$eventProcess($feed->entry[$i]);
                 }
             }
         } catch (\Exception $e) {
-            echo "Max API calls for GitHub was reached.";
+            echo "Error with requesting Github API: " . $e->getMessage();
         }
         return 0;
     }

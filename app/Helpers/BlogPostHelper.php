@@ -1,12 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Helpers;
 
-use App\Models\BlogPost;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 
-class Blog extends Controller
+class BlogPostHelper
 {
     /**
      * Validates a blog action
@@ -18,43 +16,6 @@ class Blog extends Controller
             return true;
         }
         return false;
-    }
-
-    /**
-     * Adds a new entry to the blog
-     * 
-     * @param Request $request
-     * @return void $redirect
-     */
-    public static function addBlogEntry(Request $request) {
-        $text = strip_tags(trim($request->request->get('blogTextarea')));
-        $title = strip_tags(trim($request->request->get('blogEditTitle')));
-        if (strlen($text) && self::validateBlogAction()) {
-            $newBlogPost = BlogPost::create([
-                'date' => time(),
-                'blogtext' => $text,
-                'title' => $title
-            ]);
-            return redirect('/blog')->with('status', 1);
-        }
-        return redirect('/blog')->with('status', 2);
-    }
-
-    /**
-     * Edit an existing blog entry
-     * 
-     * @param Request $request
-     * @param int $id
-     * @return void $success
-     */
-    public static function editBlogEntry(Request $request, int $id) {
-        $text = strip_tags(trim($request->request->get('blogEditText'.$id)));
-        $title = strip_tags(trim($request->request->get('blogEditTitle'.$id)));
-        if (strlen($text) && self::validateBlogAction()) {
-            BlogPost::where('id', $id)->update(['blogtext' => $text, 'title' => $title]);
-            return redirect('/blog')->with('status', 3);
-        }
-        return redirect('/blog')->with('status', 4);
     }
 
     /**
@@ -137,38 +98,5 @@ class Blog extends Controller
             }
         }
         return $newtext;
-    }
-
-    /**
-     * Returns the view for all blog posts
-     * 
-     * @return View $page
-     */
-    public static function view(): \Illuminate\Contracts\View\View {
-        $posts = BlogPost::orderby('date', 'desc')->get();
-        $temp = array();
-        foreach ($posts as $post) {
-            $post->rawtext = $post->blogtext;
-            $post->blogtext = strip_tags($post->blogtext);
-            $temp[] = $post;
-        }
-        return view('pages/blog', [
-            'posts' => $posts
-        ]);
-    }
-
-    /**
-     * Returns the view for an individual blog post
-     * 
-     * @param int $id
-     * @return View $page
-     */
-    public static function viewPost(int $id): \Illuminate\Contracts\View\View {
-        $post = BlogPost::find($id);
-        $post->rawtext = $post->blogtext;
-        $post->blogtext = strip_tags($post->blogtext);
-        return view('pages/blogpost', [
-            'post' => $post
-        ]);
     }
 }

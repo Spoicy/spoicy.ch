@@ -1,8 +1,5 @@
-@php
-use App\Http\Controllers\Twitter;
-@endphp
 <h2>Twitter</h2>
-@foreach ($variables['twitterPosts'] as $key => $tweet)
+@foreach ($data as $tweet)
     <div class="row tweet">
         @if ($tweet->media)
             <div class="col-lg-8 col-md-9 col-sm-8 col-7 tweet-text">
@@ -11,7 +8,7 @@ use App\Http\Controllers\Twitter;
                 <span>{{$tweet->text}}</span>
                 <a href="{{$tweet->link}}"><i class="fa fa-external-link"></i></a>
                 <br>
-                <p>{{Twitter::getDateFormat($tweet->date)}}</p>
+                <p>{{$tweet->date}}</p>
             </div>
             <div class="col-lg-4 col-md-3 col-sm-4 col-5 tweet-media">
                 <a href="{{$tweet->link}}">
@@ -25,7 +22,7 @@ use App\Http\Controllers\Twitter;
                 <span>{{$tweet->text}}</span>
                 <a href="{{$tweet->link}}"><i class="fa fa-external-link"></i></a>
                 <br>
-                <p>{{Twitter::getDateFormat($tweet->date)}}</p>
+                <p>{{$tweet->date}}</p>
             </div>
         @endif
     </div>

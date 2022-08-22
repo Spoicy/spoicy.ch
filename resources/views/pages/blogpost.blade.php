@@ -1,5 +1,4 @@
 @php
-    use App\Http\Controllers\Blog;
     use Illuminate\Support\Facades\Hash;
 @endphp
 <!DOCTYPE html>
@@ -13,7 +12,7 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link rel="stylesheet" href="../css/app.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <title>{{$post->title}} | {{Blog::getDateFormat($post->date)}}</title>
+        <title>{{$post->title}} | {{$post->date}}</title>
     </head>
     <body class="light-orange">
         @include('components/other/overlay', ['nav' => 'hBlog'])
@@ -23,8 +22,8 @@
                 <div class="blog-cards">
                     <div class="blog-card">
                         <h2 class="mb-0">{{$post->title}}</h2>
-                        <p class="text-secondary">{{Blog::getDateFormat($post->date)}}</p>
-                        <div id="blogEntryText{{$post->id}}">{!! Blog::getBlogtextFormat($post->blogtext) !!}</div>
+                        <p class="text-secondary">{{$post->date}}</p>
+                        <div id="blogEntryText{{$post->id}}">{!! $post->blogtext !!}</div>
                         @if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS")))
                             <div class="blog-buttons">
                                 <button class="button-blog-edit" id="blogEditButton{{$post->id}}"><i class="fa fa-pencil" id="blogEditButton{{$post->id}}"></i></button>

@@ -1,8 +1,5 @@
-@php
-use App\Http\Controllers\SRDC;
-@endphp
 <h2>Speedruns</h2>
-@foreach ($variables['srdcRuns'] as $speedrun)
+@foreach ($data as $speedrun)
     <div class="row speedrun">
         <div class="col-lg-4 col-md-3 col-sm-4 col-5 speedrun-logo">
             <img src="{{$speedrun->image}}" alt="{{$speedrun->game}}" />
@@ -11,8 +8,8 @@ use App\Http\Controllers\SRDC;
             <a href="{{$speedrun->game_link}}">{{$speedrun->game}}</a>
             <br>
             <a href="{{$speedrun->category_link}}" class="speedrun-category">{{$speedrun->category}}</a>
-            <span class="speedrun-time">{{SRDC::getTimeFormat($speedrun->time)}}</span>
-            <span class="speedrun-date">{{SRDC::getDateFormat($speedrun->date)}}</span>
+            <span class="speedrun-time">{{$speedrun->time}}</span>
+            <span class="speedrun-date">{{$speedrun->date}}</span>
         </div>
     </div>
 @endforeach

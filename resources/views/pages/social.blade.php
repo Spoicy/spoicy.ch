@@ -25,16 +25,16 @@ $i = 0;
                 <h1>Social Media</h1>
             </div>
             <div class="stream-rows">
-                @foreach ($available_templates as $template => $variables)
-                    @if (View::exists('components.stream.'.$template) && count($variables) > 0)
+                @foreach ($available_templates as $template => $data)
+                    @if (View::exists('components.stream.'.$template) && count($data))
                         @if ($i % 2 == 0)
                             <div class="row stream-row">
                                 <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
-                                    @include('components/stream/'.$template, ['variables' => $variables])
+                                    @include('components.stream.'.$template, ['data' => $data])
                                 </div>
                         @else
                                 <div class="col-lg-6 col-xs-12 {{$template}}-container streamchild-container">
-                                    @include('components/stream/'.$template, ['variables' => $variables])
+                                    @include('components.stream.'.$template, ['data' => $data])
                                 </div>
                             </div>
                         @endif

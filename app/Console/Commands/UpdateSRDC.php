@@ -51,7 +51,7 @@ class UpdateSRDC extends Command
             $sids[] = $result->sid;
         }
 
-        $speedruns = array_reverse(json_decode(file("https://www.speedrun.com/api/v1/runs?embed=game,category,level&user=kj9407x4&orderby=submitted&direction=desc")[0])->data);
+        $speedruns = array_reverse(json_decode(file("https://www.speedrun.com/api/v1/runs?embed=game,category,level&user=kj9407x4&orderby=submitted&direction=desc&max=30")[0])->data);
         foreach ($speedruns as $key => $speedrun) {
             // TODO make this more efficient by utilizing less API calls
             if (!in_array($speedrun->id, $sids) && $speedrun->status->status == "verified") {
@@ -70,7 +70,12 @@ class UpdateSRDC extends Command
                 }
                 $category_weblink = $category->weblink;
                 if (in_array("variables", array_keys($categoryLinks))) {
-                    $variables = json_decode(file($categoryLinks["variables"])[0])->data;
+                    try {
+                        $variables = json_decode(file($categoryLinks["variables"])[0])->data;
+                    } catch (\Exception $e) {
+                        echo "Error with variable fetch: " . $e->getMessage();
+                        continue;
+                    }
                     if (count($variables)) {
                         $variables = $variables[0];
                     } else {

@@ -2,7 +2,7 @@
 
 namespace App\Http\Resources;
 
-use App\Http\Controllers\SRDC;
+use App\Helpers\SpeedrunHelper;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class SpeedrunResource extends JsonResource
@@ -16,7 +16,6 @@ class SpeedrunResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'sid' => $this->sid,
             'game' => $this->game,
             'game_link' => $this->game_link,
@@ -24,8 +23,8 @@ class SpeedrunResource extends JsonResource
             'category_link' => $this->category_link,
             'date_raw' => $this->date,
             'time_raw' => $this->time,
-            'date' => SRDC::getDateFormat($this->date),
-            'time' => SRDC::getTimeFormat($this->time),
+            'date' => SpeedrunHelper::getDateFormat($this->date),
+            'time' => SpeedrunHelper::getTimeFormat($this->time),
             'image' => $this->image,
             'type' => $this->type,
         ];

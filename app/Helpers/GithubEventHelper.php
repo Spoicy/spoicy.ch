@@ -1,15 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Helpers;
 
 use App\Models\GithubEvent;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Schema;
 use SimpleXMLElement;
 
-class GitHub extends Controller
+class GithubEventHelper
 {
     /**
      * Fetches the GitHub feed for the user Spoicy.
@@ -123,20 +120,5 @@ class GitHub extends Controller
         $entrydata["issuenum"] = $issue->number;
         $entry->entrydata = json_encode($entrydata);
         $entry->save();
-    }
-
-    /**
-     * Returns the variables required for the GitHub template.
-     * 
-     * @return array $variables
-     */
-    public static function variables(): iterable {
-        if (!Schema::hasTable('github_events')) {
-            return array();
-        }
-        $githubEvents = GithubEvent::orderby('date', 'desc')->get();
-        return array(
-            'githubEntries' => $githubEvents->slice(0, 4)
-        );
     }
 }

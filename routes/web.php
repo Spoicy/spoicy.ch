@@ -17,9 +17,7 @@ Route::get('/', function () {
     return view('pages/projects');
 });
 
-Route::get('/social/', 'Stream@view');
-
-Route::get('/stream/', 'Stream@view');
+Route::get('/social/', 'SocialController@view');
 
 Route::get('/swiss/', function () {
     return view('pages/swiss');
@@ -41,15 +39,15 @@ Route::get('/jsframework/vanilla/', function () {
     return view('components/jsframework/vanilla');
 });
 
-Route::get('/blog/', 'Blog@view');
+Route::get('/blog/login/', 'LoginController@view');
 
-Route::post('/blog/add/', 'Blog@addBlogEntry');
-
-Route::post('/blog/edit/{id}/', 'Blog@editBlogEntry');
-
-Route::get('/blog/login/', 'Login@view');
-
-Route::post('/blog/login/validate', 'Login@validateLogin')
+Route::post('/blog/login/validate', 'LoginController@validateLogin')
     ->middleware('guest', 'throttle:3,5');
 
-Route::get('/blog/{id}', 'Blog@viewPost');
+Route::get('/blog/', 'BlogController@view');
+
+Route::get('/blog/{id}', 'BlogController@viewPost');
+
+Route::post('/blog/add/', 'BlogController@add');
+
+Route::post('/blog/edit/{id}/', 'BlogController@edit');

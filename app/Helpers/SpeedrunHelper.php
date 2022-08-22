@@ -1,11 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Helpers;
 
-use App\Http\Resources\SpeedrunResource;
-use App\Models\Speedrun;
-
-class SRDC extends Controller
+class SpeedrunHelper
 {
     /**
      * Formats the speedrun date to be in a similar format to SRDC.
@@ -79,17 +76,5 @@ class SRDC extends Controller
             $speedrunTime .= "." . $ms;
         }
         return $speedrunTime;
-    }
-
-    /**
-     * Returns the variables required for the SRDC template.
-     * 
-     * @return array $variables
-     */
-    public static function variables(): iterable {
-        $speedruns = SpeedrunResource::collection(Speedrun::orderby('date', 'desc')->get());
-        return array(
-            'srdcRuns' => $speedruns->slice(0, 5)
-        );
     }
 }
