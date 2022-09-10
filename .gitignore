@@ -12,3 +12,4 @@ npm-debug.log
 yarn-error.log
 /.vscode/
 /config/database.php
+/config/log-viewer.php
