@@ -1,3 +1,10 @@
+@php
+    $background = 'soft-blue';
+    if (str_contains(Request::url(), 'blog')) {
+        $background = 'light-orange';
+    }
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
     <head>
@@ -14,7 +21,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
         <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
-    <body class="soft-blue">
+    <body class="{{$background}}">
         <div class="error-container site-container">
             <div class="main-div">
                 <h1>@yield('code') | @yield('title')</h1>

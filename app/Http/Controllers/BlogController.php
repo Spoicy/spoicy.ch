@@ -73,6 +73,9 @@ class BlogController extends Controller
             abort(404);
         }
         $post = BlogPost::find($id);
+        if (!$post) {
+            abort(404);
+        }
         $post->rawtext = $post->blogtext;
         $post->blogtext = strip_tags($post->blogtext);
         return view('pages/blogpost', [
