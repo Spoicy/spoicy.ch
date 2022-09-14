@@ -14,33 +14,20 @@ class SpeedrunHelper
         $runDate = new \DateTime($date . " 12:00:00");
         $now = new \DateTime();
         $diff = date_diff($runDate, $now);
-        $years = $diff->format('%y');
-        $months = $diff->format('%m');
-        $days = $diff->format('%d');
+        $thresholds = ['year' => $diff->y, 'month' => $diff->m, 'day' => $diff->d];
 
         // years -> months -> days ->
-        if ($years) {
-            $speedrunDate = $years;
-            $timeperiod = " year";
-            if ($speedrunDate > 1) {
-                $timeperiod .= "s";
+        foreach ($thresholds as $timeperiod => $amount) {
+            if ($amount) {
+                $speedrunDate = $amount;
+                if ($amount > 1) {
+                    $timeperiod .= "s";
+                }
+                $speedrunDate .= " $timeperiod ago";
+                break;
             }
-            $speedrunDate .= $timeperiod . " ago";
-        } elseif ($months) {
-            $speedrunDate = $months;
-            $timeperiod = " month";
-            if ($speedrunDate > 1) {
-                $timeperiod .= "s";
-            }
-            $speedrunDate .= $timeperiod . " ago";
-        } elseif ($days) {
-            $speedrunDate = $days;
-            $timeperiod = " day";
-            if ($speedrunDate > 1) {
-                $timeperiod .= "s";
-            }
-            $speedrunDate .= $timeperiod . " ago";
-        } else {
+        }
+        if (!isset($speedrunDate)) {
             $speedrunDate = "Today";
         }
         return $speedrunDate;
@@ -59,6 +46,7 @@ class SpeedrunHelper
             $timePattern = "H:i:s";
         }
         $speedrunTime = date($timePattern, $time);
+        /* This code is messy and not self explanatory, but it works as intended no matter how many decimals are required, so will not be reworked. */
         if ($ms = fmod($time, 1)) {
             $errorComp = 0;
             $floatError = strpos($ms, "9999");
