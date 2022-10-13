@@ -73,8 +73,12 @@ class BlogController extends Controller
             abort(404);
         }
         $post = BlogPost::find($id);
+        if (!$post) {
+            abort(404);
+        }
         $post->rawtext = $post->blogtext;
-        $post->blogtext = strip_tags($post->blogtext);
+        $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
+        $post->date = BlogPostHelper::getDateFormat($post->date);
         return view('pages/blogpost', [
             'post' => $post
         ]);
