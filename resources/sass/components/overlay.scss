@@ -3,38 +3,50 @@
     position: relative;
     font-family: 'Karla', sans-serif;
     z-index: 1;
-    .menuburger {
-        position: absolute;
-        left: 0;
-        padding: 1.5rem;
-        i {
-            font-size: 2rem;
-            color: #212529;
-            opacity: 0.6;
-            transition: 0.3s;
-            &:hover {
-                opacity: 1;
+    .overlay-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border: red;
+        padding-top: 1rem;
+        .title {
+            font-size: 3rem;
+            opacity: 0;
+            -webkit-animation: fadein 1.5s;
+            -moz-animation: fadein 1.5s;
+            animation: fadein 1.5s;
+            animation-fill-mode: forwards;
+        }
+        .menuburger {
+            position: relative;
+            padding: 1.5rem;
+            i {
+                font-size: 2rem;
+                color: #212529;
+                opacity: 0.6;
+                transition: 0.3s;
+                &:hover {
+                    opacity: 1;
+                }
+            }
+            button {
+                border: none;
+                background-color: transparent;
+                outline: none;
             }
         }
-        button {
-            border: none;
-            background-color: transparent;
-            outline: none;
-        }
-    }
-    .github-ico {
-        position: absolute;
-        right: 0;
-        padding: 1.5rem;
-        padding-top: 1rem;
-        a {
-            text-decoration: none;
-            color: #212529;
-            opacity: 0.6;
-            transition: 0.3s;
-            font-size: 3rem;
-            &:hover {
-                opacity: 1;
+        .github-ico {
+            position: relative;
+            padding: 1.5rem;
+            a {
+                text-decoration: none;
+                color: #212529;
+                opacity: 0.6;
+                transition: 0.3s;
+                font-size: 3rem;
+                &:hover {
+                    opacity: 1;
+                }
             }
         }
     }

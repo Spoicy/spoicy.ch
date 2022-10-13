@@ -15,10 +15,9 @@
         <title>Blog</title>
     </head>
     <body class="light-orange">
-        @include('components/other/overlay', ['nav' => 'hBlog'])
+        @include('components/other/overlay', ['nav' => 'hBlog', 'title' => 'Blog'])
         <div class="container blog-container site-container">
             <div class="main-div">
-                <h1 class="text-center">Blog</h1>
                 @if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS")))
                     <div class="admin-div mb-3">
                         <form action="/blog/add" method="post">

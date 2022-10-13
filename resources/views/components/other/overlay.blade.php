@@ -10,11 +10,16 @@
 <div class="overlay-container">
     <div class="inner-overlay">
         <div class="background-dim" id="bDim"></div>
-        <div class="menuburger">
-            <button id="mbButton"><i class="fa fa-bars"></i></button>
-        </div>
-        <div class="github-ico">
-            <a class="fa fa-github" href="https://github.com/Spoicy/spoicy.ch" aria-label="Source code link" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Source code"></a>
+        <div class="overlay-header">
+            <div class="menuburger mr-auto">
+                <button id="mbButton"><i class="fa fa-bars"></i></button>
+            </div>
+            @if (isset($title))
+                <h1 class="text-center title flex-grow-1">{{$title}}</h1>
+            @endif
+            <div class="github-ico ml-auto">
+                <a class="fa fa-github" href="https://github.com/Spoicy/spoicy.ch" aria-label="Source code link" target="_blank" data-toggle="tooltip" data-placement="bottom" title="Source code"></a>
+            </div>
         </div>
         <nav class="menu-popout" id="mPopout">
             <button id="mcButton"><i class="fa fa-times"></i></button>
