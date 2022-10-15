@@ -10,7 +10,7 @@
         border: red;
         padding-top: 1rem;
         .title {
-            font-size: 3rem;
+            font-size: 2.5rem;
             opacity: 0;
             -webkit-animation: fadein 1.5s;
             -moz-animation: fadein 1.5s;
@@ -47,6 +47,11 @@
                 &:hover {
                     opacity: 1;
                 }
+            }
+        }
+        @media (max-width: 575.98px) {
+            .menuburger, .github-ico {
+                padding: 0 1.5rem;
             }
         }
     }
@@ -149,17 +154,7 @@
         visibility: visible;
         opacity: .35;
     }
-    @media (max-width: 575.98px) {
-        .menuburger {
-            padding: 1.5rem 1rem;
-        }
-        .github-ico {
-            padding: 1.375rem 1rem;
-            a {
-                font-size: 2.5rem;
-            }
-        }
-    }
+    
     @supports (-webkit-touch-callout: none) {
         .menu-popout button {
             right: -58px;

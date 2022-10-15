@@ -27,7 +27,7 @@
                         </form>
                     </div>
                 @endif
-                <div class="blog-cards">
+                <div class="blog-cards" style="--order: 1">
                     @foreach ($posts as $post)
                         <div class="blog-card">
                             <h2 class="mb-0">{{$post->title ?? "Default title"}}</h2>
