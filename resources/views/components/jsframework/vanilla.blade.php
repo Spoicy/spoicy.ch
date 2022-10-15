@@ -12,11 +12,8 @@
     <title>Vanilla JavaScript</title>
 </head>
 <body class="soft-blue">
-    @include('components/other/overlay', ['nav' => 'hJSFrameworks'])
+    @include('components/other/overlay', ['nav' => 'hJSFrameworks', 'title' => 'Vanilla JavaScript'])
     <div class="container jsfchild-container site-container">
-        <div class="main-div">
-            <h1>Vanilla JavaScript</h1>
-        </div>
         <div class="row">
             <div class="project col-md-6" style="--order: 0">
                 <div class="calc-container">

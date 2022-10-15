@@ -20,6 +20,12 @@
         }
     }
     .blog-cards {
+        opacity: 0;
+        -webkit-animation: fadein 1.5s;
+        -moz-animation: fadein 1.5s;
+        animation: fadein 1.5s;
+        animation-fill-mode: forwards;
+        animation-delay: calc(var(--order) * 300ms);
         .blog-card {
             position: relative;
             background-color: #FFF;

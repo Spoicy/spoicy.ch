@@ -13,11 +13,8 @@
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
     </head>
     <body class="soft-blue">
-        @include('components/other/overlay', ['nav' => 'hJSFrameworks'])
+        @include('components/other/overlay', ['nav' => 'hJSFrameworks', 'title' => 'JavaScript-Framework Projects'])
         <div class="container jsframework-container site-container text-center">
-            <div class="main-div">
-                <h1>JavaScript Framework Projects</h1>
-            </div>
             <div class="jsf-grid">
                 <a class="jsf-grid-card card-white" style="--order: 0" href="/jsframework/vanilla">
                     <h2>Vanilla JavaScript</h2>

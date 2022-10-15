@@ -19,11 +19,8 @@ $i = 0;
         <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
     </head>
     <body class="soft-blue">
-        @include('components.other.overlay', ['nav' => 'hSocial'])
+        @include('components.other.overlay', ['nav' => 'hSocial', 'title' => 'Social Media'])
         <div class="container stream-container site-container">
-            <div class="main-div">
-                <h1>Social Media</h1>
-            </div>
             <div class="stream-rows">
                 @foreach ($available_templates as $template => $data)
                     @if (View::exists('components.stream.'.$template) && count($data))

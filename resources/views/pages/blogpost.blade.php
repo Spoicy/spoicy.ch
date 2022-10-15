@@ -15,11 +15,10 @@
         <title>{{$post->title}} | {{$post->date}}</title>
     </head>
     <body class="light-orange">
-        @include('components/other/overlay', ['nav' => 'hBlog'])
+        @include('components/other/overlay', ['nav' => 'hBlog', 'title' => 'Blog'])
         <div class="container blog-container site-container">
             <div class="main-div">
-                <h1 class="text-center">Blog</h1>
-                <div class="blog-cards">
+                <div class="blog-cards" style="--order: 0">
                     <div class="blog-card">
                         <h2 class="mb-0">{{$post->title}}</h2>
                         <p class="text-secondary">{{$post->date}}</p>
