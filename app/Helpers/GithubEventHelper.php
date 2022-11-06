@@ -53,7 +53,7 @@ class GithubEventHelper
      * Processes GitHub API requests.
      * 
      * @param  string   $link
-     * @return stdClass $response
+     * @return \stdClass $response
      */
     public static function callGitHubAPI(string $link): \stdClass {
         $response = Http::withHeaders([
@@ -76,6 +76,9 @@ class GithubEventHelper
         $entrydata["branch"] = explode(" in", explode("pushed to ", $entry->title)[1])[0];
         $entrydata["commits"] = array();
         $commits = self::callGitHubAPI($entry->link);
+        if (self::eventNotExists($commits)) {
+            return;
+        }
         foreach ($commits->commits as $commit) {
             $commitEntry = new \stdClass();
             $commitEntry->id = substr($commit->sha, 0, 7);
@@ -97,6 +100,9 @@ class GithubEventHelper
         $entrydata = array();
         $entry->type = "Watch";
         $repo = self::callGitHubAPI($entry->link);
+        if (self::eventNotExists($repo)) {
+            return;
+        }
         $entrydata["repo"] = $repo->full_name;
         $entrydata["repodesc"] = $repo->description;
         $entrydata["lang"] = $repo->language;
@@ -116,9 +122,22 @@ class GithubEventHelper
         $entrydata["repo"] = explode("/issues", explode("https://github.com/", $entry->link)[1])[0];
         $entrydata["issuetype"] = explode(" an", explode($entry->author . " ", $entry->title)[1])[0];
         $issue = self::callGitHubAPI($entry->link);
+        if (self::eventNotExists($issue)) {
+            return;
+        }
         $entrydata["issuename"] = $issue->title;
         $entrydata["issuenum"] = $issue->number;
         $entry->entrydata = json_encode($entrydata);
         $entry->save();
+    }
+
+    /**
+     * Checks if the event returns an error message
+     * 
+     * @param \stdClass $response
+     * @return bool state
+     */
+    public static function eventNotExists(\stdClass $response): bool {
+        return isset($response->message);
     }
 }

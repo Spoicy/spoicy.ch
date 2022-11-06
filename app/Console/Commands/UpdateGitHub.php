@@ -53,7 +53,7 @@ class UpdateGitHub extends Command
         $feed = simplexml_load_file("https://github.com/spoicy.atom");
         $i = count($feed->entry) - 1;
         try {
-            for ($i = count($feed->entry) - 1; $i >= 0; $i--) {
+            for ($i = count($feed->entry) - 4; $i >= 0; $i--) {
                 $eventProcess = "process" . explode("/", explode("tag:github.com,2008:", $feed->entry[$i]->id)[1])[0];
                 $sid = explode("/", $feed->entry[$i]->id)[1];
                 if (!in_array($sid, $sids) && method_exists(GithubEventHelper::class, $eventProcess)){

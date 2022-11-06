@@ -3,7 +3,7 @@
     <div class="entry">
         <h3><a href="{{$entry->link}}">{{$entry->title}}</a></h3>
         <div class="entry-main">
-            @include('components.stream.github.'.strtolower($entry->type), ['entry' => $entry])
+            @include('components.media.github.'.strtolower($entry->type), ['entry' => $entry])
         </div>
     </div>
 @endforeach

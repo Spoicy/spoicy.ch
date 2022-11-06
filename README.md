@@ -3,9 +3,9 @@ spoicy.ch is my own personal playground for Laravel and Bootstrap experience.
 ## Pages
 ### [Main Page](https://spoicy.ch/)</h4>
 The main page is home to links to all of my publicly available projects.
-### [Linktree](https://spoicy.ch/linktree)
-The linktree page is home to links to my socials, much like the service [linktr.ee](https://linktr.ee/) provides.
-### [Social Media](https://spoicy.ch/social)
+### [Socials Page](https://spoicy.ch/socials)
+The socials page is home to links to my socials.
+### [Social Media](https://spoicy.ch/media)
 This page contains the five most recent posts/videos to various socials. Current it only displays Speedrun.com speedruns, YouTube videos and Twitter posts, and once finished will also include my GitHub feed. The goal of this page is to get used to implementing APIs from outside services.
 ### [JS-Framework](https://spoicy.ch/jsframework)
 This page will contain the various projects I develop using the different JavaScript frameworks that are in use in the industry.

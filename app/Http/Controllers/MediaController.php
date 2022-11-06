@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Http;
 
-class SocialController extends Controller
+class MediaController extends Controller
 {
     /**
      * Prepares all of the necessary data for the stream component templates.
@@ -18,7 +18,7 @@ class SocialController extends Controller
             'twitter' => array_slice(json_decode(Http::get(env('APP_URL') . '/api/tweets'))->data, 0, 5),
             'github' => array_slice(json_decode(Http::get(env('APP_URL') . '/api/githubevents'))->data, 0, 4)
         );
-        return view('pages/social', [
+        return view('pages/media', [
             'available_templates' => $available_templates,
         ]);
     }

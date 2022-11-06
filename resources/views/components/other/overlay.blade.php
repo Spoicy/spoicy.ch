@@ -1,8 +1,8 @@
 @php
     $links = [
         "hHome" => ["/", "Home"],
-        "hLinktree" => ["/linktree", "Linktree"],
-        "hSocial" => ["/social", "Social Media Stream"],
+        "hSocials" => ["/socials", "Socials"],
+        "hMedia" => ["/media", "Social Media Stream"],
         "hJSFrameworks" => ["/jsframework", "JS-Frameworks"],
         "hBlog" => ["/blog", "Blog"]
     ];

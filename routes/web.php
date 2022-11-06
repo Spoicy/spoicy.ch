@@ -17,14 +17,14 @@ Route::get('/', function () {
     return view('pages/projects');
 });
 
-Route::get('/social/', 'SocialController@view');
+Route::get('/media/', 'MediaController@view');
 
 Route::get('/swiss/', function () {
     return view('pages/swiss');
 });
 
-Route::get('/linktree/', function () {
-    return view('pages/linktree');
+Route::get('/socials/', function () {
+    return view('pages/socials');
 });
 
 Route::get('/alphabet/', function () {
