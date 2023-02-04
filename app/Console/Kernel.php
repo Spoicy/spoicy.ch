@@ -26,7 +26,6 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('srdc:update')->everyFifteenMinutes();
         $schedule->command('youtube:update')->everyFifteenMinutes();
-        $schedule->command('twitter:update')->everyFifteenMinutes();
         $schedule->command('github:update')->everyFifteenMinutes();
     }
 

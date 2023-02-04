@@ -41,6 +41,8 @@ class UpdateTwitter extends Command
      */
     public function handle()
     {
+        // Command is disabled in preparation for Twitter's free API tier being taken away.
+        return 0;
         if (!Schema::hasTable('tweets')) {
             die("No table found, please run migrations first.");
         }
