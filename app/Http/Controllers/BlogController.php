@@ -22,7 +22,7 @@ class BlogController extends Controller
                 'date' => time(),
                 'blogtext' => $text,
                 'title' => $title,
-                'url' => str()->slug($title)
+                'url' => BlogPostHelper::createURL($title)
             ]);
             return redirect('/blog')->with('status', 1);
         }
@@ -66,15 +66,11 @@ class BlogController extends Controller
     /**
      * Returns the view for an individual blog post
      * 
-     * @param int|string $id
+     * @param string $id
      * @return View $page
      */
     public static function viewPost($id): \Illuminate\Contracts\View\View {
-        if (!is_numeric($id)) {
-            $post = BlogPost::where('url', $id)->first();
-        } else {
-            $post = BlogPost::find($id);
-        }
+        $post = BlogPost::where('url', $id)->first();
         if (!$post) {
             abort(404);
         }

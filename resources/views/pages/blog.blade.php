@@ -31,13 +31,13 @@
                     </div>
                 @endif
                 <div class="blog-cards" style="--order: 1">
-                    @foreach ($posts as $post)
+                    @foreach ($posts as $post)                            
                         <div class="blog-card">
                             <h2 class="mb-0">{{$post->title ?? "Default title"}}</h2>
                             <p class="text-secondary">{{$post->date}}</p>
-                            <div id="blogEntryText{{$post->id}}">{!!$post->blogtext !!}</div>
+                            <div id="blogEntryText{{$post->id}}">{!! $post->blogtext !!}</div>
                             <div class="blog-buttons">
-                                <a class="button-blog-view" href="/blog/{{$post->id}}"><i class="fa fa-eye"></i></a>
+                                <a class="button-blog-view" href="/blog/{{$post->url}}"><i class="fa fa-eye"></i></a>
                                 @if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS")))
                                 <button class="button-blog-edit" id="blogEditButton{{$post->id}}"><i class="fa fa-pencil" id="blogEditButton{{$post->id}}"></i></button>
                                 @endif
