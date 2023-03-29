@@ -16,12 +16,13 @@ class BlogController extends Controller
      */
     public static function add(Request $request) {
         $text = strip_tags(trim($request->request->get('blogTextarea')));
-        $title = strip_tags(trim($request->request->get('blogEditTitle')));
+        $title = strip_tags(trim($request->request->get('blogTitle')));
         if (strlen($text) && BlogPostHelper::validateBlogAction()) {
-            $newBlogPost = BlogPost::create([
+            BlogPost::create([
                 'date' => time(),
                 'blogtext' => $text,
-                'title' => $title
+                'title' => $title,
+                'url' => str()->slug($title)
             ]);
             return redirect('/blog')->with('status', 1);
         }
@@ -65,14 +66,15 @@ class BlogController extends Controller
     /**
      * Returns the view for an individual blog post
      * 
-     * @param int $id
+     * @param int|string $id
      * @return View $page
      */
     public static function viewPost($id): \Illuminate\Contracts\View\View {
         if (!is_numeric($id)) {
-            abort(404);
+            $post = BlogPost::where('url', $id)->first();
+        } else {
+            $post = BlogPost::find($id);
         }
-        $post = BlogPost::find($id);
         if (!$post) {
             abort(404);
         }

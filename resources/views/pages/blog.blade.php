@@ -22,6 +22,9 @@
                     <div class="admin-div mb-3">
                         <form action="/blog/add" method="post">
                             @csrf
+                            <label for="blogTitle">Title</label>
+                            <input class="form-control mb-2" type="text" name="blogTitle" id="blogTitle">
+                            <label for="blogTextarea">Content</label>
                             <textarea class="form-control mb-2" name="blogTextarea" id="blogTextarea" rows="6"></textarea>
                             <button class="btn btn-secondary float-right">Add entry</button>
                         </form>
