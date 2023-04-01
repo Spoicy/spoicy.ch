@@ -25,6 +25,11 @@
         <div class="error-container site-container">
             <div class="main-div">
                 <h1>@yield('code') | @yield('title')</h1>
+                @hasSection ('additional')
+                    <p style="font-size: 24px;">@yield('additional')</p>
+                @else
+                    
+                @endif
             </div>
         </div>
     </body>
