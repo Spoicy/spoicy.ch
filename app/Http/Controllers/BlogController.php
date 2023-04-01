@@ -16,12 +16,13 @@ class BlogController extends Controller
      */
     public static function add(Request $request) {
         $text = strip_tags(trim($request->request->get('blogTextarea')));
-        $title = strip_tags(trim($request->request->get('blogEditTitle')));
+        $title = strip_tags(trim($request->request->get('blogTitle')));
         if (strlen($text) && BlogPostHelper::validateBlogAction()) {
-            $newBlogPost = BlogPost::create([
+            BlogPost::create([
                 'date' => time(),
                 'blogtext' => $text,
-                'title' => $title
+                'title' => $title,
+                'url' => BlogPostHelper::createURL($title)
             ]);
             return redirect('/blog')->with('status', 1);
         }
@@ -46,33 +47,57 @@ class BlogController extends Controller
     }
 
     /**
-     * Returns the view for all blog posts
+     * Returns the view for the 5 most recent blog posts
      * 
      * @return View $page
      */
     public static function view(): \Illuminate\Contracts\View\View {
-        $posts = BlogPost::orderby('date', 'desc')->get();
+        $posts = BlogPost::orderby('date', 'desc')->take(5)->get();
         foreach ($posts as $post) {
             $post->rawtext = $post->blogtext;
             $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
             $post->date = BlogPostHelper::getDateFormat($post->date);
         }
         return view('pages/blog', [
-            'posts' => $posts
+            'posts' => $posts,
+            'page' => 1,
+            'totalPages' => ceil(BlogPost::count() / 5)
+        ]);
+    }
+
+    /**
+     * Returns the view for a blog page.
+     * A page consists of 5 blog posts, which are grouped based on date and the requested increment.
+     * 
+     * @param int|string $id
+     * @return View $page
+     */
+    public static function viewPage($id): \Illuminate\Contracts\View\View
+    {
+        if (!is_numeric($id)) {
+            abort(404);
+        }
+        $posts = BlogPost::orderby('date', 'desc')->skip(($id - 1) * 5)->take(5)->get();
+        foreach ($posts as $post) {
+            $post->rawtext = $post->blogtext;
+            $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
+            $post->date = BlogPostHelper::getDateFormat($post->date);
+        }
+        return view('pages/blog', [
+            'posts' => $posts,
+            'page' => $id,
+            'totalPages' => ceil(BlogPost::count() / 5)
         ]);
     }
 
     /**
      * Returns the view for an individual blog post
      * 
-     * @param int $id
+     * @param string $id
      * @return View $page
      */
-    public static function viewPost($id): \Illuminate\Contracts\View\View {
-        if (!is_numeric($id)) {
-            abort(404);
-        }
-        $post = BlogPost::find($id);
+    public static function viewPost(string $id): \Illuminate\Contracts\View\View {
+        $post = BlogPost::where('url', $id)->first();
         if (!$post) {
             abort(404);
         }

@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use App\Models\BlogPost;
 use Illuminate\Support\Facades\Hash;
 
 class BlogPostHelper
@@ -99,4 +100,21 @@ class BlogPostHelper
         }
         return $newtext;
     }
+
+    /**
+     * Creates a non-duplicate URL for a blog post.
+     * 
+     * @param string $title
+     * @return string $url
+     */
+    public static function createURL(string $title): string {
+        $url = str()->slug($title);
+        $i = 2;
+        // This prevents multiple blog posts from having the same URL.
+        while (BlogPost::where('url', $url)->count()) {
+            $url = str()->slug($title) . "-$i";
+            $i++;
+        }
+        return $url;
+    } 
 }

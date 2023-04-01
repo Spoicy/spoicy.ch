@@ -45,8 +45,9 @@ Route::post('/blog/login/validate', 'LoginController@validateLogin')
     ->middleware('guest', 'throttle:3,5');
 
 Route::get('/blog/', 'BlogController@view');
+Route::get('/blog/{id}', 'BlogController@viewPage');
 
-Route::get('/blog/{id}', 'BlogController@viewPost');
+Route::get('/blog/post/{id}', 'BlogController@viewPost');
 
 Route::post('/blog/add/', 'BlogController@add');
 
