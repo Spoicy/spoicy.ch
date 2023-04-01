@@ -33,7 +33,29 @@
             font-weight: 500;
         }
     }
-    .blog-cards, .btn-return, .admin-div {
+    .page-selection {
+        display: flex;
+        justify-content: center;
+        gap: 0.25rem;
+        a {
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            text-decoration: none;
+            color: initial;
+            font-size: 1.5rem;
+            padding: 0.5rem;
+            width: 2.375rem;
+            text-align: center;
+            background-color: rgba(0,0,0,0.15);
+            &.active {
+                -webkit-box-shadow:inset 0px 0px 0px 2px #333;
+                -moz-box-shadow:inset 0px 0px 0px 2px #333;
+                box-shadow:inset 0px 0px 0px 2px #333;
+            }
+        }
+    }
+    .blog-cards, .btn-return, .admin-div, .page-selection {
         opacity: 0;
         -webkit-animation: fadein 1.5s;
         -moz-animation: fadein 1.5s;

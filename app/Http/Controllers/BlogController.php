@@ -47,19 +47,43 @@ class BlogController extends Controller
     }
 
     /**
-     * Returns the view for all blog posts
+     * Returns the view for the 5 most recent blog posts
      * 
      * @return View $page
      */
     public static function view(): \Illuminate\Contracts\View\View {
-        $posts = BlogPost::orderby('date', 'desc')->get();
+        $posts = BlogPost::orderby('date', 'desc')->take(5)->get();
         foreach ($posts as $post) {
             $post->rawtext = $post->blogtext;
             $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
             $post->date = BlogPostHelper::getDateFormat($post->date);
         }
         return view('pages/blog', [
-            'posts' => $posts
+            'posts' => $posts,
+            'page' => 1,
+            'totalPages' => ceil(BlogPost::count() / 5)
+        ]);
+    }
+
+    /**
+     * Returns the view for a blog page.
+     * A page consists of 5 blog posts, which are grouped based on date and the requested increment.
+     * 
+     * @param int $id
+     * @return View $page
+     */
+    public static function viewPage(int $id): \Illuminate\Contracts\View\View
+    {
+        $posts = BlogPost::orderby('date', 'desc')->skip(($id - 1) * 5)->take(5)->get();
+        foreach ($posts as $post) {
+            $post->rawtext = $post->blogtext;
+            $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
+            $post->date = BlogPostHelper::getDateFormat($post->date);
+        }
+        return view('pages/blog', [
+            'posts' => $posts,
+            'page' => $id,
+            'totalPages' => ceil(BlogPost::count() / 5)
         ]);
     }
 
@@ -69,7 +93,7 @@ class BlogController extends Controller
      * @param string $id
      * @return View $page
      */
-    public static function viewPost($id): \Illuminate\Contracts\View\View {
+    public static function viewPost(string $id): \Illuminate\Contracts\View\View {
         $post = BlogPost::where('url', $id)->first();
         if (!$post) {
             abort(404);

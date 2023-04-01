@@ -10,7 +10,7 @@
         <meta name="description" content="Spoicy's personal blog about various projects and features in development.">
         <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="../css/app.css">
+        <link rel="stylesheet" href="/css/app.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <title>Blog</title>
     </head>
@@ -38,7 +38,7 @@
                             <p class="text-secondary">{{$post->date}}</p>
                             <div id="blogEntryText{{$post->id}}">{!! $post->blogtext !!}</div>
                             <div class="blog-buttons">
-                                <a class="button-blog-view" href="/blog/{{$post->url}}"><i class="fa fa-eye"></i></a>
+                                <a class="button-blog-view" href="/blog/post/{{$post->url}}"><i class="fa fa-eye"></i></a>
                                 @if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS")))
                                 <button class="button-blog-edit" id="blogEditButton{{$post->id}}"><i class="fa fa-pencil" id="blogEditButton{{$post->id}}"></i></button>
                                 @endif
@@ -57,6 +57,17 @@
                             @endif
                         </div>
                     @endforeach
+                </div>
+                <div class="page-selection" style="--order: 1">
+                    @if ($page != 1)
+                        <a href="/blog/{{$page - 1}}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
+                    @endif
+                    @foreach (range(1, $totalPages) as $pageID)
+                        <a href="/blog/{{$pageID}}" class="{{$page == $pageID ? 'active' : ''}}">{{$pageID}}</a>
+                    @endforeach
+                    @if ($page != $totalPages)
+                        <a href="/blog/{{$page + 1}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
+                    @endif
                 </div>
             </div>
         </div>
