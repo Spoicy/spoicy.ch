@@ -69,11 +69,14 @@ class BlogController extends Controller
      * Returns the view for a blog page.
      * A page consists of 5 blog posts, which are grouped based on date and the requested increment.
      * 
-     * @param int $id
+     * @param int|string $id
      * @return View $page
      */
-    public static function viewPage(int $id): \Illuminate\Contracts\View\View
+    public static function viewPage($id): \Illuminate\Contracts\View\View
     {
+        if (!is_numeric($id)) {
+            abort(404);
+        }
         $posts = BlogPost::orderby('date', 'desc')->skip(($id - 1) * 5)->take(5)->get();
         foreach ($posts as $post) {
             $post->rawtext = $post->blogtext;

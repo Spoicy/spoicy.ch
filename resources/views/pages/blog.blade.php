@@ -59,13 +59,13 @@
                     @endforeach
                 </div>
                 <div class="page-selection" style="--order: 1">
-                    @if ($page != 1)
+                    @if ($page > 1 && $page <= $totalPages)
                         <a href="/blog/{{$page - 1}}"><i class="fa fa-arrow-left" aria-hidden="true"></i></a>
                     @endif
                     @foreach (range(1, $totalPages) as $pageID)
                         <a href="/blog/{{$pageID}}" class="{{$page == $pageID ? 'active' : ''}}">{{$pageID}}</a>
                     @endforeach
-                    @if ($page != $totalPages)
+                    @if ($page < $totalPages && $page >= 1)
                         <a href="/blog/{{$page + 1}}"><i class="fa fa-arrow-right" aria-hidden="true"></i></a>
                     @endif
                 </div>
