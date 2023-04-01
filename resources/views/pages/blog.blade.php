@@ -19,7 +19,8 @@
         <div class="container blog-container site-container">
             <div class="main-div">
                 @if (session('loggedin') && Hash::check(session('loggedin'), env("BLOG_PASS")))
-                    <div class="admin-div mb-3">
+                    <div class="admin-div mb-3" style="--order: 1">
+                        <h3>Create a new post</h3>
                         <form action="/blog/add" method="post">
                             @csrf
                             <label for="blogTitle">Title</label>

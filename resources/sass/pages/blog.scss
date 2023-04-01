@@ -24,7 +24,16 @@
             font-size: 1.125rem;
         }
     }
-    .blog-cards, .btn-return {
+    .admin-div {
+        background-color: rgba(0,0,0,0.075);
+        padding: 0.75rem;
+        box-shadow: 0 0 0.3125rem #333;
+        label {
+            font-size: 1.125rem;
+            font-weight: 500;
+        }
+    }
+    .blog-cards, .btn-return, .admin-div {
         opacity: 0;
         -webkit-animation: fadein 1.5s;
         -moz-animation: fadein 1.5s;
