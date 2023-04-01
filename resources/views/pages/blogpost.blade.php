@@ -18,6 +18,7 @@
         @include('components/other/overlay', ['nav' => 'hBlog', 'title' => 'Blog'])
         <div class="container blog-container site-container">
             <div class="main-div">
+                <a class="btn btn-secondary btn-return" href="/blog" style="--order: 0"><i class="fa fa-fast-backward" aria-hidden="true"></i> &nbsp;Return</a>
                 <div class="blog-cards" style="--order: 0">
                     <div class="blog-card">
                         <h2 class="mb-0">{{$post->title}}</h2>
