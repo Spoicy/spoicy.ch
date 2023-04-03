@@ -43,6 +43,7 @@ class BlogPostHelper
             case '3':
             case '23':
                 $day = $day . 'rd';
+                break;
             default:
                 $day = $day . 'th';
         }
