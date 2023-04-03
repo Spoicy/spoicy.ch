@@ -102,6 +102,16 @@ class BlogPostHelper
     }
 
     /**
+     * Prepares the blog posts with correctly formatted blog text and date.
+     */
+    public static function preparePost(BlogPost $post): BlogPost {
+        $post->rawtext = $post->blogtext;
+        $post->blogtext = str()->markdown($post->blogtext);
+        $post->date = BlogPostHelper::getDateFormat($post->date);
+        return $post;
+    }
+
+    /**
      * Creates a non-duplicate URL for a blog post.
      * 
      * @param string $title

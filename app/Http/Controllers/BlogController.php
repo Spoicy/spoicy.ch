@@ -54,9 +54,7 @@ class BlogController extends Controller
     public static function view(): \Illuminate\Contracts\View\View {
         $posts = BlogPost::orderby('date', 'desc')->take(5)->get();
         foreach ($posts as $post) {
-            $post->rawtext = $post->blogtext;
-            $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
-            $post->date = BlogPostHelper::getDateFormat($post->date);
+            $post = BlogPostHelper::preparePost($post);
         }
         return view('pages/blog', [
             'posts' => $posts,
@@ -79,9 +77,7 @@ class BlogController extends Controller
         }
         $posts = BlogPost::orderby('date', 'desc')->skip(($id - 1) * 5)->take(5)->get();
         foreach ($posts as $post) {
-            $post->rawtext = $post->blogtext;
-            $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
-            $post->date = BlogPostHelper::getDateFormat($post->date);
+            $post = BlogPostHelper::preparePost($post);
         }
         return view('pages/blog', [
             'posts' => $posts,
@@ -101,9 +97,7 @@ class BlogController extends Controller
         if (!$post) {
             abort(404);
         }
-        $post->rawtext = $post->blogtext;
-        $post->blogtext = BlogPostHelper::getBlogtextFormat(strip_tags($post->blogtext));
-        $post->date = BlogPostHelper::getDateFormat($post->date);
+        $post = BlogPostHelper::preparePost($post);
         return view('pages/blogpost', [
             'post' => $post
         ]);
