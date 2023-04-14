@@ -11,9 +11,9 @@ class GithubFeed extends Component
     public function render()
     {
         if ($this->mode == 'All') {
-            $feed = GithubEvent::take(4)->get();
+            $feed = GithubEvent::orderby('date', 'desc')->take(4)->get();
         } else {
-            $feed = GithubEvent::where('type', $this->mode)->take(4)->get();
+            $feed = GithubEvent::where('type', $this->mode)->orderby('date', 'desc')->take(4)->get();
         }
         return view('livewire.github-feed', ['feed' => $feed]);
     }
