@@ -16,7 +16,7 @@ class MediaController extends Controller
             'srdc' => array_slice(json_decode(Http::get(env('APP_URL') . '/api/speedruns'))->data, 0, 5),
             'youtube' => array_slice(json_decode(Http::get(env('APP_URL') . '/api/youtubevideos'))->data, 0, 5),
             'twitter' => array_slice(json_decode(Http::get(env('APP_URL') . '/api/tweets'))->data, 0, 5),
-            'github' => array_slice(json_decode(Http::get(env('APP_URL') . '/api/githubevents'))->data, 0, 4)
+            'github' => ['placeholder']
         );
         return view('pages/media', [
             'available_templates' => $available_templates,

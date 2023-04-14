@@ -94,6 +94,22 @@
     }
     .github-container {
         animation-delay: 2.1s;
+        .event-buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 0.5rem;
+            padding: 0.5rem;
+            padding-top: 0;
+            button {
+                background-color: #CFCCE8;
+                font-weight: 600;
+                &:hover,
+                &:focus,
+                &.active {
+                    background-color: #aca7d7;
+                }
+            }
+        }
         .entry {
             padding: 0.5rem;
         }
