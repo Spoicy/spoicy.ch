@@ -3,7 +3,7 @@
 @endphp
 
 <div>
-    <div class="event-buttons">
+    <div class="filter-buttons">
         @foreach ($collection as $item)
             <button wire:click="changeEvent('{{$item}}')" class="btn {{ $item == $mode ? 'active' : ''}}" name="changeEvent{{$item}}" id="changeEvent{{$item}}" value="{{$item}}">{{$item}}</button>
         @endforeach

@@ -46,6 +46,7 @@ $i = 0;
                 @endif
             </div>
         </div>
+        @livewireScripts
         <script src="/js/app.js"></script>
         <script>twemoji.parse(document.body);</script>
     </body>

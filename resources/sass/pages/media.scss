@@ -23,6 +23,22 @@
         animation: fadein 1.5s;
         animation-fill-mode: forwards;
     }
+    .filter-buttons {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+        padding: 0.5rem;
+        padding-top: 0;
+        button {
+            background-color: #CFCCE8;
+            font-weight: 600;
+            &:hover,
+            &:focus,
+            &.active {
+                background-color: #aca7d7;
+            }
+        }
+    }
     .srdc-container {
         animation-delay: 1.2s;
         img {
@@ -42,6 +58,9 @@
     }
     .youtube-container {
         animation-delay: 1.5s;
+        .filter-buttons {
+            grid-template-columns: repeat(2, 1fr);
+        }
         img {
             height: 100px;
         }
@@ -94,21 +113,8 @@
     }
     .github-container {
         animation-delay: 2.1s;
-        .event-buttons {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 0.5rem;
-            padding: 0.5rem;
-            padding-top: 0;
-            button {
-                background-color: #CFCCE8;
-                font-weight: 600;
-                &:hover,
-                &:focus,
-                &.active {
-                    background-color: #aca7d7;
-                }
-            }
+        .filter-buttons {
+            grid-template-columns: repeat(3, 1fr);
         }
         .entry {
             padding: 0.5rem;
@@ -136,6 +142,7 @@
             padding-bottom: 0;
         }
     }
+    
     @media (min-width: 992px) {
         .stream-rows .stream-row:not(:first-child) {
             padding-top: 1.5rem;
