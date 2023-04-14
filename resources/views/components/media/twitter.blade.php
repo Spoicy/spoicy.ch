@@ -1,4 +1,5 @@
 <h2>Twitter</h2>
+<p class="text-center">Twitter Feed is currently no longer being updated due to uncertainty with the free Twitter API tier.</p>
 @foreach ($data as $tweet)
     <div class="row tweet">
         @if ($tweet->media)
