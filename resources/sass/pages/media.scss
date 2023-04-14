@@ -33,9 +33,9 @@
             background-color: #CFCCE8;
             font-weight: 600;
             &:hover,
-            &:focus,
             &.active {
-                background-color: #aca7d7;
+                color: #FFF;
+                background-color: #8b84c8;
             }
         }
     }
