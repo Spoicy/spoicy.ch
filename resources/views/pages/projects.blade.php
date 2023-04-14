@@ -25,17 +25,17 @@
             <div class="project-list flex-column">
                 <h2 class="project" style="--order: 0">Projects</h2>
                 <a href="https://github.com/Spoicy/spoicy.ch" target="_blank" type="button"
-                    data-toggle="tooltip" title="My personal website using the Laravel Framework"
+                    data-toggle="tooltip" title="My hobby website using the Laravel Framework"
                     class="btn project" style="--order: 1">spoicy.ch</a>
+                <a href="https://github.com/Spoicy/jfunke.ch" target="_blank" type="button"
+                    data-toggle="tooltip" title="My professional website using the Laravel Framework"
+                    class="btn project" style="--order: 2">jfunke.ch</a>
                 <a href="https://github.com/Spoicy/satool" target="_blank" type="button"
                     data-toggle="tooltip" title="A Moodle Plugin for managing semester projects at Kantonsschule Frauenfeld"
-                    class="btn project" style="--order: 2">SA-Tool</a>
+                    class="btn project" style="--order: 3">SA-Tool</a>
                 <a href="https://github.com/Spoicy/fitcheck" target="_blank" type="button"
                     data-toggle="tooltip" title="A Moodle Plugin for physical education classes at Kantonsschule Frauenfeld"
-                    class="btn project" style="--order: 3">FitCheck</a>
-                <a href="https://github.com/Spoicy/birthday" target="_blank" type="button"
-                    data-toggle="tooltip" title="A Moodle Block by Anthony Borrow, updated by me to work on Moodle 3.7"
-                    class="btn project" style="--order: 4">Birthday-Block</a>
+                    class="btn project" style="--order: 4">FitCheck</a>
             </div>
         </div>
         <script src="/js/app.js"></script>
