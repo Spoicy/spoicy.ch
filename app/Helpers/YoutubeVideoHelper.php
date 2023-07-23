@@ -46,4 +46,19 @@ class YoutubeVideoHelper
         }
         return $videoDate;
     }
+
+    public static function getViewFormat(int $views): string {
+        if ($views == 1) {
+            return "1 view";
+        }
+        if ($views > 1000) {
+            $views = ($views - $views % 100) / 100;
+            if ($views % 10 != 0) {
+                return substr($views, 0, -1) . "." . substr($views, -1) . "k views";
+            } else {
+                return ($views / 10) . "k views";
+            }
+        }
+        return $views . " views";
+    }
 }

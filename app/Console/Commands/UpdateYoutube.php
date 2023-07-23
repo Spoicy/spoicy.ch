@@ -61,7 +61,8 @@ class UpdateYoutube extends Command
                     'sid' => $video->snippet->resourceId->videoId,
                     'title' => $video->snippet->title,
                     'thumbnail' => $video->snippet->thumbnails->high->url,
-                    'date' => $datetime->getTimestamp()
+                    'date' => $datetime->getTimestamp(),
+                    'views' => 0
                 ]);
             }
         }

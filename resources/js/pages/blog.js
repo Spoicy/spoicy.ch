@@ -4,7 +4,6 @@ document.querySelectorAll('.button-blog-edit').forEach(item => {
 
 function blogEntryEdit(e) {
     var splitId = e.target.id.split('blogEditButton')[1];
-    console.log(splitId);
     document.getElementById('blogEditForm' + splitId).classList.toggle('d-none');
     document.getElementById('blogEntryText' + splitId).classList.toggle('d-none');
 }

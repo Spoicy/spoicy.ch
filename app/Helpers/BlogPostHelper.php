@@ -43,6 +43,7 @@ class BlogPostHelper
             case '3':
             case '23':
                 $day = $day . 'rd';
+                break;
             default:
                 $day = $day . 'th';
         }
@@ -99,6 +100,16 @@ class BlogPostHelper
             }
         }
         return $newtext;
+    }
+
+    /**
+     * Prepares the blog posts with correctly formatted blog text and date.
+     */
+    public static function preparePost(BlogPost $post): BlogPost {
+        $post->rawtext = $post->blogtext;
+        $post->blogtext = str()->markdown($post->blogtext);
+        $post->date = BlogPostHelper::getDateFormat($post->date);
+        return $post;
     }
 
     /**
