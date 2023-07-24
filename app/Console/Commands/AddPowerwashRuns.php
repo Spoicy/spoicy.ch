@@ -80,7 +80,7 @@ class AddPowerwashRuns extends Command
             $newRun = PowerwashRun::create([
                 'catId' => $category->id,
                 'runnerId' => $runner->id,
-                'time' => $runData->times->primary_t,
+                'time' => $runData->times->primary_t * 1000,
                 'date' => $runData->date,
                 'order' => 1,
                 'runId'=> $runData->id
