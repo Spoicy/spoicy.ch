@@ -52,3 +52,5 @@ Route::get('/blog/post/{id}', 'BlogController@viewPost');
 Route::post('/blog/add/', 'BlogController@add');
 
 Route::post('/blog/edit/{id}/', 'BlogController@edit');
+
+Route::get('/powerwash/', 'PowerwashController@view');
