@@ -14,7 +14,7 @@
     @include('components.other.overlay', ['nav' => 'hPowerwash', 'title' => 'PowerWash Sim Statistics'])
     <div class="container powerwash-container site-container">
         <div class="row pws-row">
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-6 col-xs-12 section-container ae-container">
                 <h2>Any Equipment</h2>
                 <div class="improvements-container">
                     @if (count($recentAeImprovements))
@@ -38,7 +38,7 @@
                 </div>
                 <h4 class="text-center">Total Time: {{$totalAeTime}}</h4>
             </div>
-            <div class="col-lg-6 col-xs-12">
+            <div class="col-lg-6 col-xs-12 section-container be-container">
                 <h2>Base Equipment</h2>
                 <div class="improvements-container">
                     @if (count($recentBeImprovements))

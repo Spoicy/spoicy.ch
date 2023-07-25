@@ -16,4 +16,22 @@
     .minus {
         letter-spacing: -2px;
     }
+    .section-container {
+        opacity: 0;
+        -webkit-animation: fadein 1.5s;
+        -moz-animation: fadein 1.5s;
+        animation: fadein 1.5s;
+        animation-fill-mode: forwards;
+    }
+    .ae-container {
+        animation-delay: 1.2s;
+    }
+    .be-container {
+        animation-delay: 1.5s;
+    }
+    @media (max-width: 991.98px) {
+        .be-container {
+            padding-top: 1.5rem;
+        }
+    }
 }
