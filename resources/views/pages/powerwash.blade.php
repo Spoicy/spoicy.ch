@@ -18,7 +18,20 @@
                 <h2>Any Equipment</h2>
                 <div class="improvements-container">
                     @if (count($recentAeImprovements))
-                        <p class="text-center">Placeholder</p>
+                        @foreach ($recentAeImprovements as $improvement)
+                            <p class="text-center">
+                                <b>{{$improvement->runner->name}}</b>
+                                has improved
+                                <b>{{$improvement->category->name}}</b>
+                                by
+                                <span class="delta">
+                                    <span class="minus">- </span>
+                                    {{$improvement->delta}}
+                                </span>
+                                with a
+                                <b>{{$improvement->formattedTime}}</b>.
+                            </p>
+                        @endforeach
                     @else
                         <p class="text-center">No improvements have been made.</p>
                     @endif
@@ -28,7 +41,7 @@
             <div class="col-lg-6 col-xs-12">
                 <h2>Base Equipment</h2>
                 <div class="improvements-container">
-                    @if (count($recentAeImprovements))
+                    @if (count($recentBeImprovements))
                         <p class="text-center">Placeholder</p>
                     @else
                         <p class="text-center">No improvements have been made.</p>

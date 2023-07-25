@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\PowerwashHelper;
 use App\Models\PowerwashCategory;
 use App\Models\PowerwashRun;
 use App\Models\PowerwashRunner;
@@ -90,7 +91,7 @@ class UpdatePowerwashRuns extends Command
                 'order' => $totalWRs + 1,
                 'runId' => $runData->id
             ]);
-            echo "Added new WR for " . $category->name . " (" . (($category->subcatId == '824ngjnk') ? ('Any Equipment') : ('Base Equipment')) . 
+            echo "Added new WR for " . $category->name . " (" . PowerwashHelper::getSubcategoryName($category->subcatId) . 
                 ") by " . $runner->name . " with a time of " . $newRun->time . "\n";
         }
         return 1;
