@@ -4,6 +4,7 @@
         "hSocials" => ["/socials", "Socials"],
         "hMedia" => ["/media", "Social Media Stream"],
         "hJSFrameworks" => ["/jsframework", "JS-Frameworks"],
+        "hPowerwash" => ["/powerwash", 'PowerWash Stats'],
         "hBlog" => ["/blog", "Blog"]
     ];
 @endphp

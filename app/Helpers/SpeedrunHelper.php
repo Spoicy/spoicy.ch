@@ -63,6 +63,34 @@ class SpeedrunHelper
             $ms = str_pad($ms, 3, "0");
             $speedrunTime .= "." . $ms;
         }
+        if ($time >= 86400) {
+            $days = round(($time - ($time % 86400)) / 86400);
+            $speedrunTime = $days . "d " . $speedrunTime;
+        }
         return $speedrunTime;
+    }
+
+    /**
+     * Rounds a time in integer format to end with 00, 17, 33, 50, 67 or 83.
+     * 
+     * @param  int $time
+     * @return int $roundedTime
+     */
+    public static function roundTo60Frames(int $time): int {
+        $lastTwoDigits = intval(substr($time, -2));
+        $thresholds = [17, 33, 50, 67, 83];
+        $rounded = false;
+        foreach ($thresholds as $threshold) {
+            if ($lastTwoDigits <= $threshold) {
+                $lastTwoDigits = $threshold;
+                $rounded = true;
+                break;
+            }
+        }
+        if (!$rounded) {
+            $threshold = '00';
+            $time += 100;
+        }
+        return intval(substr($time, 0, -2) . $threshold);
     }
 }

@@ -1,0 +1,19 @@
+.powerwash-container {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+    h2 {
+        padding-bottom: 0.625rem;
+    }
+    h2, .improvements-container {
+        border-bottom: 3px solid #CFCCE8;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+    .delta {
+        font-weight: 600;
+        color: #73be73;
+    }
+    .minus {
+        letter-spacing: -2px;
+    }
+}
