@@ -39,6 +39,10 @@ Route::get('/jsframework/vanilla/', function () {
     return view('components/jsframework/vanilla');
 });
 
+Route::get('/jsframework/vue/', function () {
+    return view('components/jsframework/vue');
+});
+
 Route::get('/blog/login/', 'LoginController@view');
 
 Route::post('/blog/login/validate', 'LoginController@validateLogin')
