@@ -25,10 +25,9 @@
                     <p>Projects made with the React framework. React is a widely used Javascript library maintained by Meta.</p>
                     <p class="font-weight-bold">No projects have been made with this so far. Check back later!</p>
                 </a>
-                <a class="jsf-grid-card card-dark" style="--order: 2">
+                <a class="jsf-grid-card card-dark" style="--order: 2" href="/jsframework/vue">
                     <h2>Vue.js</h2>
                     <p>Projects made with the Vue.js framework. Vue.js is another widely used JavaScript Framework and can be integreted easily into various PHP frameworks, like Laravel (the framework this website runs on!).</p>
-                    <p class="font-weight-bold">No projects have been made with this so far. Check back later!</p>
                 </a>
                 <a class="jsf-grid-card card-gray" style="--order: 3">
                     <h2>TypeScript</h2>

@@ -27,7 +27,7 @@
                 <a href="https://www.youtube.com/channel/UCsVw7FLt28Boqi7e6CnkoXg" target="_blank" type="button" class="btn btn-pink">YouTube</a>
                 <a href="https://www.twitter.com/onlyfireball_" target="_blank" type="button" class="btn btn-white">Twitter</a>
                 <a href="https://www.speedrun.com/user/fireball" target="_blank" type="button" class="btn btn-pink">Speedrun</a>
-                <input type="button" class="btn btn-blue last-link" value="Discord" onclick="window.alert('Discord: Fireball#4308');"/>
+                <input type="button" class="btn btn-blue last-link" value="Discord" onclick="window.alert('Discord: onlyfireball');"/>
             </div>
         </div>
         <script src="/js/app.js"></script>
