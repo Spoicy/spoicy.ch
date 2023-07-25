@@ -42,7 +42,20 @@
                 <h2>Base Equipment</h2>
                 <div class="improvements-container">
                     @if (count($recentBeImprovements))
-                        <p class="text-center">Placeholder</p>
+                        @foreach ($recentBeImprovements as $improvement)
+                            <p class="text-center">
+                                <b>{{$improvement->runner->name}}</b>
+                                has improved
+                                <b>{{$improvement->category->name}}</b>
+                                by
+                                <span class="delta">
+                                    <span class="minus">- </span>
+                                    {{$improvement->delta}}
+                                </span>
+                                with a
+                                <b>{{$improvement->formattedTime}}</b>.
+                            </p>
+                        @endforeach
                     @else
                         <p class="text-center">No improvements have been made.</p>
                     @endif
