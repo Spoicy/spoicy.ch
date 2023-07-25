@@ -36,6 +36,9 @@
                 <a href="https://github.com/Spoicy/fitcheck" target="_blank" type="button"
                     data-toggle="tooltip" title="A Moodle Plugin for physical education classes at Kantonsschule Frauenfeld"
                     class="btn project" style="--order: 4">FitCheck</a>
+                <a href="https://github.com/Spoicy/TMGuessr" target="_blank" type="button"
+                    data-toggle="tooltip" title="A browser game based off of GeoGuessr made for the Trackmania series."
+                    class="btn project" style="--order: 5">TMGuessr</a> 
             </div>
         </div>
         <script src="/js/app.js"></script>
