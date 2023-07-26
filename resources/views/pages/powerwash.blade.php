@@ -92,15 +92,15 @@
             <div class="col-lg-6 col-xs-12">
                 <div class="wr-table">
                     <div class="row legend-row">
-                        <div class="col-md-8 col-xs-6">Players</div>
-                        <div class="col-md-2 col-xs-3">AE</div>
-                        <div class="col-md-2 col-xs-3">BE</div>
+                        <div class="col-md-8 col-6">Players</div>
+                        <div class="col-md-2 col-3">AE</div>
+                        <div class="col-md-2 col-3">BE</div>
                     </div>
                     @foreach ($wrHolders as $wrHolder)
                         <div class="row player-row">
-                            <div class="col-md-8 col-xs-6">{{$wrHolder->player}}</div>
-                            <div class="col-md-2 col-xs-3">{{$wrHolder->totalAe}}</div>
-                            <div class="col-md-2 col-xs-3">{{$wrHolder->totalBe}}</div>
+                            <div class="col-md-8 col-6">{{$wrHolder->player}}</div>
+                            <div class="col-md-2 col-3">{{$wrHolder->totalAe}}</div>
+                            <div class="col-md-2 col-3">{{$wrHolder->totalBe}}</div>
                         </div>
                     @endforeach
                 </div>
