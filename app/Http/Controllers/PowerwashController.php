@@ -22,6 +22,7 @@ class PowerwashController extends Controller
         $runners = PowerwashRunner::all()->keyBy('id');
         $aeRuns = [];
         $beRuns = [];
+        $wrHolders = [];
         $totalAeTime = 0;
         $totalBeTime = 0;
         $totalVehicleTime = 0;
@@ -57,7 +58,21 @@ class PowerwashController extends Controller
                 
             }
             if (isset($run->data)) {
-                $run->runner = $runners->get($run->data->runnerId);//PowerwashRunner::where('id', $run->data->runnerId);
+                $run->runner = $runners->get($run->data->runnerId);
+                $name = $run->runner->name;
+                $nameKey = strtoupper($name);
+                if (!array_key_exists($nameKey, $wrHolders)) {
+                    $wrHolder = new \stdClass();
+                    $wrHolder->player = $name;
+                    $wrHolder->totalAe = 0;
+                    $wrHolder->totalBe = 0;
+                    $wrHolders[$nameKey] = $wrHolder;
+                }
+                if ($category->subcatId == '824ngjnk') {
+                    $wrHolders[$nameKey]->totalAe++;
+                } else {
+                    $wrHolders[$nameKey]->totalBe++;
+                }
             }
             if ($category->subcatId == '824ngjnk') {
                 $aeRuns[$category->id] = $run;
@@ -98,7 +113,8 @@ class PowerwashController extends Controller
             $run->formattedTime = SpeedrunHelper::getTimeFormat($improvement->time / 1000);
             $recentBeImprovements[] = $run;
         }
-
+        // Sort WR Totals by Player alphabetically.
+        ksort($wrHolders);
         // Round final number to a 60 frame compatible time for simplicity
         return view('pages/powerwash', [
             'aeRuns' => $aeRuns,
@@ -113,6 +129,7 @@ class PowerwashController extends Controller
             'totalAirTime' => SpeedrunHelper::getTimeFormat(SpeedrunHelper::roundTo60Frames($totalAirTime) / 1000),
             'recentAeImprovements' => $recentAeImprovements,
             'recentBeImprovements' => $recentBeImprovements,
+            'wrHolders' => $wrHolders
         ]);
     }
 }

@@ -1,6 +1,6 @@
 .powerwash-container {
-    padding-top: 1.5rem;
-    padding-bottom: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 2.5rem;
     h2 {
         padding-bottom: 0.625rem;
     }
@@ -16,7 +16,8 @@
     .minus {
         letter-spacing: -2px;
     }
-    .section-container {
+    .section-container,
+    .info-text {
         opacity: 0;
         -webkit-animation: fadein 1.5s;
         -moz-animation: fadein 1.5s;
@@ -31,6 +32,18 @@
     }
     .other-totals {
         animation-delay: 1.8s;
+    }
+    .wr-totals {
+        animation-delay: 2.1s;
+        font-size: 1.25rem;
+        .row {
+            border-bottom: 2px solid #CFCCE8;
+            margin: 0;
+        }
+
+    }
+    .legend-row {
+        font-weight: bold;
     }
     @media (max-width: 991.98px) {
         .be-container {

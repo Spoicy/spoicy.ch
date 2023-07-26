@@ -13,6 +13,7 @@
 <body class="soft-blue">
     @include('components.other.overlay', ['nav' => 'hPowerwash', 'title' => 'PowerWash Sim Statistics'])
     <div class="container powerwash-container site-container">
+        <p class="info-text text-center mb-4">Powerwash statistics are currently only available for Solo ILs (Any Equipment & Base Equipment) for simplicity. New WRs are checked for every day at midnight CET/CEST.</p>
         <div class="row pws-row">
             <div class="col-lg-6 col-xs-12 section-container ae-container">
                 <h2>Any Equipment</h2>
@@ -82,6 +83,29 @@
             <div class="col-12 text-center mb-3">
                 <h4>All Air Vehicles: {{$totalAirTime}}</h4>
             </div>
+        </div>
+        <div class="row pws-row wr-totals section-container">
+            <div class="col-12">
+                <h2>World Record Totals</h2>
+            </div>
+            <div class="col-lg-3 d-lg-block d-none"></div>
+            <div class="col-lg-6 col-xs-12">
+                <div class="wr-table">
+                    <div class="row legend-row">
+                        <div class="col-md-8 col-xs-6">Players</div>
+                        <div class="col-md-2 col-xs-3">AE</div>
+                        <div class="col-md-2 col-xs-3">BE</div>
+                    </div>
+                    @foreach ($wrHolders as $wrHolder)
+                        <div class="row player-row">
+                            <div class="col-md-8 col-xs-6">{{$wrHolder->player}}</div>
+                            <div class="col-md-2 col-xs-3">{{$wrHolder->totalAe}}</div>
+                            <div class="col-md-2 col-xs-3">{{$wrHolder->totalBe}}</div>
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+            <div class="col-lg-3 d-lg-block d-none"></div>
         </div>
     </div>
     <script src="/js/app.js"></script>
