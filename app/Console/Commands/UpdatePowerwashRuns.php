@@ -6,6 +6,7 @@ use App\Helpers\PowerwashHelper;
 use App\Models\PowerwashCategory;
 use App\Models\PowerwashRun;
 use App\Models\PowerwashRunner;
+use App\Models\SuccessfulJob;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
@@ -35,6 +36,7 @@ class UpdatePowerwashRuns extends Command
         $limit = 100;
         $calls = 0;
         $categories = PowerwashCategory::all();
+        $newRunsCount = 0;
         foreach ($categories as $category) {
             if ($calls >= $limit) {
                 // Find a different way to implement rate limits!!!!!!!!
@@ -93,7 +95,12 @@ class UpdatePowerwashRuns extends Command
             ]);
             echo "Added new WR for " . $category->name . " (" . PowerwashHelper::getSubcategoryName($category->subcatId) . 
                 ") by " . $runner->name . " with a time of " . $newRun->time . "\n";
+            $newRunsCount++;
         }
+        SuccessfulJob::create([
+            'job_name' => 'pws:update',
+            'info' => "$newRunsCount new runs added"
+        ]);
         return 1;
     }
 }
