@@ -63,6 +63,26 @@
                 <h4 class="text-center">Total Time: {{$totalBeTime}}</h4>
             </div>
         </div>
+        <div class="row pws-row other-totals section-container">
+            <div class="col-12">
+                <h2>Other Totals</h2>
+            </div>
+            <div class="col-lg-6 col-xs-12 text-center mb-3">
+                <h4>All Vehicles: {{$totalVehicleTime}}</h4>
+            </div>
+            <div class="col-lg-6 col-xs-12 text-center mb-3">
+                <h4>All Locations: {{$totalLocationTime}}</h4>
+            </div>
+            <div class="col-lg-6 col-xs-12 text-center mb-3">
+                <h4>All Land Vehicles: {{$totalLandTime}}</h4>
+            </div>
+            <div class="col-lg-6 col-xs-12 text-center mb-3">
+                <h4>All Water Vehicles: {{$totalWaterTime}}</h4>
+            </div>
+            <div class="col-12 text-center mb-3">
+                <h4>All Air Vehicles: {{$totalAirTime}}</h4>
+            </div>
+        </div>
     </div>
     <script src="/js/app.js"></script>
 </body>
