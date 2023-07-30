@@ -28,7 +28,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('youtube:update')->everyFifteenMinutes();
         $schedule->command('github:update')->everyFifteenMinutes();
         $schedule->command('youtube:updateviews')->twiceDaily(6,18);
-        $schedule->command('pws:update')->dailyAt('23:50');
+        $schedule->command('pws:update')->dailyAt('21:50');
     }
 
     /**
