@@ -69,7 +69,7 @@ class AddPowerwashRuns extends Command
                     'userId' => $userId,
                     'name' => $playerData->names->international,
                     'country' => $playerData->location->country->names->international,
-                    'countryCode' => $playerData->location->country->code,
+                    'countryCode' => substr($playerData->location->country->code, 0, 2),
                     'colorFrom' => $colorFrom,
                     'colorTo' => $colorTo,
                     'pronouns' => $playerData->pronouns
