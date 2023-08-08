@@ -22,7 +22,7 @@
                     @if (count($recentAeImprovements))
                         @foreach ($recentAeImprovements as $improvement)
                             <p class="text-center">
-                                <b>{{$improvement->runner->name}}</b>
+                                <b class="player-name" style="--color-from: {{$improvement->runner->colorFrom}}; --color-to: {{$improvement->runner->colorTo}};">{{$improvement->runner->name}} </b>
                                 has improved
                                 <b>{{$improvement->category->name}}</b>
                                 by
@@ -46,7 +46,7 @@
                     @if (count($recentBeImprovements))
                         @foreach ($recentBeImprovements as $improvement)
                             <p class="text-center">
-                                <b>{{$improvement->runner->name}}</b>
+                                <b class="player-name" style="--color-from: {{$improvement->runner->colorFrom}}; --color-to: {{$improvement->runner->colorTo}};">{{$improvement->runner->name}}</b>
                                 has improved
                                 <b>{{$improvement->category->name}}</b>
                                 by

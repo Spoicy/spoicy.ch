@@ -59,11 +59,11 @@ class AddPowerwashRuns extends Command
             $userId = $runData->players[0]->id;
             if (!PowerwashRunner::where('userId', $userId)->exists()) {
                 if ($playerData->{'name-style'}->style == 'solid') {
-                    $colorFrom = $playerData->{'name-style'}->color->dark;
-                    $colorTo = $playerData->{'name-style'}->color->dark;
+                    $colorFrom = $playerData->{'name-style'}->color->light;
+                    $colorTo = $playerData->{'name-style'}->color->light;
                 } else {
-                    $colorFrom = $playerData->{'name-style'}->{'color-from'}->dark;
-                    $colorTo = $playerData->{'name-style'}->{'color-to'}->dark;
+                    $colorFrom = $playerData->{'name-style'}->{'color-from'}->light;
+                    $colorTo = $playerData->{'name-style'}->{'color-to'}->light;
                 }
                 $runner = PowerwashRunner::create([
                     'userId' => $userId,
