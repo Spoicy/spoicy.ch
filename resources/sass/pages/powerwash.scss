@@ -46,6 +46,14 @@
     .legend-row {
         font-weight: bold;
     }
+    .player-name {
+        background: linear-gradient(45deg, var(--color-from), var(--color-to));
+        background-clip: text;
+        -webkit-background-clip: text;
+        -moz-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        
+    }
     @media (max-width: 991.98px) {
         .be-container, .other-totals {
             padding-top: 1.5rem;

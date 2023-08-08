@@ -65,11 +65,11 @@ class UpdatePowerwashRuns extends Command
             // Create runner if not in database, else query runner
             if (!PowerwashRunner::where('userId', $userId)->exists()) {
                 if ($playerData->{'name-style'}->style == 'solid') {
-                    $colorFrom = $playerData->{'name-style'}->color->dark;
-                    $colorTo = $playerData->{'name-style'}->color->dark;
+                    $colorFrom = $playerData->{'name-style'}->color->light;
+                    $colorTo = $playerData->{'name-style'}->color->light;
                 } else {
-                    $colorFrom = $playerData->{'name-style'}->{'color-from'}->dark;
-                    $colorTo = $playerData->{'name-style'}->{'color-to'}->dark;
+                    $colorFrom = $playerData->{'name-style'}->{'color-from'}->light;
+                    $colorTo = $playerData->{'name-style'}->{'color-to'}->light;
                 }
                 $runner = PowerwashRunner::create([
                     'userId' => $userId,
