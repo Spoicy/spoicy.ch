@@ -22,7 +22,7 @@
                     @if (count($recentAeImprovements))
                         @foreach ($recentAeImprovements as $improvement)
                             <p class="text-center">
-                                <b class="player-name" style="--color-from: {{$improvement->runner->colorFrom}}; --color-to: {{$improvement->runner->colorTo}};">{{$improvement->runner->name}} </b>
+                                <a href="https://www.speedrun.com/users/{{$improvement->runner->name}}" class="player-name" style="--color-from: {{$improvement->runner->colorFrom}}; --color-to: {{$improvement->runner->colorTo}};">{{$improvement->runner->name}}</a>
                                 has improved
                                 <b>{{$improvement->category->name}}</b>
                                 by
@@ -31,7 +31,7 @@
                                     {{$improvement->delta}}
                                 </span>
                                 with a
-                                <b>{{$improvement->formattedTime}}</b>.
+                                <a href="https://www.speedrun.com/powerwash_simulator/runs/{{$improvement->data->runId}}" class="run-link">{{$improvement->formattedTime}}</a>.
                             </p>
                         @endforeach
                     @else
@@ -46,7 +46,7 @@
                     @if (count($recentBeImprovements))
                         @foreach ($recentBeImprovements as $improvement)
                             <p class="text-center">
-                                <b class="player-name" style="--color-from: {{$improvement->runner->colorFrom}}; --color-to: {{$improvement->runner->colorTo}};">{{$improvement->runner->name}}</b>
+                                <a href="https://www.speedrun.com/users/{{$improvement->runner->name}}" class="player-name" style="--color-from: {{$improvement->runner->colorFrom}}; --color-to: {{$improvement->runner->colorTo}};">{{$improvement->runner->name}}</a>
                                 has improved
                                 <b>{{$improvement->category->name}}</b>
                                 by
@@ -55,7 +55,7 @@
                                     {{$improvement->delta}}
                                 </span>
                                 with a
-                                <b>{{$improvement->formattedTime}}</b>.
+                                <a href="https://www.speedrun.com/powerwash_simulator/runs/{{$improvement->data->runId}}" class="run-link">{{$improvement->formattedTime}}</a>.
                             </p>
                         @endforeach
                     @else

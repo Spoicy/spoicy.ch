@@ -47,12 +47,16 @@
         font-weight: bold;
     }
     .player-name {
+        font-weight: 600;
         background: linear-gradient(90deg, var(--color-from), var(--color-to));
         background-clip: text;
         -webkit-background-clip: text;
         -moz-background-clip: text;
         -webkit-text-fill-color: transparent;
-        
+    }
+    .run-link {
+        font-weight: bold;
+        color: #000;
     }
     @media (max-width: 991.98px) {
         .be-container, .other-totals {
