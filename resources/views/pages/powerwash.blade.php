@@ -144,8 +144,8 @@
                     <h4 class="text-center mb-4">All Bonus Levels: {{$totalBonusTime}}</h4>
                     <h4 class="text-center mb-4">All DLC Levels: {{$totalDlcTime}}</h4>
                     <h4 class="text-center mb-4">All Tomb Raider Levels: {{$totalOtherDlc->tombraiderTime}}</h4>
-                    <h4 class="text-center mb-4">All Midgar Levels: {{$totalOtherDlc->tombraiderTime}}</h4>
-                    <h4 class="text-center mb-4">All SpongeBob Levels: {{$totalOtherDlc->tombraiderTime}}</h4>
+                    <h4 class="text-center mb-4">All Midgar Levels: {{$totalOtherDlc->midgarTime}}</h4>
+                    <h4 class="text-center mb-4">All SpongeBob Levels: {{$totalOtherDlc->spongebobTime}}</h4>
                 </div>
             </div>
             <div class="row pws-row wr-bonusdlc-totals section-container">
