@@ -23,7 +23,7 @@ class AddPowerwashRuns extends Command
      *
      * @var string
      */
-    protected $description = 'Adds all current level WRs to the database if table is empty.';
+    protected $description = 'Adds all current career level WRs to the database if table is empty.';
 
     /**
      * Execute the console command.
@@ -38,7 +38,9 @@ class AddPowerwashRuns extends Command
         }
         $limit = 100;
         $calls = 0;
-        $categories = PowerwashCategory::all();
+        $categories = PowerwashCategory::where('type', 'Vehicle')
+            ->orWhere('type', 'Location')
+            ->get();
         foreach ($categories as $category) {
             if ($calls >= $limit) {
                 echo "Sleeping for 1 minute, Rate limit achieved.\n";

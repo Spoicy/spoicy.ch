@@ -25,6 +25,9 @@ class PowerwashHelper
                 $colorFrom = $runnerData->{'name-style'}->{'color-from'}->light;
                 $colorTo = $runnerData->{'name-style'}->{'color-to'}->light;
             }
+            if (!$runnerData->pronouns) {
+                $runnerData->pronouns = '';
+            }
             $runner = PowerwashRunner::create([
                 'userId' => $userId,
                 'name' => $runnerData->names->international,
