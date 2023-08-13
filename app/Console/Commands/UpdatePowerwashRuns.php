@@ -62,24 +62,9 @@ class UpdatePowerwashRuns extends Command
             if (PowerwashRun::where('runId', $runData->id)->exists()) {
                 continue;
             }
-            // Create runner if not in database, else query runner
+            // Create runner if not in database, else query for runner
             if (!PowerwashRunner::where('userId', $userId)->exists()) {
-                if ($playerData->{'name-style'}->style == 'solid') {
-                    $colorFrom = $playerData->{'name-style'}->color->light;
-                    $colorTo = $playerData->{'name-style'}->color->light;
-                } else {
-                    $colorFrom = $playerData->{'name-style'}->{'color-from'}->light;
-                    $colorTo = $playerData->{'name-style'}->{'color-to'}->light;
-                }
-                $runner = PowerwashRunner::create([
-                    'userId' => $userId,
-                    'name' => $playerData->names->international,
-                    'country' => $playerData->location->country->names->international,
-                    'countryCode' => substr($playerData->location->country->code, 0, 2),
-                    'colorFrom' => $colorFrom,
-                    'colorTo' => $colorTo,
-                    'pronouns' => $playerData->pronouns
-                ]);
+                $runner = PowerwashHelper::createRunner($userId, $playerData);
             } else {
                 $runner = PowerwashRunner::where('userId', $userId)->first();
             }

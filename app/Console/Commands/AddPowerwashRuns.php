@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Helpers\PowerwashHelper;
 use App\Models\PowerwashCategory;
 use App\Models\PowerwashRun;
 use App\Models\PowerwashRunner;
@@ -58,22 +59,7 @@ class AddPowerwashRuns extends Command
             $playerData = $request->object()->data->players->data[0];
             $userId = $runData->players[0]->id;
             if (!PowerwashRunner::where('userId', $userId)->exists()) {
-                if ($playerData->{'name-style'}->style == 'solid') {
-                    $colorFrom = $playerData->{'name-style'}->color->light;
-                    $colorTo = $playerData->{'name-style'}->color->light;
-                } else {
-                    $colorFrom = $playerData->{'name-style'}->{'color-from'}->light;
-                    $colorTo = $playerData->{'name-style'}->{'color-to'}->light;
-                }
-                $runner = PowerwashRunner::create([
-                    'userId' => $userId,
-                    'name' => $playerData->names->international,
-                    'country' => $playerData->location->country->names->international,
-                    'countryCode' => substr($playerData->location->country->code, 0, 2),
-                    'colorFrom' => $colorFrom,
-                    'colorTo' => $colorTo,
-                    'pronouns' => $playerData->pronouns
-                ]);
+                $runner = PowerwashHelper::createRunner($userId, $playerData);
             } else {
                 $runner = PowerwashRunner::where('userId', $userId)->first();
             }
