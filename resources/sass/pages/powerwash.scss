@@ -9,6 +9,27 @@
         margin-bottom: 1rem;
         text-align: center;
     }
+    .button-controls {
+        display: grid;
+        width: min(300px, 100%);
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.5rem;
+        padding: 0 0.5rem 1.5rem 0.5rem;
+        margin: auto;
+        button {
+            background-color: #CFCCE8;
+            font-weight: 600;
+            font-size: 1.25rem;
+            &:hover,
+            &.active {
+                color: #FFF;
+                background-color: #8b84c8;
+            }
+            @media (max-width: 575.98px) {
+                font-size: 1rem;
+            }
+        }
+    }
     .delta {
         font-weight: 600;
         color: #73be73;
@@ -24,6 +45,9 @@
         -moz-animation: fadein 1.5s;
         animation: fadein 1.5s;
         animation-fill-mode: forwards;
+        &.disable-stagger {
+            animation-delay: 0s!important;
+        }
     }
     .ae-container {
         animation-delay: 1.2s;
@@ -34,14 +58,15 @@
     .other-totals {
         animation-delay: 1.8s;
     }
+
     .wr-totals {
         animation-delay: 2.1s;
+    }
+    .wr-totals .row,
+    .wr-bonusdlc-totals .row {
         font-size: 1.25rem;
-        .row {
-            border-bottom: 2px solid #CFCCE8;
-            margin: 0;
-        }
-
+        border-bottom: 2px solid #CFCCE8;
+        margin: 0;
     }
     .legend-row {
         font-weight: bold;
