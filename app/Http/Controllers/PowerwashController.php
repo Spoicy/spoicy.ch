@@ -18,7 +18,10 @@ class PowerwashController extends Controller
      */
     public static function view(): \Illuminate\Contracts\View\View
     {
-        $categories = PowerwashCategory::all()->keyBy('id');
+        $categories = PowerwashCategory::where('type', 'Vehicle')
+            ->orWhere('type', 'Location')
+            ->get()
+            ->keyBy('id');
         $runners = PowerwashRunner::all()->keyBy('id');
         $aeRuns = [];
         $beRuns = [];
