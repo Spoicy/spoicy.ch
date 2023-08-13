@@ -10,21 +10,21 @@ use App\Models\SuccessfulJob;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Http;
 
-class UpdatePowerwashRuns extends Command
+class UpdatePowerwashBonusDlcRuns extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'pws:update';
+    protected $signature = 'pws:updatedlc';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Checks for new 1st place times and adds them to the database.';
+    protected $description = 'Checks for new 1st place times for Bonus/DLC categories and adds them to the database.';
 
     /**
      * Execute the console command.
@@ -35,8 +35,8 @@ class UpdatePowerwashRuns extends Command
     {
         $limit = 100;
         $calls = 0;
-        $categories = PowerwashCategory::where('type', 'Vehicle')
-            ->orWhere('type', 'Location')
+        $categories = PowerwashCategory::where('type', 'Bonus')
+            ->orWhere('type', 'DLC')
             ->get();
         $newRunsCount = 0;
         foreach ($categories as $category) {
@@ -80,12 +80,11 @@ class UpdatePowerwashRuns extends Command
                 'order' => $totalWRs + 1,
                 'runId' => $runData->id
             ]);
-            echo "Added new WR for " . $category->name . " (" . PowerwashHelper::getSubcategoryName($category->subcatId) . 
-                ") by " . $runner->name . " with a time of " . $newRun->time . "\n";
+            echo "Added new WR for " . $category->name . " by " . $runner->name . " with a time of " . $newRun->time . "\n";
             $newRunsCount++;
         }
         SuccessfulJob::create([
-            'job_name' => 'pws:update',
+            'job_name' => 'pws:updatedlc',
             'info' => "$newRunsCount new runs added"
         ]);
         return 1;
