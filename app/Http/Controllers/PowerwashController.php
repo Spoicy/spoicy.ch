@@ -128,6 +128,10 @@ class PowerwashController extends Controller
         $aeImprovementsQuery = PowerwashRun::select('powerwash_runs.*')
             ->join('powerwash_categories', 'powerwash_runs.catId', '=', 'powerwash_categories.id')
             ->where('powerwash_categories.subcatId', '824ngjnk')
+            ->where(function ($query) {
+                $query->where('powerwash_categories.type', 'Vehicle')
+                    ->orWhere('powerwash_categories.type', 'Location');
+            })
             ->where('powerwash_runs.order', '>', 1)
             ->orderby('created_at', 'desc')->take(10)->get();
         $recentAeImprovements = [];
@@ -144,6 +148,10 @@ class PowerwashController extends Controller
         $beImprovementsQuery = PowerwashRun::select('powerwash_runs.*')
             ->join('powerwash_categories', 'powerwash_runs.catId', '=', 'powerwash_categories.id')
             ->where('powerwash_categories.subcatId', '9d8y4elk')
+            ->where(function ($query) {
+                $query->where('powerwash_categories.type', 'Vehicle')
+                    ->orWhere('powerwash_categories.type', 'Location');
+            })
             ->where('powerwash_runs.order', '>', 1)
             ->orderby('created_at', 'desc')->take(10)->get();
         $recentBeImprovements = [];
