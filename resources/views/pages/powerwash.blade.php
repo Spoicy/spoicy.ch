@@ -119,7 +119,7 @@
                     <h2>Bonus/DLC Improvements</h2>
                     <div class="improvements-container">
                         @if (count($recentBonusdlcImprovements))
-                            @foreach ($recentBonusDlcImprovements as $improvement)
+                            @foreach ($recentBonusdlcImprovements as $improvement)
                                 <p class="text-center">
                                     <a href="https://www.speedrun.com/users/{{$improvement->runner->name}}" class="player-name" style="--color-from: {{$improvement->runner->colorFrom}}; --color-to: {{$improvement->runner->colorTo}};">{{$improvement->runner->name}}</a>
                                     has improved
