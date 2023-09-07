@@ -63,6 +63,6 @@ class UpdateGitHub extends Command
         } catch (\Exception $e) {
             echo "Error with requesting Github API: " . $e->getMessage();
         }
-        return 0;
+        return Command::SUCCESS;
     }
 }

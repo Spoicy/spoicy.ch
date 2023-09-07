@@ -39,6 +39,6 @@ class UpdateSpeedrunImageUrls extends Command
             $speedrun->image = "https://www.speedrun.com/static/game/" . $gameId . "/cover.png?v=" . $version;
             $speedrun->save();
         }
-        return 0;
+        return Command::SUCCESS;
     }
 }

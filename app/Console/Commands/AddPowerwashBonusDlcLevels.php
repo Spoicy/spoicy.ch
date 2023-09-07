@@ -60,6 +60,6 @@ class AddPowerwashBonusDlcLevels extends Command
                 echo "Added new Mars Rover's BE category\n";
             }
         }
-        return 1;
+        return Command::SUCCESS;
     }
 }

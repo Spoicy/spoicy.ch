@@ -86,6 +86,6 @@ class UpdateTwitter extends Command
                 $newTweet->save();
             }
         }
-        return 0;
+        return Command::SUCCESS;
     }
 }

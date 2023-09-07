@@ -37,6 +37,6 @@ class AddUrlsToBlogPosts extends Command
             $post->url = BlogPostHelper::createURL($post->title);
             $post->save();
         }
-        return 0;
+        return Command::SUCCESS;
     }
 }

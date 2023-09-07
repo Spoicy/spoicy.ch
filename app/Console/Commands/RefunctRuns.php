@@ -77,6 +77,6 @@ class RefunctRuns extends Command
         }
         $jsonstring .= ']';
         Storage::disk('local')->put('data.json', $jsonstring);
-        return 0;
+        return Command::SUCCESS;
     }
 }

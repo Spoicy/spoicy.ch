@@ -57,6 +57,6 @@ class AddTypesToSpeedruns extends Command
                 $speedrun->save();
             }
         }
-        return 0;
+        return Command::SUCCESS;
     }
 }

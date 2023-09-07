@@ -45,6 +45,6 @@ class BlogtextReformat extends Command
             $newblogtext = str_replace($replace, $replaceWith, $entry->blogtext);
             DB::table('blogentries')->where('id', $entry->id)->update(['blogtext' => $newblogtext]);
         }
-        return 0;
+        return Command::SUCCESS;
     }
 }

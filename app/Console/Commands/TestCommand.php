@@ -39,8 +39,7 @@ class TestCommand extends Command
      */
     public function handle()
     {
-        $test = Blog::getBlogtextFormat('pg:This is a test a[string](google.com). b[Bold test string, i[Italic nested b[Bold nested string] string.] Test]');
-        echo "$test";
-        return 0;
+        
+        return Command::SUCCESS;
     }
 }

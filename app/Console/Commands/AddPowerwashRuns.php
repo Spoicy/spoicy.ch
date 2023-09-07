@@ -34,7 +34,7 @@ class AddPowerwashRuns extends Command
     {
         if (PowerwashRun::all()->count() > 0) {
             echo "Runs already exist in the database.\n";
-            return 0;
+            return Command::FAILURE;
         }
         $limit = 100;
         $calls = 0;
@@ -74,6 +74,6 @@ class AddPowerwashRuns extends Command
                 'runId'=> $runData->id
             ]);
         }
-        return 1;
+        return Command::SUCCESS;
     }
 }

@@ -75,6 +75,6 @@ class AddPowerwashBonusDlcRuns extends Command
             echo "Added run " . $category->name . " (" . PowerwashHelper::getSubcategoryName($category->subcatId) .
                 ") by " . $runner->name . " with a time of " . $newRun->time . "\n";
         }
-        return 1;
+        return Command::SUCCESS;
     }
 }

@@ -87,6 +87,6 @@ class UpdatePowerwashBonusDlcRuns extends Command
             'job_name' => 'pws:updatedlc',
             'info' => "$newRunsCount new runs added"
         ]);
-        return 1;
+        return Command::SUCCESS;
     }
 }

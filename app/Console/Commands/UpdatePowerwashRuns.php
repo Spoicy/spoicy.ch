@@ -88,6 +88,6 @@ class UpdatePowerwashRuns extends Command
             'job_name' => 'pws:update',
             'info' => "$newRunsCount new runs added"
         ]);
-        return 1;
+        return Command::SUCCESS;
     }
 }

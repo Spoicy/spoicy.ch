@@ -33,7 +33,7 @@ class AddPowerwashLevels extends Command
         $requestData = $request->object()->data;
         if (PowerwashCategory::all()->count() > 0) {
             echo "Categories already exist in the table.\n";
-            return 0;
+            return Command::FAILURE;
         }
         for ($i = 0; $i < 38; $i++) {
             // Vehicles are ids 0-17, Locations are 18-37
@@ -57,6 +57,6 @@ class AddPowerwashLevels extends Command
                 'name' => $requestData[$i]->name
             ]);
         }
-        return 1;
+        return Command::SUCCESS;
     }
 }

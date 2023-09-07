@@ -42,6 +42,6 @@ class BlogtextMarkdownReformat extends Command
             $post->blogtext = $text;
             $post->save();
         }
-        return 0;
+        return Command::SUCCESS;
     }
 }

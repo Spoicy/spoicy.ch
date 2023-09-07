@@ -41,6 +41,6 @@ class PasswordHashGen extends Command
     {
         $hash = Hash::make($this->argument('pwd'));
         echo $hash . "\n";
-        return 0;
+        return Command::SUCCESS;
     }
 }

@@ -25,6 +25,7 @@ class UpdateYoutubeViews extends Command
     /**
      * Execute the console command.
      *
+     * @return int
      */
     public function handle()
     {
@@ -47,5 +48,6 @@ class UpdateYoutubeViews extends Command
                     'views' => $video->statistics->viewCount
                 ]);
         }
+        return Command::SUCCESS;
     }
 }

@@ -37,6 +37,6 @@ class CreateUser extends Command
         echo "\nUser with e-mail \"" . $this->argument('email') . "\" and password \"" . $this->argument('pwd') . "\" has been created.\n" .
             "\nPlease copy your account details to a safe location, you will not be sent your password again." .
             "\nIf a password needs to be changed or an account deleted, use user:change or user:delete respectively.\n";
-        return 0;
+        return Command::SUCCESS;
     }
 }
