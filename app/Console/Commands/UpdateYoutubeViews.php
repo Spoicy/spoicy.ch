@@ -29,25 +29,28 @@ class UpdateYoutubeViews extends Command
      */
     public function handle()
     {
-        $videos = YoutubeVideo::all();
-        $idList = '';
-        foreach ($videos as $video) {
-            $idList .= $video->sid . ',';
+        $sids = YoutubeVideo::pluck('sid')->toArray();
+        $chunks = array_chunk($sids, 50);
+
+        foreach ($chunks as $chunk) {
+            $idList = implode(",", $chunk);
+
+            // ?part=snippet&playlistId=UUsVw7FLt28Boqi7e6CnkoXg&maxResults=30&key=" . env("YOUTUBE_API_KEY")
+            $response = Http::get("https://youtube.googleapis.com/youtube/v3/videos", [
+                'part' => 'statistics',
+                'id' => $idList,
+                'key' => env("YOUTUBE_API_KEY")
+            ]);
+
+            $videos = $response->object()->items;
+            foreach ($videos as $video) {
+                YoutubeVideo::where('sid', $video->id)
+                    ->update([
+                        'views' => $video->statistics->viewCount
+                    ]);
+            }
         }
-        $idList = substr($idList, 0, -1);
-        // ?part=snippet&playlistId=UUsVw7FLt28Boqi7e6CnkoXg&maxResults=30&key=" . env("YOUTUBE_API_KEY")
-        $request = Http::get("https://youtube.googleapis.com/youtube/v3/videos", [
-            'part' => 'statistics',
-            'id' => $idList,
-            'key' => env("YOUTUBE_API_KEY")
-        ]);
-        $requestVideos = $request->object()->items;
-        foreach ($requestVideos as $video) {
-            YoutubeVideo::where('sid', $video->id)
-                ->update([
-                    'views' => $video->statistics->viewCount
-                ]);
-        }
+
         return Command::SUCCESS;
     }
 }
