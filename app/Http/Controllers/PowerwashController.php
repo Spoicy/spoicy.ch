@@ -37,7 +37,12 @@ class PowerwashController extends Controller
         $totalOtherDlcKeys = [
             'tombraiderTime' => ['xd4lkg89', 'xd0846j9', 'rw6zm56d', 'n93rmzr9', 'z98xm41d'],
             'midgarTime' => ['495eg049', '69z1jv4w', 'rdqervgd', 'r9gp5o29', 'o9xjqv7d'],
-            'spongebobTime' => ['xd1gonyd', 'ewpgvl4w', 'y9mlvn0w', '5wkyv3xd', '592x1y6d', '29vovqxw']
+            'spongebobTime' => ['xd1gonyd', 'ewpgvl4w', 'y9mlvn0w', '5wkyv3xd', '592x1y6d', '29vovqxw'],
+            'bttfTime' => ['z98vg6lw', 'rdnj20v9', 'ldy78yzd', 'gdr41ezw', 'nwlxplrw'],
+            'warhammerTime' => ['d7y6l5gd', 'wj7o3jnw', 'wo7glno9', 'd1jv6red', 'wp7ke5kw'],
+            'aliceTime' => ['93qqxe2w', '98rroqrd', 'dnoom85w', 'dy11r6pd', 'drpp0lew'],
+            'shrekTime' => ['d0kg6qj9', '98r6471d', 'd40jg289', 'w6q45o6d', '93q7z4rw'],
+            'wallacegromitTime' => ['dno04z6w', 'dy1ylg7d', 'drpe62kw', 'wlgl43g9', 'we21xl4w']
         ];
         foreach ($totalOthersKeys as $key) {
             $totalOthers->$key = 0;

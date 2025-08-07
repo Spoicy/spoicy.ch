@@ -146,6 +146,11 @@
                     <h4 class="text-center mb-4">All Tomb Raider Levels: {{$totalOtherDlc->tombraiderTime}}</h4>
                     <h4 class="text-center mb-4">All Midgar Levels: {{$totalOtherDlc->midgarTime}}</h4>
                     <h4 class="text-center mb-4">All SpongeBob Levels: {{$totalOtherDlc->spongebobTime}}</h4>
+                    <h4 class="text-center mb-4">All Back to the Future Levels: {{$totalOtherDlc->bttfTime}}</h4>
+                    <h4 class="text-center mb-4">All Warhammer 40,000 Levels: {{$totalOtherDlc->warhammerTime}}</h4>
+                    <h4 class="text-center mb-4">All Alice's Adventures Levels: {{$totalOtherDlc->aliceTime}}</h4>
+                    <h4 class="text-center mb-4">All Shrek Levels: {{$totalOtherDlc->shrekTime}}</h4>
+                    <h4 class="text-center mb-4">All Wallace & Gromit Levels: {{$totalOtherDlc->wallacegromitTime}}</h4>
                 </div>
             </div>
             <div class="row pws-row wr-bonusdlc-totals section-container">

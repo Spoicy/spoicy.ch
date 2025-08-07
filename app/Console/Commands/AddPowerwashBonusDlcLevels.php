@@ -36,7 +36,7 @@ class AddPowerwashBonusDlcLevels extends Command
                 continue;
             }
             // Bonus levels always start with Clean the or Clean The
-            if (str_contains($requestData[$i]->name, 'Clean the') || str_contains($requestData[$i]->name, 'Clean The')) {
+            if (str_contains($requestData[$i]->name, 'Clean')) {
                 $type = 'Bonus';
             } else {
                 $type = 'DLC';
